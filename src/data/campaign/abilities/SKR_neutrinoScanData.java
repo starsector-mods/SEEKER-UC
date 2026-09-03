@@ -93,7 +93,7 @@ public class SKR_neutrinoScanData {
         //add to the total time spent with the ability active
         scanLevel=days/FULL_SCAN;        
         if(mem.contains(memKey)){
-            scanLevel = Math.min((float)mem.get(memKey)+scanLevel, 1);
+            scanLevel = Math.min(mem.getFloat(memKey)+scanLevel, 1);
             mem.set(memKey, scanLevel);
         } else {
             mem.set(memKey, scanLevel);

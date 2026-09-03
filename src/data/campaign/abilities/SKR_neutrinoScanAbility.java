@@ -145,7 +145,7 @@ public class SKR_neutrinoScanAbility extends BaseToggleAbility {
         String memKey = "$scan_"+fleet.getContainingLocation().getId();
         MemoryAPI mem = Global.getSector().getMemoryWithoutUpdate();
         if(mem.contains(memKey)){
-            scanLevel = (float)mem.get(memKey);
+            scanLevel = mem.getFloat(memKey);
         } else {
             scanLevel=0;
         }

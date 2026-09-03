@@ -59,7 +59,11 @@ public class SKR_remoteSurveyAbility extends BaseDurationAbility {
             if (fleet.isInHyperspace()) {
                 //hyperspace survey
                 JumpPointAPI point = Misc.findNearestJumpPoint(fleet);
-                system = point.getDestinations().get(0).getDestination().getStarSystem();
+                if (point != null && point.getDestinations() != null && !point.getDestinations().isEmpty() && point.getDestinations().get(0).getDestination() != null) {
+                    system = point.getDestinations().get(0).getDestination().getStarSystem();
+                } else {
+                    system = null;
+                }
             } else {
                 //system survey
                 system = fleet.getStarSystem();
@@ -127,7 +131,7 @@ public class SKR_remoteSurveyAbility extends BaseDurationAbility {
         }
         if (fleet.isInHyperspace()) {
             JumpPointAPI point = Misc.findNearestJumpPoint(fleet);
-            if (Misc.getDistanceToPlayerLY(point) < JUMP_POINT_DISTANCE) {
+            if (point != null && Misc.getDistanceToPlayerLY(point) < JUMP_POINT_DISTANCE) {
                 return true;
             }
         }
