@@ -34,7 +34,9 @@ import com.fs.starfarer.api.impl.campaign.procgen.StarSystemGenerator;
 import static com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator.convertOrbitWithSpin;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.RemnantSeededFleetManager;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.RemnantStationFleetManager;
-import data.scripts.util.MagicCampaign;
+import org.magiclib.util.MagicCampaign;
+import org.magiclib.campaign.MagicCaptainBuilder;
+import org.magiclib.campaign.MagicFleetBuilder;
 import java.awt.Color;
 import static data.scripts.util.SKR_txt.txt;
 import java.util.Random;
@@ -75,7 +77,7 @@ public class SKR_plagueC {
         SectorEntityToken s1 = system.addCustomEntity("plagueC_stable1", null, "stable_location", "neutral");        
         s1.setCircularOrbit(star, 90, 10000, 1200);
         
-        MagicCampaign.createJumpPoint("plagueC_jp0", systemName+txt("plague_jp"), null, star, 0, 700, 150);
+        MagicCampaign.addJumpPoint("plagueC_jp0", systemName+txt("plague_jp"), null, star, 0, 700, 150);
         
         //random stuff to the outside
         
@@ -123,7 +125,7 @@ public class SKR_plagueC {
         p1.getMarket().addCondition(Conditions.HOT);
         p1.getMarket().addCondition(Conditions.IRRADIATED);
         
-        MagicCampaign.createJumpPoint("plagueC_jp1", companionName+txt("plague_jp"), p1, companion, 0, 1250, 200);
+        MagicCampaign.addJumpPoint("plagueC_jp1", companionName+txt("plague_jp"), p1, companion, 0, 1250, 200);
         	
         system.addTag(Tags.THEME_REMNANT);
         system.addTag(Tags.THEME_REMNANT_SECONDARY);
@@ -187,41 +189,35 @@ public class SKR_plagueC {
         p2.getMarket().addCondition(Conditions.HOT);
         p2.getMarket().addCondition(Conditions.HABITABLE);
         
-        PersonAPI plagueC = MagicCampaign.createCaptain(
-                true,
-                Commodities.ALPHA_CORE,
-                "White Dwarf",
-                "White Dwarf",
-                "SKR_plagueC",
-                FullName.Gender.ANY,
-                "plague",
-                Ranks.SPACE_COMMANDER,
-                Ranks.POST_FLEET_COMMANDER,
-                Personalities.AGGRESSIVE,
-                8,
-                8,
-                OfficerManagerEvent.SkillPickPreference.GENERIC,
-                null
-//                skills
-        );
+        PersonAPI plagueC = new MagicCaptainBuilder("plague")
+                .setIsAI(true)
+                .setAICoreType(Commodities.ALPHA_CORE)
+                .setFirstName("White Dwarf")
+                .setLastName("White Dwarf")
+                .setPortraitId("SKR_plagueC")
+                .setGender(FullName.Gender.ANY)
+                .setRankId(Ranks.SPACE_COMMANDER)
+                .setPostId(Ranks.POST_FLEET_COMMANDER)
+                .setPersonality(Personalities.AGGRESSIVE)
+                .setLevel(8)
+                .setEliteSkillsOverride(8)
+                .setSkillPreference(OfficerManagerEvent.SkillPickPreference.GENERIC)
+                .create();
         
-        SectorEntityToken boss = MagicCampaign.createFleet(
-                txt("plague_C_fleet"),
-                "plague",
-                null,
-                txt("plague_C_boss"),
-                "SKR_whiteDwarf_1",
-                plagueC,
-                null,
-                150,
-                Factions.REMNANTS,
-                1f,
-                null,
-                FleetAssignment.ORBIT_PASSIVE,
-                p2,
-                true,
-                false
-        );
+        SectorEntityToken boss = new MagicFleetBuilder()
+                .setFleetName(txt("plague_C_fleet"))
+                .setFleetFaction("plague")
+                .setFlagshipName(txt("plague_C_boss"))
+                .setFlagshipVariant("SKR_whiteDwarf_1")
+                .setCaptain(plagueC)
+                .setMinFP(150)
+                .setReinforcementFaction(Factions.REMNANTS)
+                .setQualityOverride(1f)
+                .setAssignment(FleetAssignment.ORBIT_PASSIVE)
+                .setAssignmentTarget(p2)
+                .setIsImportant(true)
+                .setTransponderOn(false)
+                .create();
         boss.getCargo().addCommodity(Commodities.ALPHA_CORE, 3);
         boss.getCargo().addHullmods("SKR_plagueLPC", 1);
         boss.setDiscoverable(true);        

@@ -137,17 +137,15 @@
             "SKR_clipper":0.1f,
             "SKR_retiarius":0.5f,
             "SKR_trailblazer":0.1f,
-            "SKR_balisong":0.1f,
-            "SKR_cassowary":1.0,
-            "SKR_cassowaryRH":0.1f,
-            "SKR_quicksilver":0.1f,
-            "SKR_dawn":0.1f,
-            "SKR_onyx":0.1f,
-            "SKR_voulge":0.25f,
-            "SKR_gawon":0.1f,
-            "SKR_guardian":0.1f,
-            "SKR_guardian_atc":0.1f,
-            "SKR_guardian_broadside":0.1f,
-        },
-    },
+            "SKR_balisong": 0.1,
+            "SKR_cassowary": 1.0,
+            "SKR_cassowaryRH": 0.1,
+            "SKR_quicksilver": 0.1,
+            "SKR_dawn": 0.1,
+            "SKR_onyx": 0.1,
+            "SKR_voulge": 0.25,
+            "SKR_gawon": 0.1,
+            "SKR_siegfried": 0.1
+        }
+    }
 }
