@@ -1,0 +1,29 @@
+{
+    "displayName": "Swarmer",
+    "fluxCapacitors": 0,
+    "fluxVents": 0,
+    "hullId": "SKR_fireant",
+    "modules": [],
+    "permaMods": [],
+    "quality": 0,
+    "variantId": "SKR_fireant_variant",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0001": "SKR_heavymg"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {
+                "WS0002": "swarmer_fighter",
+                "WS0003": "swarmer_fighter"
+            }
+        }
+    ],
+    "wings": [],
+    "sMods": []
+}

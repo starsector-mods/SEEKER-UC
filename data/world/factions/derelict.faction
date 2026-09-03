@@ -1,0 +1,8 @@
+{
+    "knownWeapons":{
+        "weapons":[
+            "SKR_minigun",
+            "SKR_stepMissilesLauncher",
+            "SKR_stepMissilesRack",
+            "SKR_accelMissilesLauncher",
+            "SKR_accelMissileRack"]}},
