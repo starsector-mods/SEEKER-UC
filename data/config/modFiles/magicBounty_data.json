@@ -362,9 +362,9 @@
 		"job_type":"neutralisation",
 		"job_show_type":true,
 		"job_show_captain": false,
-		"job_show_fleet": all,
+		"job_show_fleet": "all",
 		"job_show_distance": "vanillaDistance",
-		"job_difficultyDescription":auto,
+		"job_difficultyDescription": "auto",
 		"job_memKey": "$skr_augur",
 
 		#captain is irrelevant in this instance
@@ -430,9 +430,9 @@
 		"job_type":"neutralisation",
 		"job_show_type":true,
 		"job_show_captain": false,
-		"job_show_fleet": all,
-		"job_show_distance":vanillaDistance,
-		"job_difficultyDescription":auto,
+		"job_show_fleet": "all",
+		"job_show_distance": "vanillaDistance",
+		"job_difficultyDescription": "auto",
 		
 		#and again the captain is irrelevant
 		"target_rank": "spaceCommander",
@@ -559,7 +559,7 @@
 		"job_reward_scaling": 0.125,
 		"job_type":"neutralisation",
 		"job_show_captain": true,
-		"job_show_fleet": flagshipText,
+		"job_show_fleet": "flagshipText",
 		"job_show_distance": "vague",
 		"job_difficultyDescription": "auto",
 
@@ -705,7 +705,7 @@
 
 		"target_first_name": "Illia",
 		"target_last_name": "Barthelemy",
-		"target_portrait": "SKR_retiarius",
+		"target_portrait": "graphics/portraits/portrait_mercenary01.png",
 		"target_gender": "FEMALE",
 		"target_rank": "spaceCommander",
 		"target_post": "merchant",
@@ -838,7 +838,7 @@
 		"job_reputation_reward":15,
 		"job_type":"obliteration",
 		"job_show_captain": true,
-		"job_show_fleet": vanilla,
+		"job_show_fleet": "vanilla",
 		"job_show_distance": "vanillaDistance",
 		"job_difficultyDescription": "auto",
 		"job_pick_option": "Contact a Sindrian agent to throw your hat into the ring.",
@@ -919,13 +919,13 @@
 		"job_reward_scaling": 0.5,
 		"job_type":"assassination",
 		"job_show_captain": true,
-		"job_show_fleet": vanilla,
+		"job_show_fleet": "vanilla",
 		"job_show_distance": "vanillaDistance",
 		"job_pick_option": "Ask for the Warlord's coordinates",
 
 		"target_first_name": "Jessica",
 		"target_last_name": "Tazerface",
-		"target_portrait": "SKR_siegfried",
+		"target_portrait": "graphics/portraits/portrait_pirate01.png",
 		"target_gender": "FEMALE",
 		"target_rank": "Captain",
 		"target_post": "Warlord",
@@ -1150,7 +1150,7 @@
 		"job_reward_scaling": 0.5,
 		"job_type":"destruction",
 		"job_show_captain": false,
-		"job_show_fleet": flagshipText,
+		"job_show_fleet": "flagshipText",
 		"job_show_distance": "vague",
 		"job_difficultyDescription": "auto",
 
