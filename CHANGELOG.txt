@@ -1,5 +1,14 @@
 SEEKER
 
+0.53rc1
+
+ - Fixed long-standing Plague-bearer boss immortality bug where multi-module bosses (Cataclysm, Rampage, White Dwarf) could become undead/invulnerable when their core reached 0 HP.
+ - Added SKR_PlagueBossDeathListener to cleanly decouple, disable, and destroy attached modules upon lethal damage to the core.
+ - Added strict death & hulk cleanup guards to boss weapon and effect scripts (SKR_cataclysmSystem, SKR_rampageSystem, SKR_whiteDwarfSystem, SKR_keepSystemEffect, SKR_warpDriveEffect) to restore sapped CR, break gravitic burst loops, and remove system stat modifiers.
+ - Registered data.campaign.rulecmd package in settings.json to fix RuleException crash on startup.
+ - Removed obsolete ART_weaponPlatform reference in ship_systems.csv.
+ - Updated codebase to Java 17 bytecode (major version 61) compatibility.
+
 0.53
 
  - Added 3 new Nexerelin custom starts:
