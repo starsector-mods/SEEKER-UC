@@ -181,6 +181,8 @@ public class SKR_seekerGen implements SectorGeneratorPlugin {
                     MathUtils.getRandomNumberInRange(30, 50)
             );
             onyx.addTag(Tags.NEUTRINO_LOW);
+            onyx.addTag("SKR_onyx");
+            onyx.getMemoryWithoutUpdate().set("$SKR_onyxWreck", true);
             
             MagicCampaign.addSalvage(null, onyx, MagicCampaign.lootType.WEAPON, "SKR_blackout", 2 );
             
@@ -1022,6 +1024,8 @@ public class SKR_seekerGen implements SectorGeneratorPlugin {
         
         titanicWreck.setName(txt("titanicWreck"));
         titanicWreck.addTag(Tags.NEUTRINO);
+        titanicWreck.addTag("CIV_titanic");
+        titanicWreck.getMemoryWithoutUpdate().set("$SKR_titanicWreck", true);
         
         MagicCampaign.addSalvage(titanicWreck.getCargo(),
                 titanicWreck,
@@ -1089,5 +1093,7 @@ public class SKR_seekerGen implements SectorGeneratorPlugin {
         
         voulgeWreck.setName(txt("voulgeWreck"));
         voulgeWreck.addTag(Tags.NEUTRINO);
+        voulgeWreck.addTag("SKR_voulge");
+        voulgeWreck.getMemoryWithoutUpdate().set("$SKR_voulgeWreck", true);
     }
 }

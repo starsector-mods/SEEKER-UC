@@ -27,6 +27,8 @@ import java.util.HashMap;
 import java.util.Map;
 import org.dark.shaders.light.LightData;
 import org.dark.shaders.util.ShaderLib;
+import com.fs.starfarer.api.impl.campaign.intel.bar.events.BarEventManager;
+import data.campaign.intel.bar.SKR_derelictRumorBarEventCreator;
 import org.dark.shaders.util.TextureData;
 
 public class SKR_modPlugin extends BaseModPlugin {
@@ -89,6 +91,7 @@ public class SKR_modPlugin extends BaseModPlugin {
     
     @Override
     public void onGameLoad(boolean newGame) {
+        BarEventManager.getInstance().addEventCreator(new SKR_derelictRumorBarEventCreator());
         //SAVE PATCHING CODE
         
         //0.52 RC3 

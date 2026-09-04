@@ -12,4 +12,17 @@ $faction.neutralToPlayer","$ignorePlayerCommRequests = true 1","Your communicati
 
 However as your fleet close the distance, batteries of range-finding lasers and mapping radar start to thoroughly scan your fleet. The deck crew is now very nervous and ready to activate every firing solution at the first sign of  active hostility. The next move is yours to make.",,
 "#END Plague-bearer fleet greeting lines",,,,,,
-
+,
+# SEEKER Custom Derelict Log Rules,,,,,,
+SKR_titanic_log_opt,PopulateSalvageOptions,"$SKR_titanicWreck","AddOption ""Access Voyage Data Recorder"" SKR_titanic_showLog",,,
+SKR_titanic_showLog,SKR_titanic_showLog,,"SKR_showDerelictLog titanic","","SKR_titanic_done:Continue with salvage operations",
+SKR_titanic_done,SKR_titanic_done,,"FireAll PopulateSalvageOptions",,,
+,
+SKR_onyx_log_opt,PopulateSalvageOptions,"$SKR_onyxWreck","AddOption ""Decrypt Research Telemetry Log"" SKR_onyx_showLog",,,
+SKR_onyx_showLog,SKR_onyx_showLog,,"SKR_showDerelictLog onyx","","SKR_onyx_done:Continue with salvage operations",
+SKR_onyx_done,SKR_onyx_done,,"FireAll PopulateSalvageOptions",,,
+,
+SKR_siegfried_log_opt,PopulateSalvageOptions,"$SKR_siegfriedWreck","AddOption ""Query Domain Defense Archive"" SKR_siegfried_showLog",,,
+SKR_siegfried_showLog,SKR_siegfried_showLog,,"SKR_showDerelictLog siegfried","","SKR_siegfried_done:Continue with salvage operations",
+SKR_siegfried_done,SKR_siegfried_done,,"FireAll PopulateSalvageOptions",,,
+#END SEEKER Custom Derelict Log Rules,,,,,,,
