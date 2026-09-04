@@ -6,6 +6,7 @@ import com.fs.starfarer.api.campaign.TextPanelAPI;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.impl.campaign.rulecmd.BaseCommandPlugin;
 import com.fs.starfarer.api.util.Misc;
+import data.campaign.intel.SKR_derelictCodexIntel;
 import java.awt.Color;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ public class SKR_showDerelictLog extends BaseCommandPlugin {
         Color gray = Misc.getGrayColor();
 
         if ("titanic".equalsIgnoreCase(logType)) {
+            SKR_derelictCodexIntel.get().unlockEntry(SKR_derelictCodexIntel.TITANIC);
             text.addPara("==================================================", gray);
             text.addPara("BLACK HOLE LINE — BHL TITANIC VII VOYAGE RECORDER", highlight);
             text.addPara("==================================================", gray);
@@ -50,6 +52,7 @@ public class SKR_showDerelictLog extends BaseCommandPlugin {
             Global.getSoundPlayer().playUISound("ui_intel_record_open", 1f, 1f);
             return true;
         } else if ("onyx".equalsIgnoreCase(logType)) {
+            SKR_derelictCodexIntel.get().unlockEntry(SKR_derelictCodexIntel.ONYX);
             text.addPara("==================================================", gray);
             text.addPara("TRI-TACHYON SKUNKWORKS — PROJECT 'FALSE IDOL' LOG", highlight);
             text.addPara("==================================================", gray);
@@ -70,6 +73,7 @@ public class SKR_showDerelictLog extends BaseCommandPlugin {
             Global.getSoundPlayer().playUISound("ui_intel_record_open", 1f, 1f);
             return true;
         } else if ("siegfried".equalsIgnoreCase(logType)) {
+            SKR_derelictCodexIntel.get().unlockEntry(SKR_derelictCodexIntel.SIEGFRIED);
             text.addPara("==================================================", gray);
             text.addPara("DOMAIN HEAVY NAVAL COMMAND — GATE-KEEPER PROTOCOL", highlight);
             text.addPara("==================================================", gray);
@@ -83,6 +87,40 @@ public class SKR_showDerelictLog extends BaseCommandPlugin {
                     bad);
 
             text.addPara("STATUS: 206 Cycles in stasis. Emergency reactor output nominal. Ready for manual override and shipyard restoration.",
+                    good);
+
+            text.addPara("==================================================", gray);
+            Global.getSoundPlayer().playUISound("ui_intel_record_open", 1f, 1f);
+            return true;
+        } else if ("voulge".equalsIgnoreCase(logType)) {
+            SKR_derelictCodexIntel.get().unlockEntry(SKR_derelictCodexIntel.VOULGE);
+            text.addPara("==================================================", gray);
+            text.addPara("SILVER LINE NAVAL ARCHIVE — III CAUSALITY IS A MYTH", highlight);
+            text.addPara("==================================================", gray);
+
+            text.addPara("SILVER LINE NAVAL ARCHIVE — HULL REGISTER 044:\n"
+                    + "\"Commissioned under the authority of the Altean Governorship as a premier rapid-response strike battlecruiser. Outfitted with proprietary Silver Line high-output thrust manifolds.\"",
+                    Misc.getTextColor());
+
+            text.addPara("LAST LOG ENTRY — CYCLE 142.19:\n"
+                    + "\"Gate network failure confirmed across all border sectors. Silver Line central shipyards ordered to seal drydocks permanently. Vessel assigned to outer perimeter picket sweep... Main fuel reserves depleted. Transitioning to minimal emergency standby.\"",
+                    bad);
+
+            text.addPara("==================================================", gray);
+            Global.getSoundPlayer().playUISound("ui_intel_record_open", 1f, 1f);
+            return true;
+        } else if ("dawn".equalsIgnoreCase(logType)) {
+            SKR_derelictCodexIntel.get().unlockEntry(SKR_derelictCodexIntel.DAWN);
+            text.addPara("==================================================", gray);
+            text.addPara("DOMAIN MATERIALS PROVING GROUND — DAWN PROTOTYPE", highlight);
+            text.addPara("==================================================", gray);
+
+            text.addPara("PROVING GROUND LOG 001 — ADVANCED COMPOSITES DIVISION:\n"
+                    + "\"Technological demonstrator evaluating cast monolithic ceramic hull plating. Raw protection tests match modern heavy armor with half the structural density.\"",
+                    Misc.getTextColor());
+
+            text.addPara("FIELD TRIAL EVALUATION:\n"
+                    + "\"Elimination of traditional internal framework reduces dry mass dramatically. Capital-grade Phase Skimmer integration achieves instantaneous displacement vectors with negligible capacitor strain.\"",
                     good);
 
             text.addPara("==================================================", gray);

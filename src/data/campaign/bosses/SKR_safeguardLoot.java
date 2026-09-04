@@ -17,6 +17,7 @@ import com.fs.starfarer.api.impl.campaign.ids.Submarkets;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.campaign.submarkets.StoragePlugin;
 import data.campaign.ids.SKR_ids;
+import data.campaign.intel.SKR_plagueDossierIntel;
 import data.scripts.util.MagicCampaign;
 import static data.scripts.util.SKR_plagueEffect.LPC;
 import static data.scripts.util.SKR_plagueEffect.SOURCES;
@@ -89,6 +90,9 @@ public class SKR_safeguardLoot implements FleetEventListener{
             Global.getSector().getMemory().set(SAFE_DROP_ALREADY,true);            
             Global.getSector().getMemory().set("$SKR_safeguard_boss",false);            
 //            Global.getSector().getMemory().set("$SKR_safeguard",true);
+
+            // Unlock Plague Dossier Intel
+            SKR_plagueDossierIntel.get().unlockEntry("SAFEGUARD");
 
             //check around if there is an existing wreck to remove just in case
             List<SectorEntityToken>wrecks = fleet.getStarSystem().getEntitiesWithTag(Tags.WRECK);
