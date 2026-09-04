@@ -20,7 +20,7 @@ public class SKR_timeSplitterStats extends BaseShipSystemScript {
         boolean player = false;
         if (stats.getEntity() instanceof ShipAPI) {
             ship = (ShipAPI) stats.getEntity();
-            player = ship == Global.getCombatEngine().getPlayerShip();
+            player = Global.getCombatEngine() != null && ship == Global.getCombatEngine().getPlayerShip();
             id = id + "_" + ship.getId();
         } else {
             return;
@@ -55,16 +55,20 @@ public class SKR_timeSplitterStats extends BaseShipSystemScript {
         //ship go faster
         stats.getTimeMult().modifyMult(id, shipTimeMult);
         
-        if (player) {
-            //player go half speed
-            float playerTimeMult = 1/(shipTimeMult/2);
-            Global.getCombatEngine().getTimeMult().modifyMult(id, playerTimeMult);
-        } else {
-            Global.getCombatEngine().getTimeMult().unmodify(id);
+        if (Global.getCombatEngine() != null) {
+            if (player) {
+                //player go half speed
+                float playerTimeMult = 1/(shipTimeMult/2);
+                Global.getCombatEngine().getTimeMult().modifyMult(id, playerTimeMult);
+            } else {
+                Global.getCombatEngine().getTimeMult().unmodify(id);
+            }
         }
 
-        ship.getEngineController().fadeToOtherColor(this, JITTER_COLOR, new Color(0,0,0,0), effectLevel, 0.5f);
-        ship.getEngineController().extendFlame(this, -0.25f, -0.25f, -0.25f);
+        if (ship.getEngineController() != null) {
+            ship.getEngineController().fadeToOtherColor(this, JITTER_COLOR, new Color(0,0,0,0), effectLevel, 0.5f);
+            ship.getEngineController().extendFlame(this, -0.25f, -0.25f, -0.25f);
+        }
     }
 
 
@@ -79,7 +83,9 @@ public class SKR_timeSplitterStats extends BaseShipSystemScript {
         } else {
             return;
         }
-        Global.getCombatEngine().getTimeMult().unmodify(id);
+        if (Global.getCombatEngine() != null) {
+            Global.getCombatEngine().getTimeMult().unmodify(id);
+        }
         stats.getTimeMult().unmodify(id);
     }
 

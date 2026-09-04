@@ -26,8 +26,12 @@ public class SKR_empStats extends BaseShipSystemScript {
             
             stats.getArmorDamageTakenMult().modifyMult(id, 1.5f);
             
+            if (!(stats.getEntity() instanceof ShipAPI) || Global.getCombatEngine() == null) {
+                return;
+            }
+            
             ShipAPI source = (ShipAPI)stats.getEntity();
-            ShipAPI target = findTarget((ShipAPI)stats.getEntity());
+            ShipAPI target = findTarget(source);
             
             if(target==null){
                 return;
@@ -124,7 +128,7 @@ public class SKR_empStats extends BaseShipSystemScript {
         if(
                 target!=null 
                 && 
-                (!target.isDrone()||!target.isFighter()) 
+                (!target.isDrone()&&!target.isFighter()) 
                 && 
                 MathUtils.isWithinRange(ship, target, RANGE)
                 &&

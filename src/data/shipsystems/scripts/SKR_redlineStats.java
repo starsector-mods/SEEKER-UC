@@ -20,11 +20,13 @@ public class SKR_redlineStats extends BaseShipSystemScript {
     public void apply(MutableShipStatsAPI stats, String id, State state, float effectLevel) {
         
         if(!stats.getBallisticRoFMult().getPercentMods().containsKey(id)){
-            ShipAPI ship = (ShipAPI)stats.getEntity();
-            for(WeaponAPI w : ship.getAllWeapons()){
-                if(w.getSlot().getSlotSize()== WeaponSize.LARGE){
-                    w.setAmmo(w.getSpec().getMaxAmmo()*EXTRA_AMMO);
-                    break;
+            if (stats.getEntity() instanceof ShipAPI) {
+                ShipAPI ship = (ShipAPI)stats.getEntity();
+                for(WeaponAPI w : ship.getAllWeapons()){
+                    if(w.getSlot().getSlotSize()== WeaponSize.LARGE){
+                        w.setAmmo(w.getSpec().getMaxAmmo()*EXTRA_AMMO);
+                        break;
+                    }
                 }
             }
         }

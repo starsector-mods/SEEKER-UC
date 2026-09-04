@@ -6,7 +6,12 @@
     "hullMods": [
         "magazines",
         "targetingunit",
-        "missleracks"
+        "missleracks",
+        "damaged_deck",
+        "defective_manufactory",
+        "malfunctioning_comms",
+        "faulty_grid",
+        "glitched_sensors"
     ],
     "permaMods": [
         "damaged_deck",

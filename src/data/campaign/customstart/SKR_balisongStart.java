@@ -85,11 +85,19 @@ public class SKR_balisongStart extends CustomStart {
                     }
                 }
 
+                if (location == null) {
+                    location = Global.getSector().getStarSystems().get(0).getCenter();
+                }
+
                 //spawn location
                 Global.getSector().getMemoryWithoutUpdate().set("$nex_startLocation", location.getId());
 
                 //battle debris
                 if(!location.hasTag(Tags.DEBRIS_FIELD)){
+                    SectorEntityToken focus = location.getOrbitFocus() != null ? location.getOrbitFocus() : location;
+                    float angle = location.getOrbitFocus() != null ? VectorUtils.getAngle(location.getOrbitFocus().getLocation(), location.getLocation()) : 0f;
+                    float dist = location.getOrbitFocus() != null ? MathUtils.getDistance(location, location.getOrbitFocus()) : 0f;
+                    float period = location.getOrbit() != null ? location.getOrbit().getOrbitalPeriod() : 100f;
                     SectorEntityToken field = MagicCampaign.createDebrisField(
                             location.getId() + "debris",
                             200,
@@ -103,10 +111,10 @@ public class SKR_balisongStart extends CustomStart {
                             1,
                             false,
                             -1,
-                            location.getOrbitFocus(),
-                            VectorUtils.getAngle(location.getOrbitFocus().getLocation(), location.getLocation()),
-                            MathUtils.getDistance(location, location.getOrbitFocus()),
-                            location.getOrbit().getOrbitalPeriod()
+                            focus,
+                            angle,
+                            dist,
+                            period
                     );
 
                     MagicCampaign.addSalvage(field.getCargo(), field, MagicCampaign.lootType.FUEL, null, 198);

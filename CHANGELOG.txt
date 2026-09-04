@@ -5,9 +5,29 @@ SEEKER
  - Fixed long-standing Plague-bearer boss immortality bug where multi-module bosses (Cataclysm, Rampage, White Dwarf) could become undead/invulnerable when their core reached 0 HP.
  - Added SKR_PlagueBossDeathListener to cleanly decouple, disable, and destroy attached modules upon lethal damage to the core.
  - Added strict death & hulk cleanup guards to boss weapon and effect scripts (SKR_cataclysmSystem, SKR_rampageSystem, SKR_whiteDwarfSystem, SKR_keepSystemEffect, SKR_warpDriveEffect) to restore sapped CR, break gravitic burst loops, and remove system stat modifiers.
+ - Fixed Hyperspace boss loot crash across all Plague-bearer boss drop scripts (SKR_cataclysmLoot, SKR_rampageLoot, SKR_safeguardLoot, SKR_whiteDwarfLoot) when combat occurs in hyperspace.
+ - Fixed auto-unboxing NPE in SKR_plagueLPC on class loading before plague rates initialization.
+ - Fixed static WEAPONS and SOURCES collection duplication in SKR_plagueEffect across save loads.
+ - Fixed missing "hook" localization key in strings.json for gravity hook status display.
+ - Fixed inverted runOnce assignments in SKR_addPlagueEffect, SKR_dainsleif_fireEffect, and SKR_hvblasterEffect.
+ - Fixed refit screen and combat simulation NPEs across ship systems (SKR_empStats, SKR_alcubiereStats, SKR_redlineStats, SKR_timeSplitterStats, SKR_temporalshellStats).
+ - Fixed crash in SKR_emergencyBurnAbility tooltip caused by calling addToGrid without an active grid.
+ - Fixed crash in SKR_remoteSurveyAbility tooltip when checking distant or empty jump-point destinations in hyperspace.
+ - Fixed StringIndexOutOfBoundsException risk in SKR_siegfriedLoadout on non-standard hull IDs.
+ - Fixed potential ConcurrentModificationException and null system dereference in SKR_missileFabEffect.
+ - Fixed division by zero and missile weapon filtering in SKR_missileFabAI.
+ - Fixed flux check logic inversion in SKR_fluxTorpsAI (getFluxLevel vs getCurrFlux).
+ - Fixed queue skipping in SKR_neutrinoScanData ability processing.
+ - Fixed off-by-one random selection bug in SKR_antiMissileAI.
+ - Fixed null beam target velocity dereference in SKR_revolverEffect.
+ - Fixed custom starts (SKR_voulgeStart, SKR_redHandStart, SKR_cultistStart, SKR_balisongStart, SKR_clipperStart, SKR_poisonStart) crashes on procedural/starless systems.
+ - Fixed SKR_zealoth typos in modSettings.json, prism_ships_blacklist.csv, and factionConfigurations.json.
+ - Removed non-existent SKR_targetPainterMedium entry from modSettings.json.
+ - Fixed CSV column count alignment across rules.csv and mission_list.csv.
+ - Cleaned up duplicate root variant files.
  - Registered data.campaign.rulecmd package in settings.json to fix RuleException crash on startup.
  - Removed obsolete ART_weaponPlatform reference in ship_systems.csv.
- - Updated codebase to Java 17 bytecode (major version 61) compatibility.
+ - Recompiled entire codebase targeting Java 17 bytecode (major version 61.0).
 
 0.53
 

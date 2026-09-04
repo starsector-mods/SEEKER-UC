@@ -66,11 +66,13 @@ public class SKR_cultistStart extends CustomStart {
                     SectorEntityToken location = null;
                     
                     for (SectorEntityToken e : Global.getSector().getEntitiesWithTag("SKR_cataclysm")){
-                        location = e.getStarSystem().getStar();
-                        if(verbose){
-                            LOG.info("Cataclysm found: "+location.getStarSystem().getNameWithTypeShort());
+                        if (e.getStarSystem() != null) {
+                            location = e.getStarSystem().getStar() != null ? e.getStarSystem().getStar() : e.getStarSystem().getCenter();
+                            if(verbose){
+                                LOG.info("Cataclysm found: "+location.getStarSystem().getNameWithTypeShort());
+                            }
+                            break;
                         }
-                        break;
                     }
                     
                     if(location==null){
@@ -157,13 +159,19 @@ public class SKR_cultistStart extends CustomStart {
                                 if(verbose){
                                     LOG.info("NO debris field in the "+location.getStarSystem().getNameWithTypeShort()+", defaulting to the planet "+location.getFullName());
                                 }
-                            } else {
+                            } else if (!location.getStarSystem().getJumpPoints().isEmpty()) {
                                 location = location.getStarSystem().getJumpPoints().get(MathUtils.getRandomNumberInRange(0, location.getStarSystem().getJumpPoints().size()-1));
                                 if(verbose){
                                     LOG.info("NO debris field and NO planet in the "+location.getStarSystem().getNameWithTypeShort()+", defaulting to "+location.getFullName());
                                 }
+                            } else {
+                                location = location.getStarSystem().getCenter();
                             }
                         }
+                    }
+                    
+                    if (location == null) {
+                        location = Global.getSector().getStarSystems().get(0).getCenter();
                     }
                     
                     if(verbose && location==null){
@@ -171,7 +179,9 @@ public class SKR_cultistStart extends CustomStart {
                     }
                     
                     //spawn location
-                    Global.getSector().getMemoryWithoutUpdate().set("$nex_startLocation", location.getId());
+                    if (location != null) {
+                        Global.getSector().getMemoryWithoutUpdate().set("$nex_startLocation", location.getId());
+                    }
 
                     //battle debris
                     if (location instanceof PlanetAPI || location instanceof JumpPointAPI) {
@@ -184,7 +194,7 @@ public class SKR_cultistStart extends CustomStart {
                                 200,
                                 0,
                                 null,
-                                null,
+                                0,
                                 1,
                                 false,
                                 -1,

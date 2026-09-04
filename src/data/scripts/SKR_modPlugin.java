@@ -72,12 +72,18 @@ public class SKR_modPlugin extends BaseModPlugin {
     
     public static Map<String,String> bossArrivalSounds = new HashMap<>();   
     
-    @Override
-    public void onApplicationLoad(){        
-        if(Global.getSettings().getModManager().isModEnabled("shaderLib")){
+    private static final class GraphicsLibLoader {
+        static void init() {
             ShaderLib.init();  
             LightData.readLightDataCSV(MagicSettings.getString("seeker", "graphicLib_lights")); 
             TextureData.readTextureDataCSV(MagicSettings.getString("seeker", "graphicLib_maps")); 
+        }
+    }
+    
+    @Override
+    public void onApplicationLoad(){        
+        if(Global.getSettings().getModManager().isModEnabled("shaderLib")){
+            GraphicsLibLoader.init();
         }
         
         SKR_plagueEffect.loadPlagueData();
@@ -106,6 +112,7 @@ public class SKR_modPlugin extends BaseModPlugin {
             for(StarSystemAPI system : Global.getSector().getStarSystems()){
                 if(system.hasTag(THEME_PLAGUEBEARER)){
                     for(CampaignFleetAPI fleet:system.getFleets()){
+                        if(fleet == null || fleet.getFlagship() == null) continue;
                         if( fleet.getFlagship().getShipName().equals(txt("plague_A_boss"))){
                             Global.getSector().getMemoryWithoutUpdate().set("$SKR_safeguard_boss", true);
                         } else if( fleet.getFlagship().getShipName().equals(txt("plague_B_boss"))){

@@ -13,11 +13,13 @@ public class SKR_systemSkillBuff implements EveryFrameWeaponEffectPlugin {
         if(!runOnce){
             runOnce=true;
             //quick ammo buff for systems that have charges but no regen
-            int SYSTEM_AMMO = weapon.getShip().getSystem().getAmmo();
-            float ammo = weapon.getShip().getMutableStats().getSystemRangeBonus().getBonusMult();
-            if(ammo!=1){
-                SYSTEM_AMMO = Math.round(SYSTEM_AMMO*ammo);
-                weapon.getShip().getSystem().setAmmo(SYSTEM_AMMO);
+            if (weapon.getShip() != null && weapon.getShip().getSystem() != null) {
+                int SYSTEM_AMMO = weapon.getShip().getSystem().getAmmo();
+                float ammo = weapon.getShip().getMutableStats().getSystemRangeBonus().getBonusMult();
+                if(ammo!=1){
+                    SYSTEM_AMMO = Math.round(SYSTEM_AMMO*ammo);
+                    weapon.getShip().getSystem().setAmmo(SYSTEM_AMMO);
+                }
             }
         }
     }    

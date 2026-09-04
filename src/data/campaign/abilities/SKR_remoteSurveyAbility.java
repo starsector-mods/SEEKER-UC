@@ -228,7 +228,7 @@ public class SKR_remoteSurveyAbility extends BaseDurationAbility {
 
         if (fleet.isInHyperspace()) {
             JumpPointAPI point = Misc.findNearestJumpPoint(fleet);
-            if (Misc.getDistanceToPlayerLY(point) < JUMP_POINT_DISTANCE) {
+            if (point != null && Misc.getDistanceToPlayerLY(point) < JUMP_POINT_DISTANCE && !point.getDestinations().isEmpty() && point.getDestinations().get(0).getDestination() != null && point.getDestinations().get(0).getDestination().getStarSystem() != null) {
                 String name = point.getDestinations().get(0).getDestination().getStarSystem().getName();
                 tooltip.addPara(txt("ERS_tt4a") + name + txt("ERS_tt4b"), pad);
             } else {

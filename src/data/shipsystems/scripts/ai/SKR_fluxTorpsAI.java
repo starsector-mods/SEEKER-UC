@@ -39,7 +39,7 @@ public class SKR_fluxTorpsAI implements ShipSystemAIScript{
                         ship.getShipTarget()!=null && 
                         ship.getShipTarget() instanceof ShipAPI
                         ){
-                    if(((ShipAPI)ship.getShipTarget()).getFluxTracker().getCurrFlux()>0.8f){
+                    if(((ShipAPI)ship.getShipTarget()).getFluxTracker().getFluxLevel()>0.8f){
                         ship.useSystem();
                     }
                 }                    

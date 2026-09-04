@@ -4,6 +4,7 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.SectorEntityToken;
 import com.fs.starfarer.api.campaign.StarSystemAPI;
 import com.fs.starfarer.api.campaign.comm.IntelInfoPlugin;
+import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.campaign.intel.BaseIntelPlugin;
 import com.fs.starfarer.api.ui.SectorMapAPI;
@@ -62,10 +63,30 @@ public class SKR_explorationRumorIntel extends BaseIntelPlugin {
 
         // Complete when entity is salvaged, un-derelicted, or player enters location and discovers it
         if (targetEntity != null) {
-            if (!targetEntity.isAlive() || targetEntity.hasTag("salvaged") || targetEntity.hasTag("recovered")) {
+            if (!targetEntity.isAlive() || targetEntity.hasTag("salvaged") || targetEntity.hasTag("recovered") || targetEntity.getContainingLocation() == null || !targetEntity.hasTag(Tags.SALVAGEABLE)) {
                 completed = true;
                 sendUpdateIfPlayerHasIntel(IntelInfoPlugin.ListInfoMode.INTEL, false);
                 endAfterDelay();
+                return;
+            }
+        }
+
+        // Also check if Codex unlocked this ship or player recovered/owns it
+        if (SKR_derelictCodexIntel.get().isUnlocked(rumorType.getShipId())) {
+            completed = true;
+            sendUpdateIfPlayerHasIntel(IntelInfoPlugin.ListInfoMode.INTEL, false);
+            endAfterDelay();
+            return;
+        }
+
+        if (Global.getSector() != null && Global.getSector().getPlayerFleet() != null) {
+            for (FleetMemberAPI member : Global.getSector().getPlayerFleet().getFleetData().getMembersListCopy()) {
+                if (member.getHullSpec() != null && member.getHullSpec().getBaseHullId().equals(rumorType.getShipId())) {
+                    completed = true;
+                    sendUpdateIfPlayerHasIntel(IntelInfoPlugin.ListInfoMode.INTEL, false);
+                    endAfterDelay();
+                    return;
+                }
             }
         }
     }

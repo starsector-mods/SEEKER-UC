@@ -241,7 +241,7 @@ public class SKR_emergencyBurnAbility extends BaseDurationAbility {
             for (FleetMemberAPI member : nonReady) {
                 if (j >= max) {
                     if (nonReady.size() > max + 1) {
-                        tooltip.addToGrid(0, j++, txt("EEB_tt6a"), "", bad);
+                        tooltip.addPara(BaseIntelPlugin.INDENT + txt("EEB_tt6a"), bad, initPad);
                         break;
                     }
                 }

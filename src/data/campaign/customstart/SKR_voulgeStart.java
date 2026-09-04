@@ -130,7 +130,9 @@ public class SKR_voulgeStart extends CustomStart {
                         }
                     }
                     
-                    //spawn location deliberate null crash if the game cannot find a starting location
+                    if (location == null) {
+                        location = Global.getSector().getStarSystems().get(0).getCenter();
+                    }
                     Global.getSector().getMemoryWithoutUpdate().set("$nex_startLocation", location.getId());                    
                     home=location.getStarSystem();
                     
@@ -336,7 +338,7 @@ public class SKR_voulgeStart extends CustomStart {
         
                     //remove all foreign fleets
                     for(CampaignFleetAPI fleet : home.getFleets()){
-                        if(fleet!=Global.getSector().getPlayerFleet() || !fleet.getFaction().getId().equals(Factions.NEUTRAL)){
+                        if(fleet != Global.getSector().getPlayerFleet() && !fleet.getFaction().getId().equals(Factions.NEUTRAL)){
                             fleet.setLocation(10000, 10000);
                             for (FleetMemberAPI member : fleet.getFleetData().getMembersListCopy()) {
                                 fleet.removeFleetMemberWithDestructionFlash(member);

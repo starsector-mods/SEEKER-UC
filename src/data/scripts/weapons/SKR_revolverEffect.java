@@ -90,10 +90,10 @@ public class SKR_revolverEffect implements BeamEffectPlugin {
             }
         }
         if(beam.didDamageThisFrame() && beam.getBrightness()>0.5f && MagicRender.screenCheck(0.25f, beam.getTo())){
-            
+            Vector2f targetVel = beam.getDamageTarget() != null ? beam.getDamageTarget().getVelocity() : new Vector2f();
             engine.addHitParticle(
                     beam.getTo(),
-                    beam.getDamageTarget().getVelocity(), 
+                    targetVel, 
                     50+100*beam.getBrightness(),
                     0.5f,
                     0.3f, 
@@ -101,7 +101,7 @@ public class SKR_revolverEffect implements BeamEffectPlugin {
             );
             engine.addHitParticle(
                     beam.getTo(),
-                    beam.getDamageTarget().getVelocity(), 
+                    targetVel, 
                     25+50*beam.getBrightness(),
                     1f,
                     0.1f, 
@@ -110,7 +110,7 @@ public class SKR_revolverEffect implements BeamEffectPlugin {
             MagicRender.battlespace(
                     Global.getSettings().getSprite("fx", "SKR_plasma_muzzle"),
                     new Vector2f(beam.getTo()),
-                    new Vector2f(beam.getDamageTarget().getVelocity()),
+                    new Vector2f(targetVel),
                     new Vector2f(32,32),
                     new Vector2f(128+128*beam.getBrightness(),128),
                     beam.getWeapon().getCurrAngle()+ MathUtils.getRandomNumberInRange(-5, 5)+90,

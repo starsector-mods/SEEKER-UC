@@ -8,6 +8,7 @@ import com.fs.starfarer.api.campaign.InteractionDialogAPI;
 import com.fs.starfarer.api.campaign.PlanetAPI;
 import com.fs.starfarer.api.campaign.RepLevel;
 import com.fs.starfarer.api.campaign.SectorEntityToken;
+import com.fs.starfarer.api.campaign.StarSystemAPI;
 import com.fs.starfarer.api.campaign.rules.MemKeys;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.CharacterCreationData;
@@ -43,7 +44,7 @@ public class SKR_redHandStart extends CustomStart {
                                 "SKR_cassowaryRH_start",
                                 //"SKR_bonnetheadP_start",
                                 //"CIV_craneP_start",
-                                "SKR_falcon p_start",
+                                "SKR_falcon_p_start",
                                 "SKR_colossus3_start",
                                 //"SKR_bullyP_start",
                                 "SKR_buffalo2_start",
@@ -112,7 +113,17 @@ public class SKR_redHandStart extends CustomStart {
                             }
                             
                             //spawn location
-                            Global.getSector().getMemoryWithoutUpdate().set("$nex_startLocation", location.getId());
+                            if (location == null) {
+                                for (StarSystemAPI s : Global.getSector().getStarSystems()) {
+                                    if (!s.getPlanets().isEmpty()) {
+                                        location = s.getPlanets().get(0);
+                                        break;
+                                    }
+                                }
+                            }
+                            if (location != null) {
+                                Global.getSector().getMemoryWithoutUpdate().set("$nex_startLocation", location.getId());
+                            }
                             
                             //battle debris
                             DebrisFieldTerrainPlugin.DebrisFieldParams params = new DebrisFieldTerrainPlugin.DebrisFieldParams(

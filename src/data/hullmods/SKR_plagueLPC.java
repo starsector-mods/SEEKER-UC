@@ -16,21 +16,24 @@ import java.awt.Color;
 public class SKR_plagueLPC extends BaseHullMod {    
 
     private final float REFIT_BONUS=0.05f;
-    private final float CR_LOSS = SKR_plagueEffect.RATES.get("STRONG");
     
-    private final String DESC0=txt("plagueWarning");
-    private final String DESC1=""+SKR_plagueEffect.RATES.get("STRONG");
-    private final String DESC2=Math.round(100*(1-SKR_plagueEffect.HSS))+txt("%");
+    private float getCrLoss() {
+        if (SKR_plagueEffect.RATES.isEmpty()) {
+            SKR_plagueEffect.loadPlagueData();
+        }
+        Float rate = SKR_plagueEffect.RATES.get("STRONG");
+        return rate != null ? rate : 12f;
+    }
+    
     private final String DESC3=Global.getSettings().getHullModSpec("hardened_subsystems").getDisplayName();
-    private final String DESC4=txt("plagueLPCrequirement");
     
     @Override
     public String getDescriptionParam(int index, ShipAPI.HullSize hullSize) {
-        if (index == 0) return DESC0;
-        if (index == 1) return DESC1;
-        if (index == 2) return DESC2;
+        if (index == 0) return txt("plagueWarning");
+        if (index == 1) return "" + (int)getCrLoss();
+        if (index == 2) return Math.round(100*(1-SKR_plagueEffect.HSS))+txt("%");
         if (index == 3) return DESC3;
-        if (index == 4) return DESC4;
+        if (index == 4) return txt("plagueLPCrequirement");
         return null;
     }
     
@@ -85,7 +88,8 @@ public class SKR_plagueLPC extends BaseHullMod {
                     );
                 } else {
 
-                    float total = CR_LOSS*ship.getVariant().getNonBuiltInWings().size();
+                    float crLossRate = getCrLoss();
+                    float total = crLossRate*ship.getVariant().getNonBuiltInWings().size();
 
                     boolean reduced=false;
                     float mult=1;
@@ -139,11 +143,11 @@ public class SKR_plagueLPC extends BaseHullMod {
                         tooltip.addPara(
                                 wingName
                                 + POST7
-                                + Math.round(-CR_LOSS*mult)
+                                + Math.round(-crLossRate*mult)
                                 + POST8
                                 ,3
                                 ,HL
-                                ,""+Math.round(-CR_LOSS*mult)
+                                ,""+Math.round(-crLossRate*mult)
                         );
                     }
                     tooltip.setBulletedListMode(null);
@@ -163,7 +167,7 @@ public class SKR_plagueLPC extends BaseHullMod {
             stats.getFighterRefitTimeMult().modifyMult(id, REFIT_BONUS, "Plague Contamination protocols");
             
             //CR loss
-            float debuff = CR_LOSS*stats.getVariant().getNonBuiltInWings().size();
+            float debuff = getCrLoss()*stats.getVariant().getNonBuiltInWings().size();
             if(stats.getVariant().getHullMods().contains("hardened_subsystems")){
                 debuff*=SKR_plagueEffect.HSS;
             }

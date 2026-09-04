@@ -73,7 +73,7 @@ public class SKR_pullStats extends BaseShipSystemScript {
                 target = Misc.findClosestShipEnemyOf(ship, ship.getLocation(), HullSize.FIGHTER, range, true, filter);
             }
         }
-        return ship.getShipTarget();
+        return target;
     }
 
     protected float getMaxRange(ShipAPI ship) {

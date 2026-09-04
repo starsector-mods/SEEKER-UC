@@ -19,7 +19,7 @@ public class SKR_dainsleif_fireEffect implements EveryFrameWeaponEffectPlugin {
     public void advance(float amount, CombatEngineAPI engine, WeaponAPI weapon) {
         
         if(!runOnce){
-            runOnce=false;
+            runOnce=true;
             if(weapon.getShip().getOriginalOwner()<1 && !weapon.getSlot().isBuiltIn()){
                 SKR_plagueEffect.ApplyPlague(weapon.getShip().getVariant());
             }

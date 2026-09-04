@@ -21,7 +21,7 @@ public class SKR_hvblasterEffect implements EveryFrameWeaponEffectPlugin {
     public void advance(float amount, CombatEngineAPI engine, WeaponAPI weapon) {
         
         if(!runOnce){
-            runOnce=false;
+            runOnce=true;
             if(weapon.getShip().getOriginalOwner()<0 && !weapon.getSlot().isBuiltIn()){
                 SKR_plagueEffect.ApplyPlague(weapon.getShip().getVariant());
             }

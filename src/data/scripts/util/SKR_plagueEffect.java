@@ -50,21 +50,36 @@ public class SKR_plagueEffect {
         
     private static final Logger LOG=  Global.getLogger(SKR_plagueEffect.class);
     
-    public static float HSS =0;
+    public static float HSS = 0.666f;
     public static Map<String,Float> RATES = new HashMap<>();
     public static Map<String,Float> SOURCES = new HashMap<>();
     public static List<String> WEAPONS = new ArrayList<>();
     public static List<String> LPC = new ArrayList<>();
     
+    static {
+        RATES.put("WEAK", 3f);
+        RATES.put("MILD", 6f);
+        RATES.put("STRONG", 12f);
+    }
+    
     public static void loadPlagueData(){
         HSS = MagicSettings.getFloat("seeker", "plague_HSSmult");
-        RATES = MagicSettings.getFloatMap("seeker", "plague_rates");
+        Map<String, Float> newRates = MagicSettings.getFloatMap("seeker", "plague_rates");
+        if (newRates != null && !newRates.isEmpty()) {
+            RATES.clear();
+            RATES.putAll(newRates);
+        }
         LPC = MagicSettings.getList("seeker", "plague_LPC");
         
+        SOURCES.clear();
+        WEAPONS.clear();
         Map<String,String>rawWeapons = MagicSettings.getStringMap("seeker", "plague_weapons");
-        for(Map.Entry<String,String> w : rawWeapons.entrySet()){
-            SOURCES.put(w.getKey(), RATES.get(w.getValue()));
-            WEAPONS.add(w.getKey());
+        if (rawWeapons != null) {
+            for(Map.Entry<String,String> w : rawWeapons.entrySet()){
+                Float rate = RATES.get(w.getValue());
+                SOURCES.put(w.getKey(), rate != null ? rate : 0f);
+                WEAPONS.add(w.getKey());
+            }
         }
     }
     

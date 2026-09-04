@@ -4,6 +4,7 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.BattleAPI;
 import com.fs.starfarer.api.campaign.CampaignEventListener;
 import com.fs.starfarer.api.campaign.CampaignFleetAPI;
+import com.fs.starfarer.api.campaign.LocationAPI;
 import com.fs.starfarer.api.campaign.SectorEntityToken;
 import com.fs.starfarer.api.campaign.SpecialItemData;
 import com.fs.starfarer.api.campaign.StarSystemAPI;
@@ -95,12 +96,15 @@ public class SKR_rampageLoot implements FleetEventListener{
 
 
             //check around if there is an existing wreck to remove just in case
-            List<SectorEntityToken>wrecks = fleet.getStarSystem().getEntitiesWithTag(Tags.WRECK);
-            if(!wrecks.isEmpty()){
-                for (SectorEntityToken t : wrecks){
-                    if(t.getCustomEntitySpec().getSpriteName().startsWith("SKR_rampage")){
-                        fleet.getStarSystem().removeEntity(t);
-                        break;
+            LocationAPI loc = fleet.getContainingLocation();
+            if (loc != null) {
+                List<SectorEntityToken> wrecks = loc.getEntitiesWithTag(Tags.WRECK);
+                if (wrecks != null && !wrecks.isEmpty()) {
+                    for (SectorEntityToken t : wrecks) {
+                        if (t.getCustomEntitySpec() != null && t.getCustomEntitySpec().getSpriteName() != null && t.getCustomEntitySpec().getSpriteName().startsWith("SKR_rampage")) {
+                            loc.removeEntity(t);
+                            break;
+                        }
                     }
                 }
             }

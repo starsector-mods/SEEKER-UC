@@ -42,7 +42,7 @@ public class SKR_missileFabEffect implements EveryFrameWeaponEffectPlugin {
             return;
         }
 
-        if (theSystem.isActive()){
+        if (theSystem != null && theSystem.isActive()){
 //            reloaded=true;
             for (Iterator<Map.Entry< WeaponAPI , Float >> iter = LAUNCHERS.entrySet().iterator(); iter.hasNext();) {     
                 //dig through the list of weapons
@@ -50,7 +50,7 @@ public class SKR_missileFabEffect implements EveryFrameWeaponEffectPlugin {
 
                 if (entry.getKey().getAmmo()==entry.getKey().getMaxAmmo()){
                     //reset the loader if the weapon is already fully loaded
-                    LAUNCHERS.put(entry.getKey(), 0f);
+                    entry.setValue(0f);
                 } else {
                     //lock the weapon at full cooldown to prevent player spamming
                     entry.getKey().setRemainingCooldownTo(30f);
@@ -58,11 +58,11 @@ public class SKR_missileFabEffect implements EveryFrameWeaponEffectPlugin {
                     float build = entry.getValue()+(systemExpertise*amount*entry.getKey().getMaxAmmo()/33);                    
                     if (build>=1){
                         //add one ammo if it's built
-                        LAUNCHERS.put(entry.getKey(), build-1);
+                        entry.setValue(build-1);
                         entry.getKey().setAmmo(entry.getKey().getAmmo()+1);
                     } else {
                         //store the progression otherwise
-                        LAUNCHERS.put(entry.getKey(), build);
+                        entry.setValue(build);
                     }
                     if(MagicRender.screenCheck(0.5f, weapon.getLocation())){
                         //add some smoke to visualise the effect

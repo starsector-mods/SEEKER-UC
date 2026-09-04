@@ -57,7 +57,7 @@ public class SKR_moduleAI implements ShipSystemAIScript{
                 
                 if(!system.isActive() && AIUtils.canUseSystemThisFrame(ship))ship.useSystem();
                 
-            } else if(parentSystem.isActive()){
+            } else if(parentSystem != null && parentSystem.isActive()){
                 
                 if(!system.isActive() && AIUtils.canUseSystemThisFrame(ship))ship.useSystem();
                 

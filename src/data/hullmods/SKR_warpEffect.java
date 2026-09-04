@@ -212,15 +212,17 @@ public class SKR_warpEffect extends BaseHullMod {
             Vector2f vel = MathUtils.getPoint(new Vector2f(),5*i-4,ship.getFacing());
             
             //modules
-            for(ShipAPI s : ship.getChildModulesCopy()){
-                if(s.isAlive()){
-                    s.addAfterimage(
-                    new Color(0.5f,0.25f,1f,0.15f),
-                    point.x,point.y,vel.x,vel.y,
-                    0.1f,
-                    0,0.1f,5.1f-(0.1f*i),
-                    false,true,false
-                    );
+            if (ship.getChildModulesCopy() != null) {
+                for(ShipAPI s : ship.getChildModulesCopy()){
+                    if(s != null && s.isAlive()){
+                        s.addAfterimage(
+                        new Color(0.5f,0.25f,1f,0.15f),
+                        point.x,point.y,vel.x,vel.y,
+                        0.1f,
+                        0,0.1f,5.1f-(0.1f*i),
+                        false,true,false
+                        );
+                    }
                 }
             }
             //ship
@@ -309,16 +311,18 @@ public class SKR_warpEffect extends BaseHullMod {
                 offset = MathUtils.getRandomPointInCircle(location, 25+175*intensity);
             }
             
-            MagicLensFlare.createSharpFlare(
-                    engine,
-                    engine.getPlayerShip(),
-                    offset,
-                    MathUtils.getRandomNumberInRange(2, 3+3*intensity),
-                    MathUtils.getRandomNumberInRange(50, 100+350*intensity),
-                    0,
-                    new Color(50,0,150),
-                    Color.RED
-            );
+            if (engine.getPlayerShip() != null) {
+                MagicLensFlare.createSharpFlare(
+                        engine,
+                        engine.getPlayerShip(),
+                        offset,
+                        MathUtils.getRandomNumberInRange(2, 3+3*intensity),
+                        MathUtils.getRandomNumberInRange(50, 100+350*intensity),
+                        0,
+                        new Color(50,0,150),
+                        Color.RED
+                );
+            }
             
             engine.addHitParticle(
                     offset,
@@ -335,6 +339,8 @@ public class SKR_warpEffect extends BaseHullMod {
         }
         
         //AMBIENCE SOUND
-        Global.getSoundPlayer().playLoop("SKR_arrival_shadow", engine.getPlayerShip(), 1, 1, location, new Vector2f());
+        if (engine.getPlayerShip() != null) {
+            Global.getSoundPlayer().playLoop("SKR_arrival_shadow", engine.getPlayerShip(), 1, 1, location, new Vector2f());
+        }
     }
 }

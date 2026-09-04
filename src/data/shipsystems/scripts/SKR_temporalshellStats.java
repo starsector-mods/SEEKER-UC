@@ -20,7 +20,7 @@ public class SKR_temporalshellStats extends BaseShipSystemScript {
         boolean player = false;
         if (stats.getEntity() instanceof ShipAPI) {
             ship = (ShipAPI) stats.getEntity();
-            player = ship == Global.getCombatEngine().getPlayerShip();
+            player = Global.getCombatEngine() != null && ship == Global.getCombatEngine().getPlayerShip();
             id = id + "_" + ship.getId();
         } else {
             return;
@@ -52,29 +52,33 @@ public class SKR_temporalshellStats extends BaseShipSystemScript {
         float shipTimeMult = 1f + (fluxTimeMult - 1f) * effectLevel;
         float playerTimeMult = 1f + ((fluxTimeMult/2) - 1f) * effectLevel;
         stats.getTimeMult().modifyMult(id, shipTimeMult);
-        if (player) {
-            Global.getCombatEngine().getTimeMult().modifyMult(id, (1f / playerTimeMult));
-        } else {
-            Global.getCombatEngine().getTimeMult().unmodify(id);
+        if (Global.getCombatEngine() != null) {
+            if (player) {
+                Global.getCombatEngine().getTimeMult().modifyMult(id, (1f / playerTimeMult));
+            } else {
+                Global.getCombatEngine().getTimeMult().unmodify(id);
+            }
         }
 
-        ship.getEngineController().fadeToOtherColor(this, JITTER_UNDER_COLOR, Color.BLACK, effectLevel, 0.5f);
-        ship.getEngineController().extendFlame(this, -0.25f, -0.25f, -0.25f);
+        if (ship.getEngineController() != null) {
+            ship.getEngineController().fadeToOtherColor(this, JITTER_UNDER_COLOR, Color.BLACK, effectLevel, 0.5f);
+            ship.getEngineController().extendFlame(this, -0.25f, -0.25f, -0.25f);
+        }
     }
 
 
     @Override
     public void unapply(MutableShipStatsAPI stats, String id) {
         ShipAPI ship = null;
-        boolean player = false;
         if (stats.getEntity() instanceof ShipAPI) {
             ship = (ShipAPI) stats.getEntity();
-            player = ship == Global.getCombatEngine().getPlayerShip();
             id = id + "_" + ship.getId();
         } else {
             return;
         }
-        Global.getCombatEngine().getTimeMult().unmodify(id);
+        if (Global.getCombatEngine() != null) {
+            Global.getCombatEngine().getTimeMult().unmodify(id);
+        }
         stats.getTimeMult().unmodify(id);
     }
 

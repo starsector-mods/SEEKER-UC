@@ -153,7 +153,7 @@ public class SKR_antiMissileAI implements MissileAIPlugin, GuidedMissileAI {
                     }
                 }
                 //choose a random integer within the number of entries, and return the coresponding missile                
-                int chooser = (int)(Math.round( Math.random() * nbKey));
+                int chooser = (int)(Math.random() * nbKey);
                 return MEMBERS.get(chooser);
             }
         } else {
@@ -168,7 +168,7 @@ public class SKR_antiMissileAI implements MissileAIPlugin, GuidedMissileAI {
             }
             //choose a random integer within the number of entries, and return the coresponding target
             if (nbKey!=0){
-                int chooser = (int)(Math.round( Math.random() * nbKey));
+                int chooser = (int)(Math.random() * nbKey);
                 return MEMBERS.get(chooser);
             }
             else if (AIUtils.getNearestEnemy(source)!=null) {

@@ -82,6 +82,10 @@ public class SKR_clipperStart extends CustomStart {
                     }
                 }
 
+                if (location == null) {
+                    location = Global.getSector().getStarSystems().get(0).getCenter();
+                }
+
                 //spawn location
                 Global.getSector().getMemoryWithoutUpdate().set("$nex_startLocation", location.getId());
 

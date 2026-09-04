@@ -221,12 +221,7 @@ public class SKR_neutrinoScanData {
         //looks suspiciously complicated, lets try to make it simple
 //        int batch = (int) Math.ceil(initialCount / 1f);
 //        for (int i = 0; i < batch; i++) {
-        for (int i = 0; i < special.size(); i++) {
-            
-            //skip if there is nothing left
-            if (special.isEmpty()) {
-                break;
-            }
+        while (!special.isEmpty()) {
             
             //extract first entry of the stack
             SectorEntityToken curr = special.remove(0);

@@ -98,10 +98,13 @@ public class SKR_siegfriedLoadout extends BaseHullMod{
             }
         }
         
+        String hullId = stats.getVariant() != null && stats.getVariant().getHullSpec() != null ? stats.getVariant().getHullSpec().getHullId() : null;
+        if (hullId == null) return;
+
         if(toSwitch==0){
             //initial setup or strip revert
             
-            if(stats.getVariant().getHullSpec().getHullId().equals("SKR_siegfried")){
+            if(hullId.equals("SKR_siegfried") || hullId.length() < 17 || !hullId.startsWith("SKR_siegfried_")){
                 //initial setup
                 
                 stats.getVariant().addMod("SKR_siegfried_axx");   
@@ -116,9 +119,9 @@ public class SKR_siegfriedLoadout extends BaseHullMod{
                 
                 //find the current variant of the ship 
                 //WARNING, ID SENSITIVE
-                String currentCore = stats.getVariant().getHullSpec().getHullId().substring(14, 15);
-                String currentSystem = stats.getVariant().getHullSpec().getHullId().substring(15, 16);            
-                String currentLoadout = stats.getVariant().getHullSpec().getHullId().substring(16, 17);
+                String currentCore = hullId.substring(14, 15);
+                String currentSystem = hullId.substring(15, 16);            
+                String currentLoadout = hullId.substring(16, 17);
 
                 stats.getVariant().addMod("SKR_siegfried_"+currentCore+"xx");   
                 stats.getVariant().addMod("SKR_siegfried_x"+currentSystem+"x");
@@ -135,9 +138,14 @@ public class SKR_siegfriedLoadout extends BaseHullMod{
             String newVariant = "ooo";            
             //find the current variant of the ship 
             //WARNING, ID SENSITIVE
-            String currentCore = stats.getVariant().getHullSpec().getHullId().substring(14, 15);
-            String currentSystem = stats.getVariant().getHullSpec().getHullId().substring(15, 16);            
-            String currentLoadout = stats.getVariant().getHullSpec().getHullId().substring(16, 17);
+            String currentCore = "a";
+            String currentSystem = "a";
+            String currentLoadout = "a";
+            if (hullId.length() >= 17 && hullId.startsWith("SKR_siegfried_")) {
+                currentCore = hullId.substring(14, 15);
+                currentSystem = hullId.substring(15, 16);            
+                currentLoadout = hullId.substring(16, 17);
+            }
             
             //deduct the new variant
             if(core.equals("o")){

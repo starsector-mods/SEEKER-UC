@@ -103,7 +103,7 @@ public class SKR_seekerGen implements SectorGeneratorPlugin {
             if(system.hasTag(Tags.THEME_REMNANT)){
                 for(CampaignFleetAPI fleet : system.getFleets()){
                     if (fleet.isStationMode() ){
-                        if( fleet.getFlagship().getVariant().getHullVariantId().equals("remnant_station2_Standard")){
+                        if( fleet.getFlagship() != null && fleet.getFlagship().getVariant() != null && fleet.getFlagship().getVariant().getHullVariantId().equals("remnant_station2_Standard")){
                             stations.add(fleet);
                         }
                     }
@@ -147,7 +147,7 @@ public class SKR_seekerGen implements SectorGeneratorPlugin {
                 for(String theme : blacklist){
                     if(!station.getStarSystem().hasTag(theme)){
                         //try to avoid blackholes and pulsars but keep as a backup
-                        if(station.getStarSystem().getStar().getSpec().isPulsar()||station.getStarSystem().getStar().getSpec().isBlackHole()){
+                        if(station.getStarSystem().getStar() != null && (station.getStarSystem().getStar().getSpec().isPulsar()||station.getStarSystem().getStar().getSpec().isBlackHole())){
                             float dist=MathUtils.getDistanceSquared(station.getStarSystem().getLocation(), new Vector2f());
                             if(dist<distance){
                                 distance=dist;
@@ -1010,15 +1010,19 @@ public class SKR_seekerGen implements SectorGeneratorPlugin {
             LOG.info("Adding TITANIC wreck in "+targetTitanic.getStarSystem().getName());
         }
         
+        SectorEntityToken star = targetTitanic.getStarSystem().getStar();
+        SectorEntityToken center = star != null ? star : targetTitanic.getStarSystem().getCenter();
+        float orbitRadius = star != null ? star.getRadius()*4 : 1000f;
+        
         SectorEntityToken titanicWreck = MagicCampaign.createDerelict(
                 "CIV_titanic_standard",
                 ShipRecoverySpecial.ShipCondition.WRECKED,
                 true,
                 1000,
                 true,
-                targetTitanic.getStarSystem().getStar(),
+                center,
                 0,
-                targetTitanic.getStarSystem().getStar().getRadius()*4,
+                orbitRadius,
                 180
         );
         

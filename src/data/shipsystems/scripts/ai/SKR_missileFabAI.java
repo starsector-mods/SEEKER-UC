@@ -48,7 +48,7 @@ public class SKR_missileFabAI implements ShipSystemAIScript
             runOnce=true;
             for (WeaponAPI w : ship.getAllWeapons()) {
                 //list all missiles weapons
-                if (w.getSize() == WeaponAPI.WeaponSize.MEDIUM){
+                if (w.usesAmmo() && w.getType() == WeaponAPI.WeaponType.MISSILE){
                     WEAPONS.add(w);
                 }        
             }
@@ -59,14 +59,16 @@ public class SKR_missileFabAI implements ShipSystemAIScript
         if (checkAgain.intervalElapsed() && target!=null) {
             
             //evaluate need
-            
+            if (WEAPONS.isEmpty()) return;
+
             float need = 0;
             float i = 0;
             for (WeaponAPI w : WEAPONS){
                 
                 float ammo = w.getAmmo();
                 float maxAmmo = w.getMaxAmmo();
-                
+                if (maxAmmo <= 0) continue;
+
                 float ratio = ammo/maxAmmo;
                 
                 i++;
@@ -75,7 +77,11 @@ public class SKR_missileFabAI implements ShipSystemAIScript
 //                need += (float)(( FastTrig.cos(( ratio + 2 )*MathUtils.FPI)/4) + 1 );
                 
             }
-            need = need/i;
+            if (i > 0) {
+                need = need/i;
+            } else {
+                need = 0;
+            }
             
             //evaluate threat
             

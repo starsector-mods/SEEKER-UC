@@ -24,8 +24,10 @@ public class SKR_alcubiereStats extends BaseShipSystemScript {
 //        stats.getDeceleration().unmodify(id);
         
         //clamp mobility
-        float turning = stats.getMaxTurnRate().getBaseValue();
-        stats.getEntity().setAngularVelocity(Math.min(turning, Math.max(-turning, stats.getEntity().getAngularVelocity())));
+        if (stats.getEntity() != null) {
+            float turning = stats.getMaxTurnRate().getBaseValue();
+            stats.getEntity().setAngularVelocity(Math.min(turning, Math.max(-turning, stats.getEntity().getAngularVelocity())));
+        }
 //        Vector2f velocity = stats.getEntity().getVelocity();
 //        velocity.set(0,0);
     }
