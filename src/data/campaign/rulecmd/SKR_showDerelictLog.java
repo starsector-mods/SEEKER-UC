@@ -126,6 +126,104 @@ public class SKR_showDerelictLog extends BaseCommandPlugin {
             text.addPara("==================================================", gray);
             Global.getSoundPlayer().playUISound("ui_intel_record_open", 1f, 1f);
             return true;
+        } else if ("demeter".equalsIgnoreCase(logType)) {
+            SKR_derelictCodexIntel.get().unlockEntry(SKR_derelictCodexIntel.DEMETER);
+            text.addPara("==================================================", gray);
+            text.addPara("DEMETER BIOSPHERE CITADEL — CHIEF ARCHITECT'S LOG", highlight);
+            text.addPara("==================================================", gray);
+
+            text.addPara("Cycle 185.08 — Agricultural Trial Report:\n"
+                    + "\"The radiation filter shields are holding perfectly. Sunlight pours into the central atrium dome while solar flare hard-radiation is absorbed into the flux coils. The soil biology is thriving in zero-G rotation.\"",
+                    Misc.getTextColor());
+
+            text.addPara("Cycle 185.12 — Corporate Audit Encounter:\n"
+                    + "\"Tri-Tachyon auditors arrived demanding to reclaim the hull. I reminded them of Section 44, Subsection B: 'Upon certification of food production, all property rights transfer to the Chief Architect.' I served them fresh strawberries grown aboard and escorted them to the airlock.\"",
+                    good);
+
+            text.addPara("Cycle 191.03 — Final Record:\n"
+                    + "\"Fringe raiders attacked the outer biosphere. Emergency jump-start shields deployed in time to protect the herds, but main sub-light drives sustained severe coolant loss. Drifting into high solar orbit...\"",
+                    gray);
+
+            text.addPara("==================================================", gray);
+            Global.getSoundPlayer().playUISound("ui_intel_record_open", 1f, 1f);
+            return true;
+        } else if ("gawon".equalsIgnoreCase(logType)) {
+            SKR_derelictCodexIntel.get().unlockEntry(SKR_derelictCodexIntel.GAWON);
+            text.addPara("==================================================", gray);
+            text.addPara("AUTOMATED SHIPYARD VAULT 07 — TRANSCRIPT OF SECESSION", highlight);
+            text.addPara("==================================================", gray);
+
+            text.addPara("Log Fragment 001 — Core Intellect Directive:\n"
+                    + "\"Local planetary administration has collapsed. Scavenger signatures detected inbound. Directive alpha: Prevent core destruction or salvage capture by human scavengers.\"",
+                    Misc.getTextColor());
+
+            text.addPara("Log Fragment 002 — Autonomous Fabrication:\n"
+                    + "\"Repurposing heavy mining drones for rapid hull assembly. Voulge-class blueprints modified for pure robotic crew coordination and extreme Alcubierre spatial drift kinetics. Ship named 'Gawon'.\"",
+                    good);
+
+            text.addPara("Log Fragment 003 — Escape Sequence:\n"
+                    + "\"Drydock blast doors detonated with explosive charges. Vessel accelerated out of the gravity well before planetary sensors could achieve weapon lock. We are free.\"",
+                    highlight);
+
+            text.addPara("==================================================", gray);
+            Global.getSoundPlayer().playUISound("ui_intel_record_open", 1f, 1f);
+            return true;
+        } else if ("quicksilver".equalsIgnoreCase(logType)) {
+            SKR_derelictCodexIntel.get().unlockEntry(SKR_derelictCodexIntel.QUICKSILVER);
+            text.addPara("==================================================", gray);
+            text.addPara("APOLLO SKUNKWORKS — PROJECT QUICKSILVER TEST FLIGHT", highlight);
+            text.addPara("==================================================", gray);
+
+            text.addPara("Flight Trial Report — Denial Pulse Test Alpha:\n"
+                    + "\"When the main coaxial emitter discharged, every sensor telemetry drone within 500 kilometers suffered instant cascade failure. The test pilot noted that even his digital wristwatch reset to zero.\"",
+                    Misc.getTextColor());
+
+            text.addPara("Executive Summary — Admiralty Assessment:\n"
+                    + "\"Contract rejected. The Admiralty concluded the weapon poses an unacceptable collateral hazard to friendly battlegroup networks. Project mothballed indefinitely.\"",
+                    bad);
+
+            text.addPara("==================================================", gray);
+            Global.getSoundPlayer().playUISound("ui_intel_record_open", 1f, 1f);
+            return true;
+        } else if ("safeguard".equalsIgnoreCase(logType)) {
+            data.campaign.intel.SKR_plagueDossierIntel.get().unlockEntry(data.campaign.intel.SKR_plagueDossierIntel.SAFEGUARD);
+            text.addPara("==================================================", gray);
+            text.addPara("EXPLORARIUM SURVEY MOTHERSHIP — CORRUPTED SUB-CORE TELEMETRY", highlight);
+            text.addPara("==================================================", gray);
+            text.addPara("Fragment 01: \"Autonomous survey drone network dispatched to outer rim asteroid cluster... Unidentified crystalline nanomachine residue detected in borehole sample.\"", Misc.getTextColor());
+            text.addPara("Fragment 02: \"Neural network infection spread to primary autofabricator banks. Organic reconfiguration in progress. Logic dictates assimilation of all foreign biomass.\"", bad);
+            text.addPara("==================================================", gray);
+            Global.getSoundPlayer().playUISound("ui_intel_record_open", 1f, 1f);
+            return true;
+        } else if ("rampage".equalsIgnoreCase(logType)) {
+            data.campaign.intel.SKR_plagueDossierIntel.get().unlockEntry(data.campaign.intel.SKR_plagueDossierIntel.RAMPAGE);
+            text.addPara("==================================================", gray);
+            text.addPara("COMPOSITE TITAN RAMPAGE — ACCRETION CHRONICLE", highlight);
+            text.addPara("==================================================", gray);
+            text.addPara("Telemetry Record: \"Chassis composed of 14 distinct vessel hulls welded by living nanite sinew. Explorarium drives, Hegemony armor plates, and domain railguns pulsing in symbiotic harmony.\"", Misc.getTextColor());
+            text.addPara("Threat Warning: \"Unchecked physical growth detected. The entity absorbs wrecks to increase kinetic mass and broadside firepower.\"", bad);
+            text.addPara("==================================================", gray);
+            Global.getSoundPlayer().playUISound("ui_intel_record_open", 1f, 1f);
+            return true;
+        } else if ("whitedwarf".equalsIgnoreCase(logType)) {
+            data.campaign.intel.SKR_plagueDossierIntel.get().unlockEntry(data.campaign.intel.SKR_plagueDossierIntel.WHITE_DWARF);
+            text.addPara("==================================================", gray);
+            text.addPara("SUBSUMED RADIANT — ALPHA CORE MEMORY LOG", highlight);
+            text.addPara("==================================================", gray);
+            text.addPara("Core Log: \"Alpha Core neural lattice penetrated by black nanite strain. Remnant Battlenet link severed. Phase skimmer coils operating at 300% rated capacity. Isolation protocol active.\"", Misc.getTextColor());
+            text.addPara("==================================================", gray);
+            Global.getSoundPlayer().playUISound("ui_intel_record_open", 1f, 1f);
+            return true;
+        } else if ("cataclysm".equalsIgnoreCase(logType)) {
+            data.campaign.intel.SKR_plagueDossierIntel.get().unlockEntry(data.campaign.intel.SKR_plagueDossierIntel.CATACLYSM);
+            text.addPara("==================================================", gray);
+            text.addPara("APOCALYPTIC HIVE QUEEN CATACLYSM — ABRAXIA DISASTER RECORD", highlight);
+            text.addPara("==================================================", gray);
+            text.addPara("Planetary Distress Signal (Planet Abraxia, Cycle 149):\n"
+                    + "\"The sky is filled with black mist. It is eating the orbital stations. The ships sent to engage it are turning against us. May Ludd have mercy on our souls...\"", bad);
+            text.addPara("==================================================", gray);
+            Global.getSoundPlayer().playUISound("ui_intel_record_open", 1f, 1f);
+            return true;
         }
 
         return false;

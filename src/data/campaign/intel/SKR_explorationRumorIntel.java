@@ -19,7 +19,10 @@ public class SKR_explorationRumorIntel extends BaseIntelPlugin {
         VOULGE("Ghost of the Silver Line", "SKR_voulge"),
         SIEGFRIED("The Gate-Keeper of the Outer Dark", "SKR_siegfried"),
         DAWN("The Ceramic Prototype", "SKR_dawn"),
-        ONYX("The Anomaly Beneath NOVA", "SKR_onyx");
+        ONYX("The Anomaly Beneath NOVA", "SKR_onyx"),
+        DEMETER("The Floating Garden of Demeter", "CIV_demeter"),
+        GAWON("The Shipyard Secession Prototype", "SKR_gawon"),
+        QUICKSILVER("The Apollo Skunkworks Phase Demonstrator", "SKR_quicksilver");
 
         private final String defaultTitle;
         private final String shipId;
