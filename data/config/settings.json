@@ -1,4 +1,8 @@
 {
+    "ruleCommandPackages":[
+        "data.campaign.rulecmd"
+    ],
+
     "plugins":{
     },
 	
