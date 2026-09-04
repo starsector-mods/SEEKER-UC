@@ -140,6 +140,8 @@ public class SKR_sustainedBurnAbility extends BaseToggleAbility {
     public void createTooltip(TooltipMakerAPI tooltip, boolean expanded) {
         Color gray = Misc.getGrayColor();
         Color highlight = Misc.getHighlightColor();
+        Color bad = Misc.getNegativeHighlightColor();
+        CampaignFleetAPI fleet = getFleet();
 
         String status = txt("skill_off");
         if (turnedOn) {
@@ -166,9 +168,30 @@ public class SKR_sustainedBurnAbility extends BaseToggleAbility {
                 txt("ESB_tt3h")
         );
 
+        if (fleet != null && !fleet.isAIMode() && fleet.getCargo().getFuel() <= 0
+                && fleet.getContainingLocation() != null && fleet.getContainingLocation().isHyperspace()) {
+            tooltip.addPara("Out of fuel.", bad, pad);
+        }
+
         tooltip.addPara(txt("ESB_tt4"), pad);
 
         addIncompatibleToTooltip(tooltip, expanded);
+    }
+
+    @Override
+    public boolean isUsable() {
+        if (!super.isUsable()) {
+            return false;
+        }
+        CampaignFleetAPI fleet = getFleet();
+        if (fleet == null) {
+            return false;
+        }
+        if (!fleet.isAIMode() && fleet.getCargo().getFuel() <= 0
+                && fleet.getContainingLocation() != null && fleet.getContainingLocation().isHyperspace()) {
+            return false;
+        }
+        return true;
     }
 
     @Override
