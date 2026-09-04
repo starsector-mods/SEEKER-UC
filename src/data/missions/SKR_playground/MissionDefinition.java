@@ -39,7 +39,7 @@ public class MissionDefinition implements MissionDefinitionPlugin {
         api.addToFleet(FleetSide.PLAYER, "SKR_cataclysm_1", FleetMemberType.SHIP, false); // Cataclysm
         api.addToFleet(FleetSide.PLAYER, "SKR_clipper_advanced", FleetMemberType.SHIP, false); // Clipper
         api.addToFleet(FleetSide.PLAYER, "SKR_cultist_standard", FleetMemberType.SHIP, false); // Cultist
-        api.addToFleet(FleetSide.PLAYER, "SKR_dawn_moonlight", FleetMemberType.SHIP, false); // Dawn
+        api.addToFleet(FleetSide.PLAYER, "SKR_dawn_sunlight", FleetMemberType.SHIP, "SAS Dawn", false); // Dawn
         api.addToFleet(FleetSide.PLAYER, "CIV_demeter_standard", FleetMemberType.SHIP, "SAS Demeter", false); // Demeter
         api.addToFleet(FleetSide.PLAYER, "SKR_devotee_standard", FleetMemberType.SHIP, false); // Devotee
         api.addToFleet(FleetSide.PLAYER, "SKR_doctrinaire_standard", FleetMemberType.SHIP, false); // Doctrinaire
