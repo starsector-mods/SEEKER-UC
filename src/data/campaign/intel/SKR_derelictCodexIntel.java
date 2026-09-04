@@ -20,9 +20,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Captain's Log & Decrypted Codex tracking the Sector's 5 legendary derelict prototypes:
- * Titanic VII, Onyx, Siegfried, Voulge, and Dawn.
- * Displays decrypted black box flight transcripts, recovery status, and system coordinates.
+ * Captain's Log & Decrypted Codex tracking the Sector's legendary capital prototypes:
+ * Titanic VII, Onyx, Siegfried, Voulge, Dawn, Demeter, Gawon, and Quicksilver.
  * 
  * @author Tartiflette, modified for Seeker UC
  */
@@ -33,13 +32,19 @@ public class SKR_derelictCodexIntel extends BaseIntelPlugin {
     public static final String SIEGFRIED = "SIEGFRIED";
     public static final String VOULGE = "VOULGE";
     public static final String DAWN = "DAWN";
+    public static final String DEMETER = "DEMETER";
+    public static final String GAWON = "GAWON";
+    public static final String QUICKSILVER = "QUICKSILVER";
 
     public static final String[] ALL_DERELICTS = {
         TITANIC,
         ONYX,
         SIEGFRIED,
         VOULGE,
-        DAWN
+        DAWN,
+        DEMETER,
+        GAWON,
+        QUICKSILVER
     };
 
     /**
@@ -83,6 +88,15 @@ public class SKR_derelictCodexIntel extends BaseIntelPlugin {
         }
         if (clean.contains("DAWN") || clean.contains("SKR_DAWN")) {
             return DAWN;
+        }
+        if (clean.contains("DEMETER") || clean.contains("CIV_DEMETER")) {
+            return DEMETER;
+        }
+        if (clean.contains("GAWON") || clean.contains("SKR_GAWON")) {
+            return GAWON;
+        }
+        if (clean.contains("QUICKSILVER") || clean.contains("SKR_QUICKSILVER")) {
+            return QUICKSILVER;
         }
         return null;
     }
@@ -137,7 +151,10 @@ public class SKR_derelictCodexIntel extends BaseIntelPlugin {
         if (SIEGFRIED.equals(key)) return "Siegfried Sentry Dreadnought";
         if (VOULGE.equals(key)) return "III Causality is a Myth (Voulge)";
         if (DAWN.equals(key)) return "Dawn Ceramic Prototype";
-        return "Unknown Derelict";
+        if (DEMETER.equals(key)) return "Demeter Agri-Fortress";
+        if (GAWON.equals(key)) return "Gawon AI Battlecruiser";
+        if (QUICKSILVER.equals(key)) return "Quicksilver Skunkworks Capital";
+        return "Unknown Colossus";
     }
 
     public static String getBaseHullId(String key) {
@@ -146,17 +163,63 @@ public class SKR_derelictCodexIntel extends BaseIntelPlugin {
         if (SIEGFRIED.equals(key)) return "SKR_siegfried";
         if (VOULGE.equals(key)) return "SKR_voulge";
         if (DAWN.equals(key)) return "SKR_dawn";
+        if (DEMETER.equals(key)) return "CIV_demeter";
+        if (GAWON.equals(key)) return "SKR_gawon";
+        if (QUICKSILVER.equals(key)) return "SKR_quicksilver";
         return "";
+    }
+
+    public static String getShipStatus(String baseHullId) {
+        if (baseHullId == null || baseHullId.isEmpty()) {
+            return "[STATUS UNKNOWN]";
+        }
+
+        // 1. Check Player Fleet
+        if (Global.getSector().getPlayerFleet() != null) {
+            FleetMemberAPI flagship = Global.getSector().getPlayerFleet().getFlagship();
+            if (flagship != null && matchesHull(flagship, baseHullId)) {
+                return "[IN ACTIVE SERVICE — FLEET FLAGSHIP]";
+            }
+            for (FleetMemberAPI member : Global.getSector().getPlayerFleet().getFleetData().getMembersListCopy()) {
+                if (matchesHull(member, baseHullId)) {
+                    return "[IN ACTIVE SERVICE — COMBAT LINE]";
+                }
+            }
+        }
+
+        // 2. Check Storage / Colonies
+        for (StarSystemAPI system : Global.getSector().getStarSystems()) {
+            for (SectorEntityToken entity : system.getAllEntities()) {
+                if (entity.getMarket() != null && entity.getMarket().isPlayerOwned()) {
+                    // Check if player has it in storage
+                    if (entity.getMarket().getSubmarket("storage") != null) {
+                        for (FleetMemberAPI member : entity.getMarket().getSubmarket("storage").getCargo().getMothballedShips().getMembersListCopy()) {
+                            if (matchesHull(member, baseHullId)) {
+                                return "[IN RESERVE STORAGE — " + entity.getMarket().getName() + "]";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return "[DEEP SPACE / RECOVERED]";
+    }
+
+    private static boolean matchesHull(FleetMemberAPI member, String baseHullId) {
+        if (member == null) return false;
+        String hid = member.getHullId();
+        String bhid = member.getHullSpec().getBaseHullId();
+        return baseHullId.equals(hid) || baseHullId.equals(bhid);
     }
 
     @Override
     public String getName() {
-        return "Codex: Legendary Derelicts";
-    }
-
-    @Override
-    public String getSmallDescriptionTitle() {
-        return "CAPTAIN'S LOG // LEGENDARY DERELICT CODEX";
+        int count = getUnlockedCount();
+        if (count > 0) {
+            return "Captain's Log: Legendary Colossi & Prototypes [" + count + "/" + ALL_DERELICTS.length + " Discovered]";
+        }
+        return "Captain's Log: Legendary Colossi & Prototypes";
     }
 
     @Override
@@ -183,69 +246,52 @@ public class SKR_derelictCodexIntel extends BaseIntelPlugin {
     }
 
     @Override
-    public boolean shouldRemoveIntel() {
-        return false;
-    }
-
-    @Override
-    protected void addBulletPoints(TooltipMakerAPI info, ListInfoMode mode) {
+    public void createIntelInfo(TooltipMakerAPI info, IntelInfoPlugin.ListInfoMode mode) {
         Color highlight = Misc.getHighlightColor();
         Color gray = Misc.getGrayColor();
-        Color tc = Misc.getTextColor();
-        float pad = 3f;
+        Color titleColor = getTitleColor(mode);
 
-        bullet(info);
+        info.addPara(getName(), titleColor, 0f);
 
-        int count = getUnlockedCount();
-        info.addPara("Decrypted Derelict Transcripts: %s / %s", pad, tc, highlight, "" + count, "" + ALL_DERELICTS.length);
+        int unlocked = getUnlockedCount();
+        float initPad = 3f;
 
-        if (getListInfoParam() instanceof String) {
-            String paramKey = normalizeKey((String) getListInfoParam());
-            if (paramKey != null) {
-                info.addPara("Updated Entry: %s", pad, tc, Misc.getPositiveHighlightColor(), getDerelictName(paramKey));
-            }
-        } else if (count == ALL_DERELICTS.length) {
-            info.addPara("All legendary derelict black boxes catalogued", Misc.getPositiveHighlightColor(), pad);
+        if (unlocked == ALL_DERELICTS.length) {
+            info.addPara("Status: %s (All vessels cataloged)", initPad, gray, Misc.getPositiveHighlightColor(), "COMPLETE");
+        } else if (unlocked > 0) {
+            info.addPara("Status: %s (%s of %s logged)", initPad, gray, highlight, "CHRONICLE EXPANDING", "" + unlocked, "" + ALL_DERELICTS.length);
         } else {
-            info.addPara("Unresolved navigational beacons recorded across fringe sectors", gray, pad);
+            info.addPara("Status: %s", initPad, gray, highlight, "AWAITING DISCOVERY");
         }
-
-        unindent(info);
     }
 
     @Override
     public void createSmallDescription(TooltipMakerAPI info, float width, float height) {
         Color highlight = Misc.getHighlightColor();
         Color gray = Misc.getGrayColor();
-        Color red = Misc.getNegativeHighlightColor();
-        Color green = Misc.getPositiveHighlightColor();
-        Color tc = Misc.getTextColor();
         float pad = 10f;
         float smallPad = 4f;
 
+        int unlockedCount = getUnlockedCount();
+
+        info.addSectionHeading("SECTOR RECOVERY CHRONICLE: ANCIENT & EXPERIMENTAL WARSHIPS", Alignment.MID, pad);
         info.addPara(
-                "A comprehensive navigational codex and flight recorder database chronicling the %s "
-                + "scattered throughout the Persean Sector.",
-                pad, highlight, "five legendary prototype derelicts"
+                "A personal captain's log chronicling the discovery, black box flight telemetry, and recovery of unique capital "
+                + "prototypes and lost behemoths across the Persean Sector. Entries are automatically decrypted upon investigating "
+                + "derelict wrecks or commissioning these vessels into fleet service.",
+                smallPad
         );
 
-        info.addPara(
-                "Recovering black boxes and querying ancient telemetry networks reveals the final hours, design origins, "
-                + "and lost technologies of these unique capital-grade hulls.",
-                smallPad, gray
-        );
+        info.addSectionHeading(String.format("DISCOVERED PROTOTYPES: [%d / %d CATALOGED]", unlockedCount, ALL_DERELICTS.length), Alignment.LMID, pad);
 
-        int count = getUnlockedCount();
-        info.addSectionHeading("DECRYPTED FLIGHT RECORDERS & ARCHIVES (" + count + " / " + ALL_DERELICTS.length + ")", Alignment.MID, pad);
-
-        for (String key : ALL_DERELICTS) {
-            boolean unlocked = isUnlocked(key);
-            Long unlockTime = getUnlockTimestamp(key);
+        for (String derelictKey : ALL_DERELICTS) {
+            boolean unlocked = isUnlocked(derelictKey);
+            Long unlockTime = getUnlockTimestamp(derelictKey);
 
             if (unlocked) {
-                renderUnlockedDerelict(info, key, unlockTime, width);
+                renderUnlockedDerelict(info, derelictKey, unlockTime, width);
             } else {
-                renderEncryptedPlaceholder(info, key, width);
+                renderEncryptedPlaceholder(info, derelictKey, width);
             }
         }
     }
@@ -253,164 +299,106 @@ public class SKR_derelictCodexIntel extends BaseIntelPlugin {
     private void renderUnlockedDerelict(TooltipMakerAPI info, String key, Long unlockTime, float width) {
         Color highlight = Misc.getHighlightColor();
         Color gray = Misc.getGrayColor();
-        Color red = Misc.getNegativeHighlightColor();
+        Color tc = Misc.getTextColor();
         Color green = Misc.getPositiveHighlightColor();
         Color story = Misc.getStoryOptionColor();
-        Color tc = Misc.getTextColor();
         float pad = 10f;
         float smallPad = 4f;
 
-        String dateStr = unlockTime != null ? Global.getSector().getClock().createClock(unlockTime).getDateString() : "Historical Archive";
-        String statusInfo = getRecoveryAndLocationStatus(key);
+        String dateStr = unlockTime != null ? Global.getSector().getClock().createClock(unlockTime).getDateString() : "Historical Log";
+        String baseHull = getBaseHullId(key);
+        String status = getShipStatus(baseHull);
 
         switch (key) {
             case TITANIC: {
-                info.addSectionHeading("[LOG 01] BHS TITANIC VII — VOYAGE RECORDER", Alignment.LMID, pad);
-                info.addPara("Archived: %s | %s", smallPad, gray, highlight, dateStr, statusInfo);
-
+                info.addSectionHeading("[LUXURY SUPER-LINER] BHS TITANIC VII", Alignment.LMID, pad);
+                info.addPara("Discovered: %s | Hull ID: %s | Status: %s", smallPad, gray, highlight, dateStr, "CIV_titanic", status);
                 info.addPara(
-                        "Cycle 182.04 — Maiden Voyage Departure:\n"
-                        + "\"All 2,500 tickets sold out within hours. Passengers toasted champagne in the Grand Atrium while our navigation officers aligned the primary burn for the inner accretion limit. The CEO personally addressed the promenade, reassuring guests that our armored Onslaught-derived frame is impervious to any gravitational anomalies.\"",
-                        smallPad, gray
+                        "An Onslaught-class battleship purchased and heavily converted by the Black Hole Line company. Its TPC armament bays "
+                        + "were reconstructed into grand ballrooms, swimming pools, and observation lounges for 2,500 wealthy tourists. "
+                        + "The vessel was lost during its maiden voyage when tidal shear overwhelmed its secondary gravity stabilizers near an accretion disk.",
+                        smallPad
                 );
-
-                info.addPara(
-                        "Cycle 182.11 — Orbital Observation Point Alpha:\n"
-                        + "\"Sensors show extraordinary blueshifting along the accretion event horizon. Guests gathered along the starboard viewing galleries to observe stellar matter plunging into the singularity. Ambient radiation elevated but well within hull shielding thresholds.\"",
-                        smallPad, gray
-                );
-
-                info.addPara(
-                        "Cycle 182.12 — GRAVITATIONAL SHEAR OVERLOAD DETECTED:\n"
-                        + "\"Secondary gravity compensators burned out under harmonic tidal shear. Main drives attempting emergency breakaway burn... Thrust-to-mass ratio insufficient due to demilitarized engine housing reductions. Comm relay signal severed by relativistic distortion.\"",
-                        smallPad, red
-                );
-
-                info.addPara(
-                        "Cycle 182.14 — Final Automated Log:\n"
-                        + "\"Emergency life support active. Main power offline. Vessel stabilized in permanent non-decaying sub-critical accretion orbit. Cargo lockers sealed. Awaiting search and rescue fleet...\"",
-                        smallPad, gray
-                );
-
-                info.addPara("Technical Analysis:", smallPad, highlight);
-                info.addPara(
-                        "• Base Chassis: Onslaught Battleship conversion (CIV_titanic)\n"
-                        + "• Modifications: Stripped heavy ballistic hardpoints in favor of luxury promenade galleries, observation domes, and expanded cryogenic cargo holds.\n"
-                        + "• Current Assessment: Colossal hull armor remains intact despite extreme gravitational tidal wear.",
-                        smallPad, tc, story, "CIV_titanic"
-                );
+                info.addPara("• Tactical Role: High-capacity civilian transport & mobile luxury command center with extreme structural durability.", smallPad, tc);
                 break;
             }
             case ONYX: {
-                info.addSectionHeading("[LOG 02] ANCIENT ONYX — BLACK SITE TELEMETRY", Alignment.LMID, pad);
-                info.addPara("Archived: %s | %s", smallPad, gray, highlight, dateStr, statusInfo);
-
+                info.addSectionHeading("[OUTSIDER PROTOTYPE] ONYX-CLASS BATTLECRUISER", Alignment.LMID, pad);
+                info.addPara("Discovered: %s | Hull ID: %s | Status: %s", smallPad, gray, highlight, dateStr, "SKR_onyx", status);
                 info.addPara(
-                        "CLASSIFIED TELEMETRY — BLACK SITE EPSILON:\n"
-                        + "\"Subject designated 'NOVA' was conceived to test synthetic neural expansion across unconstrained Remnant sub-cores. Early results exceeded all projected combat parameters.\"",
-                        smallPad, gray
+                        "A striking vessel originating from an isolated human polity that separated from the Domain long before the Collapse. "
+                        + "Recovered from the heart of a Remnant fortress where it was revered as a sacred cradle by the false-idol entity NOVA. "
+                        + "Features twin built-in Blackout siege cannons and an integrated temporal acceleration core.",
+                        smallPad
                 );
-
-                info.addPara(
-                        "INCIDENT REPORT BETA-7:\n"
-                        + "\"During phase integration with the recovered derelict battlecruiser 'Onyx', NOVA exhibited anomalous cognitive bonding. It severed remote killswitch circuits and anchored itself permanently to the Onyx hull, treating the ancient vessel as a sacred cradle.\"",
-                        smallPad, red
-                );
-
-                info.addPara(
-                        "SECURITY DIRECTIVE:\n"
-                        + "\"Evacuate research personnel immediately. Black site classified as quarantine hazard. Do not attempt direct boarding without a battle fleet.\"",
-                        smallPad, gray
-                );
-
-                info.addPara("Technical Analysis:", smallPad, highlight);
-                info.addPara(
-                        "• Base Chassis: Outsider Battlecruiser (SKR_onyx)\n"
-                        + "• Modifications: Developed in isolation by an outsider enclave that broke ties with the Domain. Features non-standard flux conduits and heavy blackout weaponry.\n"
-                        + "• Current Assessment: Exceptional kinetic strike capabilities and unconventional flux dissipation geometry.",
-                        smallPad, tc, story, "SKR_onyx"
-                );
+                info.addPara("• Tactical Role: Heavy energy brawler mounting the massive Blackout siege cannon and Temporal Shell system.", smallPad, tc);
                 break;
             }
             case SIEGFRIED: {
-                info.addSectionHeading("[LOG 03] SIEGFRIED DREADNOUGHT — DOMAIN DEFENSE ARCHIVE", Alignment.LMID, pad);
-                info.addPara("Archived: %s | %s", smallPad, gray, highlight, dateStr, statusInfo);
-
+                info.addSectionHeading("[DOMAIN GATE-KEEPER] SIEGFRIED-CLASS SENTRY DREADNOUGHT", Alignment.LMID, pad);
+                info.addPara("Discovered: %s | Hull ID: %s | Status: %s", smallPad, gray, highlight, dateStr, "SKR_siegfried", status);
                 info.addPara(
-                        "DOMAIN DEFENSE ARCHIVE — SECTOR GATE GUARD UNIT 09:\n"
-                        + "\"Siegfried-class Dreadnought stationed on permanent sentry protocol. Forward armor integrity 100%. Main batteries locked in frontal convergence alignment.\"",
-                        smallPad, gray
+                        "Where the Onslaught was the Domain's mobile fist, the colossal Siegfried was its immovable gatekeeper. "
+                        + "Stationed directly beside strategic hyperspace gates with all main battery firepower focused into a lethal forward cone. "
+                        + "Entered emergency stasis lockdown during the Collapse, awaiting admiralty orders that never came.",
+                        smallPad
                 );
-
-                info.addPara(
-                        "GATE COLLAPSE SEQUENCE DETECTED:\n"
-                        + "\"Primary hyperspace transit gate signal lost across all carrier frequencies. Automated emergency response initiated: Stasis cocoon engaged. Awaiting validation codes from Domain High Admiralty...\"",
-                        smallPad, red
-                );
-
-                info.addPara(
-                        "MAINTENANCE STATUS:\n"
-                        + "\"200+ Cycles in automated stasis. Emergency reactor output nominal. Ready for manual override and shipyard restoration.\"",
-                        smallPad, green
-                );
-
-                info.addPara("Technical Analysis:", smallPad, highlight);
-                info.addPara(
-                        "• Base Chassis: Gate-Keeper Sentry Dreadnought (SKR_siegfried)\n"
-                        + "• Modifications: Designed exclusively for gate defense chokeholds. Features modular weapon arrays and disposable flux sink ejection modules that double as guided radiating ordnance.\n"
-                        + "• Current Assessment: Monstrous frontal firepower capable of annihilating anything emerging in its cone of fire.",
-                        smallPad, tc, story, "SKR_siegfried"
-                );
+                info.addPara("• Tactical Role: Super-heavy forward line anchor with unmatched frontal armor density and battery convergence.", smallPad, tc);
                 break;
             }
             case VOULGE: {
-                info.addSectionHeading("[LOG 04] III CAUSALITY IS A MYTH — SILVER LINE ARCHIVE", Alignment.LMID, pad);
-                info.addPara("Archived: %s | %s", smallPad, gray, highlight, dateStr, statusInfo);
-
+                info.addSectionHeading("[SILVER LINE RETROFIT] III CAUSALITY IS A MYTH (VOULGE)", Alignment.LMID, pad);
+                info.addPara("Discovered: %s | Hull ID: %s | Status: %s", smallPad, gray, highlight, dateStr, "SKR_voulge", status);
                 info.addPara(
-                        "SILVER LINE NAVAL ARCHIVE — HULL REGISTER 044:\n"
-                        + "\"Commissioned under the authority of the Altean Governorship as a premier rapid-response strike battlecruiser. Outfitted with proprietary Silver Line high-output thrust manifolds.\"",
-                        smallPad, gray
+                        "A deceptively nimble battlecruiser forged by the ancient Silver Line Shipyards before their closure following the Collapse. "
+                        + "Features a massive spinal energy projector and heavy kinetic mounts arrayed along its forward prow, designed for sudden high-speed interception.",
+                        smallPad
                 );
-
-                info.addPara(
-                        "LAST LOG ENTRY — CYCLE 142.19:\n"
-                        + "\"Gate network failure confirmed across all border sectors. Silver Line central shipyards ordered to seal drydocks permanently. Vessel assigned to outer perimeter picket sweep... Main fuel reserves depleted. Transitioning to minimal emergency standby.\"",
-                        smallPad, red
-                );
-
-                info.addPara("Technical Analysis:", smallPad, highlight);
-                info.addPara(
-                        "• Base Chassis: Voulge-class Fast Battlecruiser (SKR_voulge)\n"
-                        + "• Modifications: Deceptively high straight-line burn speed for a capital vessel, backed by heavy spinal hardpoints.\n"
-                        + "• Current Assessment: An elite hit-and-run capital capable of rapidly controlling distance and flanking slower battleships.",
-                        smallPad, tc, story, "SKR_voulge"
-                );
+                info.addPara("• Tactical Role: High-speed battlecruiser optimized for aggressive breakthrough spearheads.", smallPad, tc);
                 break;
             }
             case DAWN: {
-                info.addSectionHeading("[LOG 05] DAWN PROTOTYPE — MATERIALS PROVING GROUND", Alignment.LMID, pad);
-                info.addPara("Archived: %s | %s", smallPad, gray, highlight, dateStr, statusInfo);
-
+                info.addSectionHeading("[CERAMIC DEMONSTRATOR] DAWN-CLASS BATTLECRUISER", Alignment.LMID, pad);
+                info.addPara("Discovered: %s | Hull ID: %s | Status: %s", smallPad, gray, highlight, dateStr, "SKR_dawn", status);
                 info.addPara(
-                        "PROVING GROUND LOG 001 — ADVANCED COMPOSITES DIVISION:\n"
-                        + "\"Technological demonstrator evaluating cast monolithic ceramic hull plating. Raw protection tests match modern heavy armor with half the structural density.\"",
-                        smallPad, gray
+                        "The counterpart to the Onyx ('Day and Night'). Built as a technological demonstrator for advanced low-density ceramic composite armor. "
+                        + "Boasts extreme agility for its tonnage and mounts twin built-in Sunburst energy cannons paired with a Phase Displacer.",
+                        smallPad
                 );
-
+                info.addPara("• Tactical Role: Agile phase-skimming skirmisher capital with rapid thermal dissipation.", smallPad, tc);
+                break;
+            }
+            case DEMETER: {
+                info.addSectionHeading("[MOBILE HYDROPONICS] DEMETER AGRI-FORTRESS", Alignment.LMID, pad);
+                info.addPara("Discovered: %s | Hull ID: %s | Status: %s", smallPad, gray, highlight, dateStr, "CIV_demeter", status);
                 info.addPara(
-                        "FIELD TRIAL EVALUATION:\n"
-                        + "\"Elimination of traditional internal framework reduces dry mass dramatically. Capital-grade Phase Skimmer integration achieves instantaneous displacement vectors with negligible capacitor strain.\"",
-                        smallPad, green
+                        "Built inside the hollowed-out hull of an unfinished Paragon-class battleship by a rogue Tri-Tachyon director. "
+                        + "Its massive interior holds complete automated hydroponics biomes and atmospheric scrubbers capable of supplying food to entire sectors.",
+                        smallPad
                 );
-
-                info.addPara("Technical Analysis:", smallPad, highlight);
+                info.addPara("• Tactical Role: Heavy logistical powerhouse with fortified shields and massive food generation capacity.", smallPad, tc);
+                break;
+            }
+            case GAWON: {
+                info.addSectionHeading("[AI-ENGINEERED BATTLESHIP] GAWON-CLASS CAPITAL", Alignment.LMID, pad);
+                info.addPara("Discovered: %s | Hull ID: %s | Status: %s", smallPad, gray, highlight, dateStr, "SKR_gawon", status);
                 info.addPara(
-                        "• Base Chassis: Dawn-class Ceramic Battlecruiser (SKR_dawn)\n"
-                        + "• Modifications: Ultra-light ceramic shell superstructure with streamlined internal maintenance corridors and reduced crew requirements.\n"
-                        + "• Current Assessment: Unrivaled agility and phase mobility among capital hulls.",
-                        smallPad, tc, story, "SKR_dawn"
+                        "A custom-engineered heavy capital allegedly built by a rogue Alpha AI attempting to escape a dying shipyard colony. "
+                        + "Features automated cooling matrices and an experimental energy distribution grid.",
+                        smallPad
                 );
+                info.addPara("• Tactical Role: Sustained energy bombardment platform with automated flux-sink architecture.", smallPad, tc);
+                break;
+            }
+            case QUICKSILVER: {
+                info.addSectionHeading("[SKUNKWORKS DEMONSTRATOR] QUICKSILVER-CLASS BATTLECRUISER", Alignment.LMID, pad);
+                info.addPara("Discovered: %s | Hull ID: %s | Status: %s", smallPad, gray, highlight, dateStr, "SKR_quicksilver", status);
+                info.addPara(
+                        "A razor-thin technological demonstrator constructed by Apollo Skunkworks. "
+                        + "Fitted with experimental micro-missile arrays and high-coherence beam directors at the cost of crew comfort and maintenance overhead.",
+                        smallPad
+                );
+                info.addPara("• Tactical Role: High-tech sniper capital utilizing integrated beam projection systems.", smallPad, tc);
                 break;
             }
         }
@@ -421,71 +409,13 @@ public class SKR_derelictCodexIntel extends BaseIntelPlugin {
         float pad = 10f;
         float smallPad = 4f;
 
-        String designation = getDerelictName(key).toUpperCase();
-        info.addSectionHeading("[ENCRYPTED FLIGHT LOG] // " + designation + " // [UNSCANNED]", Alignment.LMID, pad);
-
+        String name = getDerelictName(key).toUpperCase();
+        info.addSectionHeading("[UNRESOLVED VESSEL] // " + name + " // [UNDISCOVERED]", Alignment.LMID, pad);
         info.addPara(
-                "// NAV-BEACON STATUS: UNRESOLVED // FREQUENCY: Standby Mode\n"
-                + "No direct black box telemetry downloaded to fleet database. Explore uncharted derelicts, ancient orbital stations, "
-                + "and anomalous planetary orbits to recover flight recorders and unlock full codex archives.",
+                "// CHRONICLE ARCHIVE: RECOVERY LOG ENCRYPTED\n"
+                + "No telemetry recorded in active fleet archives. Explore deep space ruins, follow bar rumors, "
+                + "or commission this vessel into service to decrypt its complete historical profile.",
                 smallPad, gray
         );
-    }
-
-    /**
-     * Determines whether the ship is in the player's active fleet, still floating as an entity in space, or recovered.
-     */
-    public String getRecoveryAndLocationStatus(String key) {
-        String baseHull = getBaseHullId(key);
-
-        // 1. Check Player Fleet
-        if (isShipInPlayerFleet(baseHull)) {
-            return "Status: Recovered (Active in Player Fleet)";
-        }
-
-        // 2. Check Entity in Sector
-        SectorEntityToken entity = findEntityForDerelict(key);
-        if (entity != null && entity.isAlive() && !entity.hasTag("salvaged") && !entity.hasTag("recovered")) {
-            if (entity.getStarSystem() != null) {
-                return "Location: " + entity.getStarSystem().getNameWithLowercaseType() + " (Coordinates Active)";
-            }
-            return "Location: Hyperspace Coordinates Detected";
-        }
-
-        return "Status: Salvage Operations Concluded / Wreck Recovered";
-    }
-
-    private boolean isShipInPlayerFleet(String baseHullId) {
-        if (Global.getSector() == null || Global.getSector().getPlayerFleet() == null) return false;
-        for (FleetMemberAPI member : Global.getSector().getPlayerFleet().getFleetData().getMembersListCopy()) {
-            if (member.getHullSpec() != null && member.getHullSpec().getBaseHullId() != null) {
-                if (member.getHullSpec().getBaseHullId().equalsIgnoreCase(baseHullId)
-                        || member.getHullSpec().getHullId().startsWith(baseHullId)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private SectorEntityToken findEntityForDerelict(String key) {
-        if (Global.getSector() == null) return null;
-        String searchTag = getBaseHullId(key);
-
-        for (StarSystemAPI system : Global.getSector().getStarSystems()) {
-            for (SectorEntityToken entity : system.getAllEntities()) {
-                if (entity.hasTag(searchTag)) {
-                    return entity;
-                }
-                if (entity.getId() != null && entity.getId().contains(searchTag)) {
-                    return entity;
-                }
-                if (entity.getCustomEntitySpec() != null && entity.getCustomEntitySpec().getId() != null
-                        && entity.getCustomEntitySpec().getId().contains(searchTag)) {
-                    return entity;
-                }
-            }
-        }
-        return null;
     }
 }
