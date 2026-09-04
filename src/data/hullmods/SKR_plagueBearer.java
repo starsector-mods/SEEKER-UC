@@ -106,4 +106,12 @@ public class SKR_plagueBearer extends BaseHullMod {
             Global.getSoundPlayer().playUISound(BAD_HULLMOD_NOTIFICATION_SOUND, 0.7f, 1f);
         }
     }
+
+    @Override
+    public void advanceInCombat(ShipAPI ship, float amount) {
+        if (ship == null) return;
+        if (!ship.hasListenerOfClass(SKR_PlagueBossDeathListener.class)) {
+            ship.addListener(new SKR_PlagueBossDeathListener(ship));
+        }
+    }
 }

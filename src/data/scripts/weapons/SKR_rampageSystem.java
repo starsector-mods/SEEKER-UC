@@ -71,6 +71,29 @@ public class SKR_rampageSystem implements EveryFrameWeaponEffectPlugin {
             }            
             return;
         }
+
+        if (ship == null || !ship.isAlive() || ship.isHulk() || ship.getHitpoints() <= 0f) {
+            if (active || bonus || bursting > 0) {
+                active = false;
+                bonus = false;
+                bursting = 0;
+                if (weapon.getAnimation() != null) {
+                    weapon.getAnimation().setFrame(0);
+                }
+                if (moduleA != null) {
+                    unapplySystemEffect(moduleA);
+                }
+                if (moduleB != null) {
+                    unapplySystemEffect(moduleB);
+                }
+                if (ship != null) {
+                    ship.getMutableStats().getFluxDissipation().unmodify("rampage_burst");
+                    ship.getMutableStats().getTurnAcceleration().unmodify("rampage_burst");
+                    ship.getMutableStats().getMaxTurnRate().unmodify("rampage_burst");
+                }
+            }
+            return;
+        }
             
         if(A && moduleA!=null && moduleA.isAlive()){
             if(system.isActive()){

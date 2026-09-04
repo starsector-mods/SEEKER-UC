@@ -42,6 +42,21 @@ public class SKR_keepSystemEffect implements EveryFrameWeaponEffectPlugin{
             }
             SHADER=Global.getSettings().getModManager().isModEnabled("shaderLib");
         }
+
+        ShipAPI ship = weapon.getShip();
+        if (ship == null || !ship.isAlive() || ship.isHulk() || ship.getHitpoints() <= 0f) {
+            if (active) {
+                active = false;
+                if (ship != null) {
+                    ship.getMutableStats().getCombatWeaponRepairTimeMult().unmodify("SKR_spasm");
+                    ship.getMutableStats().getCombatEngineRepairTimeMult().unmodify("SKR_spasm");
+                }
+                if (weapon.getAnimation() != null) {
+                    weapon.getAnimation().setFrame(0);
+                }
+            }
+            return;
+        }
         
         if(GUN.getChargeLevel()==1){
             //muzzle

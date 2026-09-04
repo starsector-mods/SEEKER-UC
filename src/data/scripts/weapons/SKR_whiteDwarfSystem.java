@@ -90,6 +90,21 @@ public class SKR_whiteDwarfSystem implements EveryFrameWeaponEffectPlugin {
             
             return;
         }
+
+        if (ship == null || !ship.isAlive() || ship.isHulk() || ship.getHitpoints() <= 0f) {
+            if (active || bonus) {
+                active = false;
+                bonus = false;
+                if (weapon.getAnimation() != null) {
+                    weapon.getAnimation().setFrame(0);
+                }
+                if (moduleDeckL != null) unapplySystemEffect(moduleDeckL);
+                if (moduleDeckR != null) unapplySystemEffect(moduleDeckR);
+                if (moduleGunL != null) unapplySystemEffect(moduleGunL);
+                if (moduleGunR != null) unapplySystemEffect(moduleGunR);
+            }
+            return;
+        }
             
         if(A && moduleDeckL!=null && moduleDeckL.isAlive()){
             if(system.isActive()){

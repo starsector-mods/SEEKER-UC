@@ -77,6 +77,23 @@ public class SKR_cataclysmSystem implements EveryFrameWeaponEffectPlugin {
             }
             return;
         }
+
+        if (ship == null || !ship.isAlive() || ship.isHulk() || ship.getHitpoints() <= 0f) {
+            if (active || sound || !CR_SAP.isEmpty()) {
+                active = false;
+                sound = false;
+                if (weapon.getAnimation() != null) {
+                    weapon.getAnimation().setFrame(0);
+                }
+                for (ShipAPI s : CR_SAP.keySet()) {
+                    if (s != null && CR_SAP.get(s) != null) {
+                        s.setCurrentCR(CR_SAP.get(s));
+                    }
+                }
+                CR_SAP.clear();
+            }
+            return;
+        }
             
         //module loss
         if(A && (m_fl==null || !m_fl.isAlive())){

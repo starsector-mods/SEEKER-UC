@@ -50,6 +50,15 @@ public class SKR_warpDriveEffect implements EveryFrameWeaponEffectPlugin {
 //                }
 //            }
         }
+
+        if(ship==null) ship=weapon.getShip();
+        if(ship==null || !ship.isAlive() || ship.isHulk() || ship.getHitpoints()<=0f){
+            if(ship!=null){
+                unfreeze(ship.getMutableStats());
+            }
+            ActiveWarp=false;
+            return;
+        }
         
         //retreating warp out check        
         if(ship.isRetreating() && ship.getTravelDrive().isActive() && ship.getTravelDrive().getEffectLevel()==1){
