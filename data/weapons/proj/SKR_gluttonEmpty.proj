@@ -7,31 +7,30 @@
 	"center":[16,25],
 	"collisionRadius":25,
 	"collisionClass":"MISSILE_NO_FF",
-	"explosionColor":[255,165,0,255],  // purely visual, will get a white additively blended core on top of this color
-	"explosionRadius":100, // purely visual
+	"explosionColor":[255,165,0,255],  
+	"explosionRadius":100, 
 	"engineSpec":{"turnAcc":360,
 				  "turnRate":120,
 				  "acc":200,
 				  "dec":200},
 	"engineSlots":[{"id":"ES1",
 					"loc":[-22, 0],
-				    // "style":"MISSILE_MIDLINE",
+				    
 				    "style":"CUSTOM",
 				    "styleSpec":{
-						"mode":"QUAD_STRIP", // PARTICLES or QUAD_STRIP, determines which params are used
+						"mode":"QUAD_STRIP", 
 						"engineColor":[255,145,75,255],
 						"contrailDuration":2,
 						"contrailWidthMult":0.5,
-						"contrailWidthAddedFractionAtEnd":2,  // can be negative. makes trail spread out/narrow at the end
-						"contrailMinSeg":10, // min segment length, in pixels
+						"contrailWidthAddedFractionAtEnd":2,  
+						"contrailMinSeg":10, 
 						"contrailMaxSpeedMult":0.0,
 						"contrailAngularVelocityMult":0.5,
-						"contrailSpawnDistMult":1, // how far away from engine it starts
+						"contrailSpawnDistMult":1, 
 						"contrailColor":[100,100,100,150],
 						"glowSizeMult":2,
-						"type":"SMOKE" // GLOW or SMOKE; additive or regular blend mode
+						"type":"SMOKE" 
 					},
 				    "width":24.0,
 				    "length":60.0,
-				    "angle":180.0}],
-}
+				    "angle":180.0}]}

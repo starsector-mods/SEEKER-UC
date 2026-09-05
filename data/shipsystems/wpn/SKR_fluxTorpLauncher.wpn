@@ -63,5 +63,4 @@
 				 "blowbackSpread":30.0,
 				 "particleColor":[150,100,100,150]},
 	"projectileSpecId":"SKR_fluxTorp_shot",
-	"fireSoundTwo":"system_flare_launcher_active",
-}
+	"fireSoundTwo":"system_flare_launcher_active"}

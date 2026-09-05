@@ -125,8 +125,7 @@
 108,
 126,
 144,
-162,
-],
+162],
 	"turretAngleOffsets":[
 198,
 216,
@@ -147,8 +146,7 @@
 126,
 144,
 162,
-180,
-],
+180],
 	"barrelMode":"ALTERNATING",
 	"interruptibleBurst":false,
 	"animationType":"SMOKE",
@@ -163,5 +161,4 @@
 				 "blowbackSpread":10.0,
 				 "particleColor":[100,100,100,50]},
 	"projectileSpecId":"SKR_flareMirv_shot",
-	"fireSoundTwo":"system_flare_launcher_active",
-}
+	"fireSoundTwo":"system_flare_launcher_active"}

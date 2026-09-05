@@ -15,8 +15,7 @@
 017, -22,
         017, 22,
 035, -15,
-        035, 15,
-],
+        035, 15],
 	"turretOffsets":[
 -20, -35,
         -20, 35,
@@ -27,8 +26,7 @@
 010, -20,
         010, 20,
 020, -15,
-        020, 15,
-],
+        020, 15],
 	"hardpointAngleOffsets":[
 -45,
     45,
@@ -39,8 +37,7 @@
 -30,
     30,
 -25,
-    25,
-],
+    25],
 	"turretAngleOffsets":[
 -45,
     45,
@@ -51,11 +48,10 @@
 -30,
     30,
 -25,
-    25,
-],
+    25],
 	"barrelMode":"DUAL",
 	"animationType":"SMOKE",
-	// "renderHints":[RENDER_LOADED_MISSILES_UNLESS_HIDDEN],
+	
 	"interruptibleBurst":false,
 	"displayArcRadius":1000,
 	"smokeSpec":{"particleSizeMin":10.0,
@@ -69,6 +65,4 @@
 				 "blowbackSpread":10.0,
 				 "particleColor":[100, 100, 100,120]},
 	"projectileSpecId":"SKR_tuskMissile",
-	"fireSoundTwo":"reaper_fire",
-	// "everyFrameEffect":"data.scripts.weapons.SKR_addPlagueEffect",
-}
+	"fireSoundTwo":"reaper_fire"}

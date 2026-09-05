@@ -16,30 +16,26 @@
 5, 0,
 5, 0,
 5, 0,
-5, 0,
-],
+5, 0],
 	"turretAngleOffsets":[
 0,
 0,
 0,
 0,
-0,
-],
+0],
 
 	"hardpointOffsets":[
 5, 0,
 5, 0,
 5, 0,
 5, 0,
-5, 0,
-],
+5, 0],
 	"hardpointAngleOffsets":[
 0,
 0,
 0,
 0,
-0,
-],
+0],
 
 	"fringeColor":[0,0,155,255],
 	"coreColor":[200,220,255,255],
@@ -50,5 +46,4 @@
 	"pixelsPerTexel":5.0,
 	"pierceSet":[PROJECTILE_FF,PROJECTILE_NO_FF,PROJECTILE_FIGHTER],
 	"fireSoundOne":"burst_pd_fire",
-	"fireSoundTwo":"SKR_remotePD",
-}
+	"fireSoundTwo":"SKR_remotePD"}

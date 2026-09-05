@@ -22,5 +22,4 @@
 	"barrelMode":"ALTERNATING",
         "separateRecoilForLinkedBarrels":"TRUE",
         "animationType":"NONE",				   
-	"projectileSpecId":"SKR_bullhornDiscard_shot",
-}
+	"projectileSpecId":"SKR_bullhornDiscard_shot"}

@@ -28,8 +28,7 @@
         "turnAcc":100,
         "turnRate":10,
         "acc":100,
-        "dec":100,
-    },
+        "dec":100},
 	
     "behaviorSpec":{
         "behavior":"PROXIMITY_FUSE",
@@ -47,6 +46,4 @@
             "particleCount":20,
             "particleColor":[211,100,25,255],
             "sound":"explosion_flak"
-        },
-    },
-}
+        }}}

@@ -20,7 +20,7 @@
                 "explosionSpec":{
                         "duration":0.1,
                         "radius":30,
-                        "coreRadius":10, // full damage within core radius - also equal to proximity fuse range
+                        "coreRadius":10, 
                         "collisionClass":PROJECTILE_FF,
                         "collisionClassByFighter":PROJECTILE_FIGHTER,
                         "particleSizeMin":5.0,
@@ -29,7 +29,5 @@
                         "particleCount":15,
                         "particleColor":[255,155,100,255],
                         "sound":"explosion_flak"
-                },
-        },
-        "onHitEffect":"data.scripts.weapons.SKR_intercept_hitEffect",
-}
+                }},
+        "onHitEffect":"data.scripts.weapons.SKR_intercept_hitEffect"}

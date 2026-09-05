@@ -9,29 +9,25 @@
 1, -7,
 -3, -2,
 2, 1,
--2, 6,
-],
+-2, 6],
 	"turretOffsets":[
 1, -7,
 -3, -2,
 2, 1,
--2, 6,
-],
+-2, 6],
 	"hardpointAngleOffsets":[
 -1.5,
 -0.5,
 0.5,
-1.5,
-],
+1.5],
 	"turretAngleOffsets":[
 -1.5,
 -0.5,
 0.5,
-1.5,
-],	
+1.5],	
 	"barrelMode":"ALTERNATING",
 	"animationType":"SMOKE",
-	// "renderHints":[RENDER_LOADED_MISSILES],
+	
 	"interruptibleBurst":false,
 	"displayArcRadius":300,
 	"smokeSpec":{
@@ -47,5 +43,4 @@
                     "particleColor":[120,255,220,25]
                     },
 	"projectileSpecId":"SKR_obsidianMissile",
-	"fireSoundTwo":"SKR_obsidian_fire",
-}
+	"fireSoundTwo":"SKR_obsidian_fire"}

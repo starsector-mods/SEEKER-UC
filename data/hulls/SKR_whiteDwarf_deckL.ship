@@ -13,11 +13,9 @@
   "viewOffset": 0,
   "builtInMods": [
     "SKR_plagueBearer",
-        // "SKR_plagueLPC",
+        
         "reduced_explosion",
-        "always_detaches",
-        // "SKR_module"
-  ],
+        "always_detaches"],
   "weaponSlots": [
     {
       "id": "LB 1",

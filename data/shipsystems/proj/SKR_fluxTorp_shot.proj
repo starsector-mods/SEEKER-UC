@@ -7,8 +7,8 @@
 	"center":[5.5,30],
 	"collisionRadius":18,
 	"collisionClass":"MISSILE_NO_FF",
-	"explosionColor":[255,100,10,255],  // purely visual, will get a white additively blended core on top of this color
-	"explosionRadius":150, // purely visual
+	"explosionColor":[255,100,10,255],  
+	"explosionRadius":150, 
 	"engineSpec":{"turnAcc":180,
                       "turnRate":180,
                       "acc":100,
@@ -45,8 +45,6 @@
                         "style":"NO_SMOKE",
                         "width":5.0,
                         "length":20.0,
-                        "angle":205.0},
-		    ],
+                        "angle":205.0}],
 
-	"onHitEffect":"data.scripts.weapons.SKR_fluxTorp_effect",
-}
+	"onHitEffect":"data.scripts.weapons.SKR_fluxTorp_effect"}

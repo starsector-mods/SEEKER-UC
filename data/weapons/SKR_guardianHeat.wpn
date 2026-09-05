@@ -1,5 +1,5 @@
 {
-	"id":"SKR_guardianHeat",  // this id must match what's in the spreadsheet
+	"id":"SKR_guardianHeat",  
 	"specClass":"beam",
 	"type":"DECORATIVE",
 	"size":"SMALL",
@@ -20,5 +20,4 @@
 	"textureType":ROUGH,
 	"textureScrollSpeed":1.0,
 	"pixelsPerTexel":5.0,
-	"everyFrameEffect":"data.scripts.weapons.SKR_heatEffect",		
-}
+	"everyFrameEffect":"data.scripts.weapons.SKR_heatEffect"}

@@ -8,7 +8,7 @@
     "baseValueMult":0.8,
 	"fleetPoints":14,
 	"ordnancePoints":150,
-    // "restoreToBaseHull":true,
+    
     "addHints":[],
     "tags":["rare_bp"],
 	"tech":"Luddic Path",
@@ -25,8 +25,7 @@
 		"jet6",
 		"jet7",
 		"jet8",
-		"jet9",
-	],
+		"jet9"],
 	"builtInMods":["safetyoverrides","ill_advised"],
     "builtInWeapons":{
 		"WS0020": "SKR_Xhalligan_leftWisker_lp",
@@ -34,18 +33,12 @@
 		"WS0022": "SKR_Xhalligan_leftFin_lp",
 		"WS0023": "SKR_Xhalligan_rightFin_lp",
 		"WS0024": "SKR_Xhalligan_leftTail_lp",
-		"WS0025": "SKR_Xhalligan_rightTail_lp",
-	},
+		"WS0025": "SKR_Xhalligan_rightTail_lp"},
 	"systemId":"ammofeed",
     "weaponSlotChanges":{
         "WS0001":{
-			"size": "SMALL",
-        },
+			"size": "SMALL"},
         "WS0002":{
-			"size": "SMALL",
-        },
+			"size": "SMALL"},
         "WS0007":{
-			"type": "BALLISTIC",
-        },
-	},
-}
+			"type": "BALLISTIC"}}}

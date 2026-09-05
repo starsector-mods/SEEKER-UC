@@ -13,13 +13,13 @@
   "viewOffset": 0,
   "builtInMods": [
     "SKR_ancientArmor",
-    // "high_maintenance",
-    // "SKR_noDeck",
+    
+    
     "SKR_siegfriedLoadout"
   ],
   "builtInWeapons": {
     "FLUX": "SKR_guardianHeat",
-    // "SYSTEM": "SKR_guardianShield",
+    
     "BLINKER1": "SKR_blinkerRedA",
     "BLINKER2": "SKR_blinkerRedA",
     "BLINKER3": "SKR_blinkerRedA",
@@ -27,16 +27,7 @@
     "BLINKER5": "SKR_blinkerRedB",
     "BLINKER6": "SKR_blinkerRedB",
     "BLINKER7": "SKR_blinkerRedB",
-    "BLINKER8": "SKR_blinkerRedB",
-
-    // "MOUNTS1": "SKR_guardianTurretL",
-    // "MOUNTS2": "SKR_guardianTurretR",
-    // "DECKS": "SKR_guardianDecks",
-
-    // "FIRECANE1": "SKR_firecane",
-    // "FIRECANE2": "SKR_firecane",
-
-  },
+    "BLINKER8": "SKR_blinkerRedB"},
   "weaponSlots": [
 
     {
@@ -52,7 +43,7 @@
     {
       "id": "FIRECANE1",
       "size": "LARGE",
-      // "type": "BUILT_IN",
+      
       "type": "DECORATIVE",
       "mount": "TURRET",
       "arc": 45,
@@ -62,7 +53,7 @@
     {
       "id": "FIRECANE2",
       "size": "LARGE",
-      // "type": "BUILT_IN",
+      
       "type": "DECORATIVE",
       "mount": "TURRET",
       "arc": 45,
@@ -80,9 +71,8 @@
       ],
       "mount": "TURRET",
       "size": "LARGE",
-      // "type": "BALLISTIC"
-      "type": "DECORATIVE",
-    },
+      
+      "type": "DECORATIVE"},
     {
       "angle": 120,
       "arc": 135,
@@ -93,9 +83,8 @@
       ],
       "mount": "TURRET",
       "size": "LARGE",
-      // "type": "BALLISTIC"
-      "type": "DECORATIVE",
-    },
+      
+      "type": "DECORATIVE"},
     {
       "angle": -60,
       "arc": 135,
@@ -106,9 +95,8 @@
       ],
       "mount": "TURRET",
       "size": "LARGE",
-      // "type": "BALLISTIC"
-      "type": "DECORATIVE",
-    },
+      
+      "type": "DECORATIVE"},
     {
       "angle": -120,
       "arc": 135,
@@ -119,9 +107,8 @@
       ],
       "mount": "TURRET",
       "size": "LARGE",
-      // "type": "BALLISTIC"
-      "type": "DECORATIVE",
-    },
+      
+      "type": "DECORATIVE"},
 
     {
       "id": "FLUX",

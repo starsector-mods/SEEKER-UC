@@ -1,18 +1,18 @@
 {
-	"id":"SKR_balisongPulse",  // this id must match what's in the spreadsheet
+	"id":"SKR_balisongPulse",  
 	"specClass":"projectile",
 	"type":"ENERGY",
 	"size":"LARGE",
-	// "everyFrameEffect":"data.scripts.weapons.",
+	
 	"turretSprite":"",
 	"hardpointSprite":"",
 	"turretOffsets":[85, 0],
 	"turretAngleOffsets":[0],
 	"hardpointOffsets":[85, 0],
 	"hardpointAngleOffsets":[0],
-	"barrelMode":"ALTERNATING", // ALTERNATING or LINKED.  whether barrels fire at the same time or alternate.
+	"barrelMode":"ALTERNATING", 
 	"animationType":"MUZZLE_FLASH",
-	"muzzleFlashSpec":{"length":75.0,   // only used if animationType = MUZZLE_FLASH
+	"muzzleFlashSpec":{"length":75.0,   
 					   "spread":1.0,
 					   "particleSizeMin":20.0,
 					   "particleSizeRange":20.0,
@@ -21,5 +21,4 @@
 					   "particleColor":[50,150,255,255]},
 	"interruptibleBurst":true,
 	"projectileSpecId":"SKR_hyperpulse_shot",
-	"fireSoundTwo":"SKR_balisongPulse_fire",
-}
+	"fireSoundTwo":"SKR_balisongPulse_fire"}

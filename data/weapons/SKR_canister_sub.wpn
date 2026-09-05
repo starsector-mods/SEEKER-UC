@@ -22,5 +22,4 @@
 	"barrelMode":"ALTERNATING",
         "separateRecoilForLinkedBarrels":"TRUE",
         "animationType":"NONE",				   
-	"projectileSpecId":"SKR_can_sub",
-}
+	"projectileSpecId":"SKR_can_sub"}

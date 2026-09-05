@@ -7,8 +7,8 @@
 	"center":[5.5,15],
 	"collisionRadius":15,
 	"collisionClass":"MISSILE_NO_FF",
-	"explosionColor":[100,100,255,255],  // purely visual, will get a white additively blended core on top of this color
-	"explosionRadius":150, // purely visual
+	"explosionColor":[100,100,255,255],  
+	"explosionRadius":150, 
 	"engineSpec":{"turnAcc":1440,
                       "turnRate":1440,
                       "acc":21000,
@@ -30,6 +30,5 @@
                         },
                         "width":12.0,
                         "length":80.0,
-                        "angle":180.0},
-                        ]
+                        "angle":180.0}]
 }

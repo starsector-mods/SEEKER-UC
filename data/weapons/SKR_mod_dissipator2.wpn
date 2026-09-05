@@ -1,5 +1,5 @@
 {
-	"id":"SKR_mod_dissipator2",  // this id must match what's in the spreadsheet
+	"id":"SKR_mod_dissipator2",  
 	"specClass":"beam",
 	"type":"DECORATIVE",
 	"size":"MEDIUM",
@@ -18,5 +18,4 @@
 	"textureType":ROUGH,
 	"textureScrollSpeed":1.0,
 	"pixelsPerTexel":5.0,	
-        "everyFrameEffect":"data.scripts.weapons.SKR_dissipatorEffect",	
-}
+        "everyFrameEffect":"data.scripts.weapons.SKR_dissipatorEffect"}

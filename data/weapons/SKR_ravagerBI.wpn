@@ -1,5 +1,5 @@
 {
-	"id":"SKR_ravagerBI",  // this id must match what's in the spreadsheet
+	"id":"SKR_ravagerBI",  
 	"specClass":"projectile",
 	"type":"ENERGY",
 	"size":"MEDIUM",
@@ -13,8 +13,7 @@
 8, 0,
 9, 0,
 5, 0,
-1, 0,
-],
+1, 0],
 	"turretAngleOffsets":
 [
 -2.5,
@@ -22,8 +21,7 @@
 -0.5,
 0.5,
 1.5,
-2.5,
-],
+2.5],
 	"hardpointOffsets":
 [
 0, 0,
@@ -31,8 +29,7 @@
 8, 0,
 9, 0,
 5, 0,
-1, 0,
-],
+1, 0],
 	"hardpointAngleOffsets":
 [
 -2.5,
@@ -40,11 +37,10 @@
 -0.5,
 0.5,
 1.5,
-2.5,
-],
-	"barrelMode":"LINKED", // ALTERNATING or LINKED.  whether barrels fire at the same time or alternate.
+2.5],
+	"barrelMode":"LINKED", 
 	"animationType":"MUZZLE_FLASH",
-	"muzzleFlashSpec":{"length":30.0,   // only used if animationType = MUZZLE_FLASH
+	"muzzleFlashSpec":{"length":30.0,   
 					   "spread":5.0,
 					   "particleSizeMin":20.0,
 					   "particleSizeRange":10.0,
@@ -56,5 +52,4 @@
         "separateRecoilForLinkedBarrels":"TRUE",
 	"projectileSpecId":"SKR_ravager_shot",
         "fireSoundOne":"SKR_ravager_chargeup",
-	"fireSoundTwo":"SKR_ravager_fire",
-}
+	"fireSoundTwo":"SKR_ravager_fire"}

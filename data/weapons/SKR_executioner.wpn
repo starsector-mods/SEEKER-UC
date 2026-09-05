@@ -1,16 +1,16 @@
 {
-	"id":"SKR_executioner",  // this id must match what's in the spreadsheet
+	"id":"SKR_executioner",  
 	"specClass":"projectile",
 	"type":"ENERGY",
 	"size":"MEDIUM",
-	// "everyFrameEffect":"data.scripts.weapons.SKR_ravagerEffect",
+	
 	"turretSprite":"graphics/SEEKER/ships/SKR_marksman_gunBody.png",
-	// "turretGlowSprite":"graphics/SEEKER/ships/SKR_ravagerTG.png",
+	
 	"turretGunSprite":"graphics/SEEKER/ships/SKR_marksman_gunBarrel.png",
 	"hardpointSprite":"graphics/SEEKER/ships/SKR_marksman_gunBody.png",
-	// "hardpointGlowSprite":"graphics/SEEKER/ships/SKR_ravagerHG.png",
+	
 	"hardpointGunSprite":"graphics/SEEKER/ships/SKR_marksman_gunBarrel.png",	
-	"visualRecoil":8.0,  // the gun sprites are only used if this is non-0
+	"visualRecoil":8.0,  
 	"renderHints":[RENDER_BARREL_BELOW],
 	"turretOffsets":
 [44, 0],
@@ -20,17 +20,16 @@
 [60, 0],
 	"hardpointAngleOffsets":
 [0],
-	"barrelMode":"LINKED", // ALTERNATING or LINKED.  whether barrels fire at the same time or alternate.
+	"barrelMode":"LINKED", 
 	"animationType":"MUZZLE_FLASH",
-	"muzzleFlashSpec":{"length":34.0,   // only used if animationType = MUZZLE_FLASH
+	"muzzleFlashSpec":{"length":34.0,   
 					   "spread":10.0,
 					   "particleSizeMin":18.0,
 					   "particleSizeRange":24.0,
 					   "particleDuration":0.12,
 					   "particleCount":12,
 					   "particleColor":[255,185,215,215]},
-					   // "particleColor":[155,185,255,215]},
-	"projectileSpecId":"SKR_executioner_shot",  // projectile that will be fired
+					   
+	"projectileSpecId":"SKR_executioner_shot",  
 	"fireSoundTwo":"SKR_executioner_fire",
-        "everyFrameEffect":"data.scripts.weapons.SKR_marksmanEffect",
-}
+        "everyFrameEffect":"data.scripts.weapons.SKR_marksmanEffect"}

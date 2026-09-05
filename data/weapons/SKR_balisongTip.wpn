@@ -1,5 +1,5 @@
 {
-	"id":"SKR_balisongTip",  // this id must match what's in the spreadsheet
+	"id":"SKR_balisongTip",  
 	"specClass":"beam",
 	"type":"DECORATIVE",
 	"size":"MEDIUM",

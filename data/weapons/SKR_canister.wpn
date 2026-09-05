@@ -24,5 +24,4 @@
         "animationType":"NONE",				   
 	"projectileSpecId":"SKR_can",
 	"fireSoundOne":"SKR_canister_charge",
-	"fireSoundTwo":"SKR_canister_fire",
-}
+	"fireSoundTwo":"SKR_canister_fire"}

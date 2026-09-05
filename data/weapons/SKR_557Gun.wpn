@@ -15,8 +15,7 @@
 28.5, 0,
 28.5, 0,
 28.5, 0,
-28.5, 0,
-],
+28.5, 0],
 	"turretAngleOffsets":[
 0,
 0,
@@ -24,8 +23,7 @@
 0,
 0,
 0,
-0,
-],
+0],
 	"hardpointOffsets":[
 28, 0,
 26, -0.5,
@@ -33,8 +31,7 @@
 22, -1,
 20, 1,
 18, -1.5,
-16, 1.5,
-],
+16, 1.5],
 	"hardpointAngleOffsets":[
 0,
 0,
@@ -42,12 +39,11 @@
 0,
 0,
 0,
-0,
-],
-	"barrelMode":"LINKED", // or LINKED.  whether barrels fire at the same time or alternate.
+0],
+	"barrelMode":"LINKED", 
         "separateRecoilForLinkedBarrels":"TRUE",
 	"animationType":"MUZZLE_FLASH",
-	"muzzleFlashSpec":{"length":80.0,   // only used if animationType = MUZZLE_FLASH
+	"muzzleFlashSpec":{"length":80.0,   
                             "spread":20.0,
                             "particleSizeMin":5.0,
                             "particleSizeRange":50.0,
@@ -58,5 +54,4 @@
 	"fireSoundTwo":"SKR_557_fire",
         "everyFrameEffect":"data.scripts.weapons.SKR_557Animation",
         "specialWeaponGlowWidth":10,
-        "specialWeaponGlowHeight":35,
-}
+        "specialWeaponGlowHeight":35}

@@ -23,5 +23,4 @@
                      "blowbackSpread":0.0,
                      "particleColor":[100,100,100,200]},				 
 	"projectileSpecId":"SKR_rocket",
-	"fireSoundTwo":"annihilator_fire",
-}
+	"fireSoundTwo":"annihilator_fire"}

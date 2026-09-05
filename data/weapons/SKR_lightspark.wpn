@@ -26,5 +26,4 @@
 				 "particleColor":[100, 100, 100,120]},
 	"projectileSpecId":"SKR_lightsparkMissile",
 	"fireSoundTwo":"atropos_fire",
-	"everyFrameEffect":"data.scripts.weapons.SKR_addPlagueEffect",
-}
+	"everyFrameEffect":"data.scripts.weapons.SKR_addPlagueEffect"}

@@ -27,5 +27,4 @@
 	"interruptibleBurst":true,
 	"projectileSpecId":"SKR_chain_shot",
 	"fireSoundOne":"SKR_chain_charge",
-	"fireSoundTwo":"SKR_chain_fire",
-}
+	"fireSoundTwo":"SKR_chain_fire"}

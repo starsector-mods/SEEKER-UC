@@ -8,7 +8,7 @@
     "baseValueMult":0.8,
 	"fleetPoints":9,
 	"ordnancePoints":70,
-    // "restoreToBaseHull":true,
+    
     "addHints":[],
     "tags":["rare_bp"],
 	"tech":"Luddic Path",
@@ -25,23 +25,17 @@
     "jet6",
     "jet7",
     "jet8",
-    "jet9",
-	],
+    "jet9"],
 	"builtInMods":["safetyoverrides","ill_advised"],
     "builtInWeapons":{
 		"WS0004": "SKR_Xadze_leftWisker_lp",
-		"WS0005": "SKR_Xadze_rightWisker_lp",
-	},
+		"WS0005": "SKR_Xadze_rightWisker_lp"},
 	"systemId":"ammofeed",
     "weaponSlotChanges":{
         "WS0003":{
-			"size": "SMALL",
-        },
+			"size": "SMALL"},
         "WS0002":{
-			"size": "SMALL",
-        },
+			"size": "SMALL"},
         "WS0001":{
             "type": "BALLISTIC"
-        },
-	},
-}
+        }}}

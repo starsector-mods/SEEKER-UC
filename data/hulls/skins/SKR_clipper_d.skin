@@ -18,5 +18,4 @@
     "removeBuiltInWeapons":["TURRET"],
     "builtInMods":["destroyed_mounts","SKR_destroyedDeck"],
     "builtInWeapons":{
-    },
-}
+    }}

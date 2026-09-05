@@ -1,5 +1,5 @@
 {
-	"id":"SKR_blinkerGreenB",  // this id must match what's in the spreadsheet
+	"id":"SKR_blinkerGreenB",  
 	"specClass":"beam",
 	"type":"DECORATIVE",
 	"size":"SMALL",
@@ -18,5 +18,4 @@
 	"textureType":ROUGH,
 	"textureScrollSpeed":1.0,
 	"pixelsPerTexel":5.0,
-	"everyFrameEffect":"data.scripts.weapons.SKR_blinkerBEffect",	
-}
+	"everyFrameEffect":"data.scripts.weapons.SKR_blinkerBEffect"}

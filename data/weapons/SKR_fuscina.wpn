@@ -21,6 +21,5 @@
 	"textureScrollSpeed":128.0,
 	"pixelsPerTexel":5.0,
 	"pierceSet":[PROJECTILE_FF,PROJECTILE_NO_FF,PROJECTILE_FIGHTER,MISSILE_FF,MISSILE_NO_FF],
-	// "fireSoundOne":"phase_beam_intro",
-	"fireSoundTwo":"SKR_fuscina_fire",	
-}
+	
+	"fireSoundTwo":"SKR_fuscina_fire"}

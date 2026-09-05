@@ -14,5 +14,4 @@
 	"pixelsPerTexel":5.0,
 	"bulletSprite":"graphics/missiles/shell_gauss_cannon.png",
 	"onHitEffect":"data.scripts.weapons.SKR_dainsleif_hitEffect",
-	"passThroughMissiles":true,
-}
+	"passThroughMissiles":true}

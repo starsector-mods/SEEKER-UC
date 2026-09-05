@@ -1,5 +1,5 @@
 {
-	"id":"SKR_ZthrusterSystem",  // this id must match what's in the spreadsheet
+	"id":"SKR_ZthrusterSystem",  
 	"specClass":"beam",
 	"type":"DECORATIVE",
 	"size":"SMALL",
@@ -21,5 +21,4 @@
 	"textureType":ROUGH,
 	"textureScrollSpeed":1.0,
 	"pixelsPerTexel":5.0,	
-	"everyFrameEffect":"data.scripts.weapons.SKR_thrusterSystem",	
-}
+	"everyFrameEffect":"data.scripts.weapons.SKR_thrusterSystem"}

@@ -25,17 +25,13 @@
 		"jet6",
 		"jet7",
 		"jet8",
-		"jet9",
-	],
+		"jet9"],
     "builtInMods":[],
     "builtInWeapons":{
 		"WS0004": "SKR_Xadze_leftWisker_p",
-		"WS0005": "SKR_Xadze_rightWisker_p",
-	},
+		"WS0005": "SKR_Xadze_rightWisker_p"},
     "systemId":"burndrive",
     "weaponSlotChanges":{
         "WS0001":{
             "type": "BALLISTIC"
-        },
-	},
-}
+        }}}

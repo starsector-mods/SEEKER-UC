@@ -52,7 +52,7 @@
                         "spreadSpeed":100,
                         "spreadSpeedRange":0,
                         "projectileSpec":"SKR_lightstreakMissile",
-                        // "emptySpec":"SKR_gluttonEmpty",
+                        
                         "smokeSpec":{"particleSizeMin":30.0,
                                     "particleSizeRange":30.0,
                                     "cloudParticleCount":15,

@@ -7,8 +7,8 @@
 	"center":[2.5,4],
 	"collisionRadius":10,
 	"collisionClass":"MISSILE_NO_FF",
-	"explosionColor":[173,252,251,255],  // purely visual, will get a white additively blended core on top of this color
-	"explosionRadius":100, // purely visual
+	"explosionColor":[173,252,251,255],  
+	"explosionRadius":100, 
 	"engineSpec":{"turnAcc":0,
                       "turnRate":0,
                       "maxSpeed":700,
@@ -19,19 +19,18 @@
                         "loc":[-4,0],
                         "style":"CUSTOM",
                         "styleSpec":{
-                                "mode":"QUAD_STRIP", // PARTICLES or QUAD_STRIP, determines which params are used
+                                "mode":"QUAD_STRIP", 
                                 "engineColor":[100,165,255,255],
                                 "contrailDuration":0.5,
                                 "contrailWidthMult":1,
-                                "contrailWidthAddedFractionAtEnd":-1,  // can be negative. makes trail spread out/narrow at the end
-                                "contrailMinSeg":15, // min segment length, in pixels
+                                "contrailWidthAddedFractionAtEnd":-1,  
+                                "contrailMinSeg":15, 
                                 "contrailMaxSpeedMult":0.1,
                                 "contrailAngularVelocityMult":0.1,
                                 "contrailColor":[100,165,255,75],
-                                "type":"SMOKE" // GLOW or SMOKE; additive or regular blend mode
+                                "type":"SMOKE" 
                                 },
                         "width":5.0,
 			"length":20.0,
 			"angle":180.0
-                        }],
-}
+                        }]}

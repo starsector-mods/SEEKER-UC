@@ -1,5 +1,5 @@
 {
-	"id":"SKR_gawonGlow",  // this id must match what's in the spreadsheet
+	"id":"SKR_gawonGlow",  
 	"specClass":"beam",
 	"type":"DECORATIVE",
 	"size":"MEDIUM",
@@ -20,5 +20,4 @@
 	"textureType":ROUGH,
 	"textureScrollSpeed":1.0,
 	"pixelsPerTexel":5.0,	
-	"showDamageWhenDecorative":false,	
-}
+	"showDamageWhenDecorative":false}

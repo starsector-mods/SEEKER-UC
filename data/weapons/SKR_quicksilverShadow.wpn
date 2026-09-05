@@ -1,5 +1,5 @@
 {
-	"id":"SKR_quicksilverShadow",  // this id must match what's in the spreadsheet
+	"id":"SKR_quicksilverShadow",  
 	"specClass":"beam",
 	"type":"DECORATIVE",
 	"size":"SMALL",
@@ -15,5 +15,4 @@
 	"width":1.0,
 	"textureType":ROUGH,
 	"textureScrollSpeed":1.0,
-	"pixelsPerTexel":5.0,		
-}
+	"pixelsPerTexel":5.0}

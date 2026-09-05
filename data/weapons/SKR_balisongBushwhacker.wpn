@@ -12,9 +12,9 @@
 	"turretAngleOffsets":[0],
 	"hardpointOffsets":[0, 0],
 	"hardpointAngleOffsets":[0],
-	"barrelMode":"ALTERNATING", // or LINKED.  whether barrels fire at the same time or alternate.
+	"barrelMode":"ALTERNATING", 
 	"animationType":"GLOW_AND_FLASH",
-	"muzzleFlashSpec":{"length":150.0,   // only used if animationType = MUZZLE_FLASH
+	"muzzleFlashSpec":{"length":150.0,   
 					   "spread":45.0,
 					   "particleSizeMin":15.0,
 					   "particleSizeRange":35.0,
@@ -22,7 +22,6 @@
 					   "particleCount":30,
 					   "particleColor":[100,150,250,255]},
 	"interruptibleBurst":true,
-	"autocharge":false,  // whether the weapon will continue charging and fire if the LMB is tapped instead of held
-	"projectileSpecId":"SKR_bushwhacker_shot",  // projectile that will be fired
-	"fireSoundTwo":"SKR_balisongBushwhacker_05",
-}
+	"autocharge":false,  
+	"projectileSpecId":"SKR_bushwhacker_shot",  
+	"fireSoundTwo":"SKR_balisongBushwhacker_05"}

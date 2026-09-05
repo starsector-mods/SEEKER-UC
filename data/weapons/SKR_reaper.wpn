@@ -25,7 +25,4 @@
 				 "blowbackSpread":15.0,
 				 "particleColor":[125,15,25,105]},	
 	"projectileSpecId":"reaper_torp",
-	"fireSoundTwo":"reaper_fire",
-}
-
-
+	"fireSoundTwo":"reaper_fire"}

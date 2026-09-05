@@ -14,9 +14,7 @@
   "builtInMods": [
     "SKR_plagueBearer",
         "reduced_explosion",
-        "always_detaches",
-        // "SKR_module"
-  ],
+        "always_detaches"],
   "weaponSlots": [
     {
       "id": "WS0001",

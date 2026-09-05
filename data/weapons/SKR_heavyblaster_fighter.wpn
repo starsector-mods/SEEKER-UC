@@ -19,5 +19,4 @@
 					"particleCount":12,
 					"particleColor":[100,100,255,255]},
 	"projectileSpecId":"heavyblaster_shot",
-	"fireSoundTwo":"heavy_blaster_fire",
-}
+	"fireSoundTwo":"heavy_blaster_fire"}

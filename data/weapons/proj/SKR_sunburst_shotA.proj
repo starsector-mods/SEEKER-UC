@@ -9,7 +9,7 @@
 	"center":[12,12],
 	"collisionRadius":6,
 	"collisionClass":"MISSILE_FF",
-	"explosionColor":[255,75,165,255],  // purely visual, will get a white additively blended core on top of this color
+	"explosionColor":[255,75,165,255],  
 	"explosionRadius":150, 
 	"engineSpec":{
                         "turnAcc":720,
@@ -17,23 +17,23 @@
                         "acc":150,
                         "dec":150
                     },
-	"flameoutTime":1.05, // total time from flameout to full fadeout
+	"flameoutTime":1.05, 
 	"engineSlots":[{
                         "id":"ES1",
 			"loc":[0, 0],
 			"style":"CUSTOM",
 			"styleSpec":{
-                            "mode":"QUAD_STRIP", // PARTICLES or QUAD_STRIP, determines which params are used
+                            "mode":"QUAD_STRIP", 
                             "engineColor":[255,75,165,255],
                             "contrailDuration":0,
                             "contrailWidthMult":0,
-                            "contrailWidthAddedFractionAtEnd":-0.5,  // can be negative. makes trail spread out/narrow at the end
-                            "contrailMinSeg":15, // min segment length, in pixels
+                            "contrailWidthAddedFractionAtEnd":-0.5,  
+                            "contrailMinSeg":15, 
                             "contrailMaxSpeedMult":0.5,
                             "contrailAngularVelocityMult":0.5,
-                            "contrailSpawnDistMult":1, // how far away from engine it starts
+                            "contrailSpawnDistMult":1, 
                             "contrailColor":[255,75,165,150],
-                            "type":"GLOW" // GLOW or SMOKE; additive or regular blend mode
+                            "type":"GLOW" 
 			},
 			"width":5.0,
 			"length":0,
@@ -46,7 +46,7 @@
                         "explosionSpec":{
                             "duration":0.9,
                             "radius":45,
-                            "coreRadius":60, // full damage within core radius - also equal to proximity fuse range
+                            "coreRadius":60, 
                             "collisionClass":PROJECTILE_FF,
                             "collisionClassByFighter":PROJECTILE_FIGHTER,
                             "particleSizeMin":3.0,
@@ -55,6 +55,5 @@
                             "particleCount":10,
                             "particleColor":[255,75,165,255],
                             "explosionColor":[255,155,205,125],
-                            "sound":"devastator_explosion"},
-                        }
+                            "sound":"devastator_explosion"}}
 }

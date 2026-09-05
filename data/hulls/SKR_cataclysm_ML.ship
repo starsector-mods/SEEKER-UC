@@ -16,8 +16,7 @@
     "advancedcore",
     "always_detaches",
     "automated",
-    "reduced_explosion",
-  ],
+    "reduced_explosion"],
   "weaponSlots": [
     {
       "id": "WS0001",

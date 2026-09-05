@@ -24,5 +24,4 @@
                      "blowbackSpread":10.0,
                      "particleColor":[100,100,100,200]},				 
 	"projectileSpecId":"SKR_accelMissile",
-	"fireSoundTwo":"harpoon_fire",
-}
+	"fireSoundTwo":"harpoon_fire"}

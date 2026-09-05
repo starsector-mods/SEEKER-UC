@@ -19,8 +19,7 @@
   "builtInWeapons": {
     "ARRAY": "SKR_tusk",
     "SYSTEM": "SKR_ZcataGlow",
-    "WARP": "SKR_ZwarpAnimation",
-  },
+    "WARP": "SKR_ZwarpAnimation"},
   "weaponSlots": [
     {
       "id": "ARRAY",

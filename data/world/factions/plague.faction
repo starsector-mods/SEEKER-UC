@@ -1,5 +1,5 @@
 {
-    # only used for fleet creation, not an actual faction
+    
     "id":"plague",
 
     "color":[100,0,50,255],
@@ -28,14 +28,14 @@
 	"variantOverrides":{
 	},
 
-	# multiplier for how often hulls show up in the faction's fleets
+	
 	"hullFrequency":{
 		"tags":{
 		},
 		"hulls":{
 		}},
 
-	# ships the faction gets access to when importing S&W out-of-faction
+	
 	"shipsWhenImporting":{
 		"tags":[],
 		"hulls":[
@@ -53,7 +53,7 @@
 			"SKR_fanatic",
 			"SKR_guru"]},
 
-	# listing ships here will make the faction mostly use them even if other hulls become available
+	
 	"priorityShips":{
 		"tags":[],
 		"hulls":[
@@ -131,7 +131,7 @@
 	"knownHullMods":{
 		"tags":["base_bp", "scavengers"],
 		"hullMods":[
-			"advancedshieldemitter", # accelerated
+			"advancedshieldemitter", 
 			"turretgyros",
 			"armoredweapons",
 			"augmentedengines",
@@ -144,13 +144,13 @@
 			"missleracks",
 			"extendedshieldemitter",
 			"frontemitter",
-			"frontshield",  # makeshift
+			"frontshield",  
 			"hardenedshieldemitter",
 			"heavyarmor",
 			"insulatedengine",
 			"targetingunit",
 			"nav_relay",
-			"adaptiveshields", # omni
+			"adaptiveshields", 
 			"operations_center",
 			"recovery_shuttles",
 			"fluxbreakers",
@@ -169,9 +169,9 @@
 		
 		"aggression":4,
 		
-		"combatFreighterProbability":0,     				# instead of some portion of the freighters in a fleet
-		"combatFreighterCombatUseFraction":0,				# as part of the normal combat lineup
-		"combatFreighterCombatUseFractionWhenPriority":1,   # as part of normal combat lineup, when marked as priority ship
+		"combatFreighterProbability":0,     				
+		"combatFreighterCombatUseFraction":0,				
+		"combatFreighterCombatUseFractionWhenPriority":1,   
 		"autofitRandomizeProbability":0,
 
 		"commanderSkillsShuffleProbability":0.5,

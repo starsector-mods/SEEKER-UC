@@ -21,8 +21,7 @@
     "WS0001": "SKR_canister",
     "WS0002": "SKR_glutton",
     "WS0033": "SKR_ZkeepGlow",
-    "WARP": "SKR_ZwarpAnimation",
-  },
+    "WARP": "SKR_ZwarpAnimation"},
   "weaponSlots": [
     {
       "id": "WS0001",

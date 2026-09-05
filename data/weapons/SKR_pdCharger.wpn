@@ -24,5 +24,4 @@
 	"pierceSet":[PROJECTILE_FF,PROJECTILE_NO_FF,PROJECTILE_FIGHTER],
 	"fireSoundOne":"laser_intro",
 	"fireSoundTwo":"lr_pd_laser_loop",
-	"everyFrameEffect":"data.scripts.weapons.SKR_addPlagueEffect",
-}
+	"everyFrameEffect":"data.scripts.weapons.SKR_addPlagueEffect"}

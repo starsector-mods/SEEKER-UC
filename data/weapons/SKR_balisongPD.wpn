@@ -6,7 +6,7 @@
 	"collisionClass":"RAY",
 	"collisionClassByFighter":"RAY_FIGHTER",
 	"everyFrameEffect":"data.scripts.weapons.SKR_balisongPdEffect",
-	// "convergeOnPoint":true,
+	
 	"turretSprite":"graphics/SEEKER/weapons/SKR_balisongPD.png",
 	"turretUnderSprite":"graphics/SEEKER/weapons/SKR_balisongPDUnder.png",
 	"hardpointSprite":"graphics/SEEKER/weapons/SKR_balisongPD.png",
@@ -24,5 +24,4 @@
 	"pixelsPerTexel":5.0,
 	"pierceSet":[PROJECTILE_FF,PROJECTILE_NO_FF,PROJECTILE_FIGHTER],
 	"fireSoundOne":"burst_pd_fire",
-	"fireSoundTwo":"SKR_remotePD",
-}
+	"fireSoundTwo":"SKR_remotePD"}

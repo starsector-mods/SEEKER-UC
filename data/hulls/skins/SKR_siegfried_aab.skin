@@ -3,7 +3,7 @@
     "skinHullId":"SKR_siegfried_aab",
     "hullName":"Siegfried",
     "descriptionId":"SKR_siegfried",
-    // "descriptionPrefix":"This ship has been heavily modified - and poorly maintained - by its pirate crew. Despite its concerning state, a proper passage in a dry-dock could restore this ship to its original specs.",
+    
 
     "baseValueMult":1,
     "ordnancePoints":350,
@@ -11,31 +11,28 @@
     "addHints":[],
     "tech":"ANTIC_TECH",
     "removeWeaponSlots":[
-        // "FIRECANE1",
-        // "FIRECANE2"
+        
+        
     ],
     "removeEngineSlots":[],
     "removeBuiltInMods":[
-        // "SKR_shieldUpgrade",
+        
     ],
     "removeBuiltInWeapons":[
         "FIRECANE1",
-        "FIRECANE2",
-    ],
+        "FIRECANE2"],
     "builtInMods":[
-        // "SKR_noDeck",
+        
         "advancedcore",
         "high_maintenance",
-        "hbi",
-    ],
+        "hbi"],
     "builtInWeapons":{
         "MOUNTS1": "SKR_guardianTurretL",
         "MOUNTS2": "SKR_guardianTurretR",
-        "SYSTEM": "SKR_guardianShield",
-    },
+        "SYSTEM": "SKR_guardianShield"},
     "systemId":"SKR_fluxTorps",
     "weaponSlotChanges":{
-        // hide firecane slots
+        
         "FIRECANE1":{
             "type": "DECORATIVE"
         },
@@ -43,7 +40,7 @@
             "type": "DECORATIVE"
         },
 
-        // Set broadside larges
+        
         "LARGE2":{
             "type": "BALLISTIC"
         },
@@ -57,30 +54,20 @@
             "type": "BALLISTIC"
         },
 
-        // Turn mediums to broadside
+        
         "MEDIUM1":{
-            "angle": -90,              
-        },
+            "angle": -90},
         "MEDIUM2":{
-            "angle": 90,              
-        },
+            "angle": 90},
         "MEDIUM3":{
-            "angle": -90,              
-        },
+            "angle": -90},
         "MEDIUM4":{
-            "angle": 90,              
-        },
+            "angle": 90},
         "MEDIUM5":{
-            "angle": -90,              
-        },
+            "angle": -90},
         "MEDIUM6":{
-            "angle": 90,              
-        },
+            "angle": 90},
         "MEDIUM7":{
-            "angle": -90,              
-        },
+            "angle": -90},
         "MEDIUM8":{
-            "angle": 90,              
-        },
-    },
-}
+            "angle": 90}}}

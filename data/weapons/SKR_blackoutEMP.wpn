@@ -9,9 +9,7 @@
 	"turretAngleOffsets":[0],
 	"hardpointOffsets":[0, 0],
 	"hardpointAngleOffsets":[0],
-	"barrelMode":"ALTERNATING", // or LINKED.  whether barrels fire at the same time or alternate.
+	"barrelMode":"ALTERNATING", 
 	"animationType":"NONE",
-	"autocharge":false,  // whether the weapon will continue charging and fire if the LMB is tapped instead of held
-	"projectileSpecId":"SKR_blackoutEMP_shot",  // projectile that will be fired
-	// "fireSoundTwo":"SKR_balisongBushwhacker_05",
-}
+	"autocharge":false,  
+	"projectileSpecId":"SKR_blackoutEMP_shot"}

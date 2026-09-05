@@ -17,8 +17,7 @@
   ],
   "builtInWeapons": {
     "WS0001": "SKR_tusk_medium",
-    "SCRIPT": "SKR_ZcassowaryScript",
-  },
+    "SCRIPT": "SKR_ZcassowaryScript"},
   "weaponSlots": [
     {
       "id": "SCRIPT",
