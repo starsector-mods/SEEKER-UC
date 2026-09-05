@@ -13,10 +13,10 @@
   "viewOffset": 0,
   "builtInMods": [
     "SKR_plagueBearer",
-        #"SKR_plagueLPC",
+        // "SKR_plagueLPC",
         "reduced_explosion",
         "always_detaches",
-        #"SKR_module"
+        // "SKR_module"
   ],
   "weaponSlots": [
     {

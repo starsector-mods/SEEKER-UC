@@ -1,5 +1,5 @@
 {
-	"id":"SKR_Xhalligan_rightTail_p",  # this id must match what's in the spreadsheet
+	"id":"SKR_Xhalligan_rightTail_p",  // this id must match what's in the spreadsheet
 	"specClass":"beam",
 	"type":"DECORATIVE",
 	"size":"SMALL",

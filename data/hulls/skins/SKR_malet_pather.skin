@@ -8,7 +8,7 @@
     "baseValueMult":0.8,
 	"fleetPoints":5,
 	"ordnancePoints":50,
-    #"restoreToBaseHull":true,
+    // "restoreToBaseHull":true,
     "addHints":[],
     "tags":["rare_bp"],
 	"tech":"Luddic Path",
@@ -21,6 +21,6 @@
 		"WS0007": "SKR_Xmalet_leftWisker_lp",
 		"WS0008": "SKR_Xmalet_rightWisker_lp"
 	},
-    #"systemId":"burndrive",
+    // "systemId":"burndrive",
     "weaponSlotChanges":{},
 }

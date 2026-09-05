@@ -7,8 +7,8 @@
 	"center":[4.5,5],
 	"collisionRadius":5,
 	"collisionClass":"MISSILE_NO_FF",
-	"explosionColor":[250,200,55,100],  # purely visual, will get a white additively blended core on top of this color
-	"explosionRadius":150, # purely visual
+	"explosionColor":[250,200,55,100],  // purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":150, // purely visual
 	"armingTime":5,
 	"engineSpec":{"turnAcc":0,
                       "turnRate":0,
@@ -24,8 +24,8 @@
                                 "contrailWidthMult":1,
                                 "contrailWidthAddedFractionAtEnd":-0.75,
                                 "contrailMinSeg":10,
-                                "contrailMaxSpeedMult":0f,
-                                "contrailAngularVelocityMult":0f,
+                                "contrailMaxSpeedMult":0,
+                                "contrailAngularVelocityMult":0,
                                 "contrailColor":[50,50,50,255],
                                 "type":"SMOKE"
                         },

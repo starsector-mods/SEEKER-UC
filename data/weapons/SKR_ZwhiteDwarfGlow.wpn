@@ -1,5 +1,5 @@
 {
-	"id":"SKR_ZwhiteDwarfGlow",  # this id must match what's in the spreadsheet
+	"id":"SKR_ZwhiteDwarfGlow",  // this id must match what's in the spreadsheet
 	"specClass":"beam",
 	"type":"DECORATIVE",
 	"size":"MEDIUM",

@@ -13,7 +13,7 @@
 	"turretAngleOffsets":[0],
 	"hardpointOffsets":[3, 0],
 	"hardpointAngleOffsets":[0],
-	"visualRecoil":0,  # the gun sprites are only used if this is non-0
+	"visualRecoil":0,  // the gun sprites are only used if this is non-0
 	"animationType":"GLOW",
 	"barrelMode":"LINKED",
 	"fringeColor":[0,150,225,100],

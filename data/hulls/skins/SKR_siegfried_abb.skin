@@ -3,7 +3,7 @@
     "skinHullId":"SKR_siegfried_abb",
     "hullName":"Siegfried",
     "descriptionId":"SKR_siegfried",
-    #"descriptionPrefix":"This ship has been heavily modified - and poorly maintained - by its pirate crew. Despite its concerning state, a proper passage in a dry-dock could restore this ship to its original specs.",
+    // "descriptionPrefix":"This ship has been heavily modified - and poorly maintained - by its pirate crew. Despite its concerning state, a proper passage in a dry-dock could restore this ship to its original specs.",
 
     "baseValueMult":1,
     "ordnancePoints":350,
@@ -11,13 +11,13 @@
     "addHints":[],
     "tech":"ANTIC_TECH",
     "removeWeaponSlots":[
-        #"FIRECANE1",
-        #"FIRECANE2"
+        // "FIRECANE1",
+        // "FIRECANE2"
     ],
     "removeEngineSlots":[],
     "removeBuiltInMods":[
-        #"SKR_shieldUpgrade",
-        #"SKR_noDeck"
+        // "SKR_shieldUpgrade",
+        // "SKR_noDeck"
     ],
     "removeBuiltInWeapons":[
         "FIRECANE1",
@@ -43,7 +43,7 @@
             "type": "DECORATIVE"
         },
 
-        #Set broadside larges
+        // Set broadside larges
         "LARGE2":{
             "type": "BALLISTIC"
         },
@@ -57,7 +57,7 @@
             "type": "BALLISTIC"
         },
 
-        #Turn mediums to broadside
+        // Turn mediums to broadside
         "MEDIUM1":{
             "angle": -90,              
         },

@@ -13,9 +13,9 @@
 	"turretAngleOffsets":[0],
 	"hardpointOffsets":[0, 0],
 	"hardpointAngleOffsets":[0],
-	"barrelMode":"ALTERNATING", # or LINKED.  whether barrels fire at the same time or alternate.
+	"barrelMode":"ALTERNATING", // or LINKED.  whether barrels fire at the same time or alternate.
 	"animationType":"GLOW_AND_FLASH",
-	"muzzleFlashSpec":{"length":150.0,   # only used if animationType = MUZZLE_FLASH
+	"muzzleFlashSpec":{"length":150.0,   // only used if animationType = MUZZLE_FLASH
 					   "spread":10.0,
 					   "particleSizeMin":15.0,
 					   "particleSizeRange":35.0,
@@ -23,7 +23,7 @@
 					   "particleCount":30,
 					   "particleColor":[100,250,150,255]},
 	"interruptibleBurst":false,
-	"autocharge":false,  # whether the weapon will continue charging and fire if the LMB is tapped instead of held
-	"projectileSpecId":"SKR_blackout_shot",  # projectile that will be fired
+	"autocharge":false,  // whether the weapon will continue charging and fire if the LMB is tapped instead of held
+	"projectileSpecId":"SKR_blackout_shot",  // projectile that will be fired
 	"fireSoundTwo":"SKR_blackout_fire",
 }

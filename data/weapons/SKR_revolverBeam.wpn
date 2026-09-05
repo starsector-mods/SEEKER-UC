@@ -1,5 +1,5 @@
 {
-	"id":"SKR_revolverBeam",  # this id must match what's in the spreadsheet
+	"id":"SKR_revolverBeam",  // this id must match what's in the spreadsheet
 	"specClass":"beam",
 	"type":"ENERGY",
 	"size":"LARGE",
@@ -9,7 +9,7 @@
 	"turretAngleOffsets":[0],
 	"hardpointOffsets":[0, 0],
 	"hardpointAngleOffsets":[0],
-	"barrelMode":"ALTERNATING", #ALTERNATING or LINKED.  whether barrels fire at the same time or alternate.
+	"barrelMode":"ALTERNATING", // ALTERNATING or LINKED.  whether barrels fire at the same time or alternate.
 	"fringeColor":[220,190,25,255],
 	"coreColor":[255,240,200,255],
 	"glowColor":[225,100,255,255],

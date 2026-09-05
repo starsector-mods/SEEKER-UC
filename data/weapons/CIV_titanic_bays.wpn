@@ -1,5 +1,5 @@
 {
-	"id":"CIV_titanic_bays",  # this id must match what's in the spreadsheet
+	"id":"CIV_titanic_bays",  // this id must match what's in the spreadsheet
 	"specClass":"beam",
 	"type":"DECORATIVE",
 	"size":"LARGE",

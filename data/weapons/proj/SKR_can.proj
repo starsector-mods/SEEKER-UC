@@ -9,7 +9,7 @@
 	"center":[19,26],
 	"collisionRadius":30,
 	"collisionClass":"MISSILE_FF",
-	"explosionColor":[255,165,75,255],  # purely visual, will get a white additively blended core on top of this color
+	"explosionColor":[255,165,75,255],  // purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":400, 
         "maxFlightTime":10,
         "armingTime":7,	
@@ -19,25 +19,25 @@
                         "acc":150,
                         "dec":150
                     },
-	"flameoutTime":0.1, # total time from flameout to full fadeout
-	"fadeTime":0.1, # fadeout duration
-	"noEngineGlowTime":0.05, # time spent without the engine glow being rendered
+	"flameoutTime":0.1, // total time from flameout to full fadeout
+	"fadeTime":0.1, // fadeout duration
+	"noEngineGlowTime":0.05, // time spent without the engine glow being rendered
 	"engineSlots":[{
                         "id":"ES1",
 			"loc":[0, 0],
 			"style":"CUSTOM",
 			"styleSpec":{
-                            "mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
+                            "mode":"QUAD_STRIP", // PARTICLES or QUAD_STRIP, determines which params are used
                             "engineColor":[255,75,165,255],
                             "contrailDuration":3,
                             "contrailWidthMult":1,
-                            "contrailWidthAddedFractionAtEnd":-0.5f,  # can be negative. makes trail spread out/narrow at the end
-                            "contrailMinSeg":15, # min segment length, in pixels
-                            "contrailMaxSpeedMult":0.5f,
-                            "contrailAngularVelocityMult":0.5f,
-                            "contrailSpawnDistMult":1, # how far away from engine it starts
+                            "contrailWidthAddedFractionAtEnd":-0.5,  // can be negative. makes trail spread out/narrow at the end
+                            "contrailMinSeg":15, // min segment length, in pixels
+                            "contrailMaxSpeedMult":0.5,
+                            "contrailAngularVelocityMult":0.5,
+                            "contrailSpawnDistMult":1, // how far away from engine it starts
                             "contrailColor":[255,75,165,150],
-                            "type":"GLOW" # GLOW or SMOKE; additive or regular blend mode
+                            "type":"GLOW" // GLOW or SMOKE; additive or regular blend mode
 			},
 			"width":10.0,
 			"length":0,
@@ -50,9 +50,9 @@
                         "delay":5,
 
                         "explosionSpec":{
-                            "duration":0.9f,
+                            "duration":0.9,
                             "radius":500,
-                            "coreRadius":10, # full damage within core radius - also equal to proximity fuse range
+                            "coreRadius":10, // full damage within core radius - also equal to proximity fuse range
                             "collisionClass":PROJECTILE_FF,
                             "collisionClassByFighter":PROJECTILE_FIGHTER,
                             "particleSizeMin":3.0,

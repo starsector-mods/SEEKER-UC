@@ -10,10 +10,10 @@
     "addHints":[],
     "tags":["rare_bp"],
     "tech":"Pirate",
-    "removeWeaponSlots":[], 		# ids
-    "removeEngineSlots":[], 		# indices, as engine slots have no id in the .ship file
-    "removeBuiltInMods":["hiressensors","surveying_equipment"], 		# hullmod ids
-    "removeBuiltInWeapons":[], 		# weapon slot ids
+    "removeWeaponSlots":[], 		// ids
+    "removeEngineSlots":[], 		// indices, as engine slots have no id in the .ship file
+    "removeBuiltInMods":["hiressensors","surveying_equipment"], 		// hullmod ids
+    "removeBuiltInWeapons":[], 		// weapon slot ids
     "builtInMods":[],
     "builtInWeapons":{},
     "systemId":"flarelauncher",

@@ -1,13 +1,13 @@
 {
-	"id":"SKR_dainsleif",  # this id must match what's in the spreadsheet
+	"id":"SKR_dainsleif",  // this id must match what's in the spreadsheet
 	"specClass":"projectile",
 	"type":"BALLISTIC",
 	"size":"LARGE",
 	"displayArcRadius":450,
-	#"turretUnderSprite":"graphics/SEEKER/weapons/plague/SKR_dainsleifTU.png",
+	// "turretUnderSprite":"graphics/SEEKER/weapons/plague/SKR_dainsleifTU.png",
 	"turretSprite":"graphics/SEEKER/weapons/plague/SKR_dainsleifT.png",
 	"turretGunSprite":"graphics/SEEKER/weapons/plague/SKR_dainsleifTB.png",
-	#"hardpointUnderSprite":"graphics/SEEKER/weapons/plague/SKR_dainsleifTU.png",	
+	// "hardpointUnderSprite":"graphics/SEEKER/weapons/plague/SKR_dainsleifTU.png",	
 	"hardpointSprite":"graphics/SEEKER/weapons/plague/SKR_dainsleifH.png",
 	"hardpointGunSprite":"graphics/SEEKER/weapons/plague/SKR_dainsleifHB.png",	
 	"visualRecoil":10.0,
@@ -26,7 +26,7 @@
                             "particleDuration":0.3,
                             "particleCount":24,
                             "particleColor":[255,185,215,215]},
-	"projectileSpecId":"SKR_dainsleif_shot",  # projectile that will be fired
+	"projectileSpecId":"SKR_dainsleif_shot",  // projectile that will be fired
 	"fireSoundTwo":"SKR_dainsleif_fire",	
 	"everyFrameEffect":"data.scripts.weapons.SKR_dainsleif_fireEffect",
 }

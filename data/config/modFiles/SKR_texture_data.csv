@@ -129,11 +129,23 @@ SKR_Xadze_rightWisker,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_ad
 
 SKR_halligan,ship,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_body.png
 SKR_Xhalligan_leftWisker,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_leftWisker.png
+SKR_Xhalligan_leftWisker_p,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_leftWisker.png
+SKR_Xhalligan_leftWisker_lp,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_leftWisker.png
 SKR_Xhalligan_rightWisker,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_rightWisker.png
+SKR_Xhalligan_rightWisker_p,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_rightWisker.png
+SKR_Xhalligan_rightWisker_lp,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_rightWisker.png
 SKR_Xhalligan_leftFin,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_leftFin.png
+SKR_Xhalligan_leftFin_p,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_leftFin.png
+SKR_Xhalligan_leftFin_lp,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_leftFin.png
 SKR_Xhalligan_rightFin,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_rightFin.png
+SKR_Xhalligan_rightFin_p,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_rightFin.png
+SKR_Xhalligan_rightFin_lp,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_rightFin.png
 SKR_Xhalligan_leftTail,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_leftTail.png
+SKR_Xhalligan_leftTail_p,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_leftTail.png
+SKR_Xhalligan_leftTail_lp,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_leftTail.png
 SKR_Xhalligan_rightTail,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_rightTail.png
+SKR_Xhalligan_rightTail_p,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_rightTail.png
+SKR_Xhalligan_rightTail_lp,turret,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_halligan_rightTail.png
 ,,,,,
 SKR_keep,ship,,1,normal,graphics/SEEKER/maps/ships_normals/SKR_keep_Normal.png
 ,,,,,

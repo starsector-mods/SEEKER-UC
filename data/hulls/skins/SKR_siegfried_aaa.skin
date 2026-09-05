@@ -3,7 +3,7 @@
     "skinHullId":"SKR_siegfried_aaa",
     "hullName":"Siegfried",
     "descriptionId":"SKR_siegfried",
-    #"descriptionPrefix":"This ship has been heavily modified - and poorly maintained - by its pirate crew. Despite its concerning state, a proper passage in a dry-dock could restore this ship to its original specs.",
+    // "descriptionPrefix":"This ship has been heavily modified - and poorly maintained - by its pirate crew. Despite its concerning state, a proper passage in a dry-dock could restore this ship to its original specs.",
 
     "baseValueMult":1,
     "restoreToBaseHull":false,
@@ -17,15 +17,15 @@
     ],
     "removeEngineSlots":[],
     "removeBuiltInMods":[
-        #"SKR_shieldUpgrade",
-        #"hbi",
+        // "SKR_shieldUpgrade",
+        // "hbi",
     ],
     "removeBuiltInWeapons":[
         "MOUNTS1",
         "MOUNTS2",
     ],
     "builtInMods":[
-        #"SKR_noDeck",
+        // "SKR_noDeck",
         "advancedcore",
         "high_maintenance",
     ],

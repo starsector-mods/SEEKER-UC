@@ -17,7 +17,7 @@
                 "acc":25,
                 "dec":25
                 },
-	"flameoutTime":0.5f, # total time from flameout to full fadeout
+	"flameoutTime":0.5, // total time from flameout to full fadeout
 	"behaviorSpec":{
                 "behavior":"PROXIMITY_FUSE",
                 "shotRangeVariance":0.5,
@@ -25,9 +25,9 @@
                 "range":5,
                 "vsMissileRange":5,
                 "explosionSpec":{
-                        "duration":0.15f,
+                        "duration":0.15,
                         "radius":50,
-                        "coreRadius":75, # full damage within core radius - also equal to proximity fuse range
+                        "coreRadius":75, // full damage within core radius - also equal to proximity fuse range
                         "collisionClass":PROJECTILE_FF,
                         "collisionClassByFighter":PROJECTILE_FIGHTER,
                         "particleSizeMin":2.0,

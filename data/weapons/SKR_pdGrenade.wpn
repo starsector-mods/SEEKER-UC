@@ -25,7 +25,7 @@
             "particleCount":12,
            "particleColor":[255,125,105,64]
         },
-	#"projectileSpecId":"SKR_pdGrenade_shot",
+	// "projectileSpecId":"SKR_pdGrenade_shot",
         "projectileSpecId":"SKR_pdbomb_proj",
 	"fireSoundTwo":"light_mortar_fire",	
 	"everyFrameEffect":"data.scripts.weapons.SKR_addPlagueEffect",

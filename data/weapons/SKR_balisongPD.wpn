@@ -6,7 +6,7 @@
 	"collisionClass":"RAY",
 	"collisionClassByFighter":"RAY_FIGHTER",
 	"everyFrameEffect":"data.scripts.weapons.SKR_balisongPdEffect",
-	#"convergeOnPoint":true,
+	// "convergeOnPoint":true,
 	"turretSprite":"graphics/SEEKER/weapons/SKR_balisongPD.png",
 	"turretUnderSprite":"graphics/SEEKER/weapons/SKR_balisongPDUnder.png",
 	"hardpointSprite":"graphics/SEEKER/weapons/SKR_balisongPD.png",

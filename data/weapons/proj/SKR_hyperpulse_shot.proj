@@ -10,8 +10,8 @@
 	"fadeTime":0.25,
 	"fringeColor":[50,150,255,255],
 	"coreColor":[200,230,255,255],
-	"textureType":"CHUNKY",  # only needed for BEAM spawnType
+	"textureType":"CHUNKY",  // only needed for BEAM spawnType
 	"textureScrollSpeed":-50.0,
 	"pixelsPerTexel":1.0,
-	#"onHitEffect":"data.scripts.weapons.",
+	// "onHitEffect":"data.scripts.weapons.",
 }

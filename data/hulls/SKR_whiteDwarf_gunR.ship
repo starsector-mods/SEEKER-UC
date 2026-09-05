@@ -15,7 +15,7 @@
     "SKR_plagueBearer",
         "reduced_explosion",
         "always_detaches",
-        #"SKR_module"
+        // "SKR_module"
   ],
   "weaponSlots": [
     {

@@ -8,8 +8,8 @@
 	"center":[16,13],
 	"collisionRadius":12,
 	"collisionClass":"MISSILE_NO_FF",
-	"explosionColor":[255,150,200,255],  # purely visual, will get a white additively blended core on top of this color
-	"explosionRadius":200, # purely visual
+	"explosionColor":[255,150,200,255],  // purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":200, // purely visual
 	"engineSpec":{"turnAcc":120,
                       "turnRate":120,
                       "acc":200,
@@ -24,8 +24,8 @@
                                 "contrailWidthMult":1,
                                 "contrailWidthAddedFractionAtEnd":1.5,
                                 "contrailMinSeg":20,
-                                "contrailMaxSpeedMult":0.5f,
-                                "contrailAngularVelocityMult":0.5f,
+                                "contrailMaxSpeedMult":0.5,
+                                "contrailAngularVelocityMult":0.5,
                                 "contrailColor":[255,100,100,150],
                                 "type":"GLOW"
                         },
@@ -43,8 +43,8 @@
                                 "contrailWidthMult":1,
                                 "contrailWidthAddedFractionAtEnd":-0.75,
                                 "contrailMinSeg":20,
-                                "contrailMaxSpeedMult":0.66f,
-                                "contrailAngularVelocityMult":0.66f,
+                                "contrailMaxSpeedMult":0.66,
+                                "contrailAngularVelocityMult":0.66,
                                 "contrailColor":[255,100,100,75],
                                 "type":"GLOW"
                         },
@@ -62,8 +62,8 @@
                                 "contrailWidthMult":1,
                                 "contrailWidthAddedFractionAtEnd":-0.75,
                                 "contrailMinSeg":20,
-                                "contrailMaxSpeedMult":0.66f,
-                                "contrailAngularVelocityMult":0.66f,
+                                "contrailMaxSpeedMult":0.66,
+                                "contrailAngularVelocityMult":0.66,
                                 "contrailColor":[255,100,100,75],
                                 "type":"GLOW"
                         },

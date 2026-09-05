@@ -4,6 +4,7 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.BaseHullMod;
 import com.fs.starfarer.api.combat.MutableShipStatsAPI;
+import com.fs.starfarer.api.loading.WeaponSpecAPI;
 import com.fs.starfarer.api.ui.Alignment;
 import com.fs.starfarer.api.ui.LabelAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
@@ -116,7 +117,8 @@ public class SKR_plague extends BaseHullMod {
         tooltip.setBulletedListMode("    - ");  
         for(String s : sources.keySet()){
             
-            String source=ship.getVariant().getWeaponSpec(s).getWeaponName();
+            WeaponSpecAPI weaponSpec = ship.getVariant().getWeaponSpec(s);
+            String source = (weaponSpec != null) ? weaponSpec.getWeaponName() : s;
             
             int effect = Math.round(sources.get(s));
             

@@ -31,7 +31,7 @@
 ],	
 	"barrelMode":"ALTERNATING",
 	"animationType":"SMOKE",
-	#"renderHints":[RENDER_LOADED_MISSILES],
+	// "renderHints":[RENDER_LOADED_MISSILES],
 	"interruptibleBurst":false,
 	"displayArcRadius":300,
 	"smokeSpec":{

@@ -17,7 +17,7 @@
     "fadeTime":0.05,
 
     "explosionSpec":{
-        "duration":0.1f,
+        "duration":0.1,
         "radius":150,
         "coreRadius":75,
         "collisionClass":MISSILE_FF,
@@ -36,7 +36,7 @@
         "range":50,
         "slowToMaxSpeed":true,
         "explosionSpec":{
-            "duration":0.1f,
+            "duration":0.1,
             "radius":125,
             "coreRadius":75,
             "collisionClass":PROJECTILE_FF,

@@ -27,9 +27,6 @@
             "skr_marksman_ui0":"graphics/SEEKER/fx/marksman_systemUI_bracket.png",
             "skr_marksman_ui1":"graphics/SEEKER/fx/marksman_systemUI_arrow.png",
             "skr_marksman_ui2":"graphics/SEEKER/fx/marksman_systemUI_circle.png",
-		
-            #"SKR_beamTrio_core":"graphics/SEEKER/fx/SKR_beamTrio_core.png", 
-            #"SKR_beamTrio_fringe":"graphics/SEEKER/fx/SKR_beamTrio_fringe.png",
 
             "flakFlash":"graphics/SEEKER/fx/flak_flash.png",		
             "flakPuff":"graphics/SEEKER/fx/flak_puff.png",		
@@ -74,14 +71,9 @@
             "SKR_drill_cloud":"graphics/SEEKER/fx/SKR_drill_cloud.png",
             "SKR_drill_sweetener":"graphics/SEEKER/fx/SKR_drill_sweetener.png",
 
-            #"SKR_plasma_splash_A":"graphics/SEEKER/fx/SKR_plasma_splash_00.png",
-            #"SKR_plasma_splash_B":"graphics/SEEKER/fx/SKR_plasma_splash_01.png",
-            #"SKR_plasma_splash_C":"graphics/SEEKER/fx/SKR_plasma_splash_02.png",
             "SKR_plasma_muzzle":"graphics/SEEKER/fx/SKR_plasma_shot.png",
             "SKR_plasma_sparks":"graphics/SEEKER/fx/SKR_plasma_sparks.png",
 			
-            #"SKR_shieldIN":"graphics/SEEKER/fx/SKR_derelictShield_halfspin.png", 
-            #"SKR_shieldIN":"graphics/SEEKER/fx/SKR_derelictShield_noise.png", 		
             "SKR_shieldIN":"graphics/SEEKER/fx/SKR_derelictShield_in.png", 			
             "SKR_shieldOUT":"graphics/SEEKER/fx/SKR_derelictShield_ring.png",  
  

@@ -1,5 +1,5 @@
 {
-	"id":"SKR_mod_dissipator2",  # this id must match what's in the spreadsheet
+	"id":"SKR_mod_dissipator2",  // this id must match what's in the spreadsheet
 	"specClass":"beam",
 	"type":"DECORATIVE",
 	"size":"MEDIUM",

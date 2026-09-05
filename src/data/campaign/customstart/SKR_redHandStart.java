@@ -210,7 +210,7 @@ public class SKR_redHandStart extends CustomStart {
                 for (String id : faction.getKnownFighters()) {
                     FighterWingSpecAPI spec = Global.getSettings().getFighterWingSpec(id);
                     if (spec == null) {
-                            throw new RuntimeException("Fighter wing spec with id [" + id + "] not found");
+                        continue;
                     }
                     if (spec.getTier() > maxTier) continue;
                     
@@ -253,6 +253,7 @@ public class SKR_redHandStart extends CustomStart {
 
                 for (String id : faction.getKnownWeapons()) {
                     WeaponSpecAPI spec = Global.getSettings().getWeaponSpec(id);
+                    if (spec == null) continue;
                     if (spec.getTier() > maxTier) continue;
 
                     float p = DefaultFleetInflater.getTierProbability(spec.getTier(), quality);

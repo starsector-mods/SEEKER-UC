@@ -8,7 +8,7 @@
     "baseValueMult":0.8,
 	"fleetPoints":14,
 	"ordnancePoints":150,
-    #"restoreToBaseHull":true,
+    // "restoreToBaseHull":true,
     "addHints":[],
     "tags":["rare_bp"],
 	"tech":"Luddic Path",

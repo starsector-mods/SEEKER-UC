@@ -14,8 +14,8 @@
   "builtInMods": [
     "SKR_plagueBearer",
     "automated",
-    #"missile_reload",
-    #"high_maintenance",
+    // "missile_reload",
+    // "high_maintenance",
     "advancedcore"
   ],
   "builtInWeapons": {
