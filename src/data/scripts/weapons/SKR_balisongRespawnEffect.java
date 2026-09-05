@@ -249,13 +249,6 @@ public class SKR_balisongRespawnEffect implements EveryFrameWeaponEffectPlugin {
         if (engine == null || ship == null) return;
 
         String variantId = isLeft ? "SKR_balisongLeft_overdrive" : "SKR_balisongRight_overdrive";
-        if (ship.getVariant() != null) {
-            if (ship.getVariant().getModuleVariant(slotId) != null && ship.getVariant().getModuleVariant(slotId).getHullVariantId() != null) {
-                variantId = ship.getVariant().getModuleVariant(slotId).getHullVariantId();
-            } else if (ship.getVariant().getStationModules() != null && ship.getVariant().getStationModules().get(slotId) != null) {
-                variantId = ship.getVariant().getStationModules().get(slotId);
-            }
-        }
 
         CombatFleetManagerAPI manager = engine.getFleetManager(ship.getOwner());
         if (manager == null) manager = engine.getFleetManager(ship.getOriginalOwner());
