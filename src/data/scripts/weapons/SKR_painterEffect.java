@@ -19,7 +19,7 @@ import org.lwjgl.util.vector.Vector2f;
 public class SKR_painterEffect implements EveryFrameWeaponEffectPlugin {
 
     private final String ID = "PAINTED";
-    public Map< ShipAPI , Float > TARGETS = new HashMap<>();
+    public Map< ShipAPI , Float > TARGETS = new java.util.WeakHashMap<>();
     
     private final Vector2f SIZE = new Vector2f(28,19);
     private boolean runOnce=false;

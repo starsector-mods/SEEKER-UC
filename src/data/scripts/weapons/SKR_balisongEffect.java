@@ -15,10 +15,11 @@ import data.scripts.util.MagicUI;
 import data.scripts.util.SKR_graphicLibEffects;
 import static data.scripts.util.SKR_txt.txt;
 import java.awt.Color;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.WeakHashMap;
 import org.lazywizard.lazylib.MathUtils;
+import org.lazywizard.lazylib.VectorUtils;
 import org.lwjgl.util.vector.Vector2f;
 
 public class SKR_balisongEffect implements EveryFrameWeaponEffectPlugin {
@@ -31,8 +32,8 @@ public class SKR_balisongEffect implements EveryFrameWeaponEffectPlugin {
     private final Vector2f FOLDED_POS=new Vector2f(25,16);
         
     //modules overlap
-    private Map<WeaponAPI, Vector2f> MODULE_POS=new HashMap<>();
-    private Map<WeaponAPI, Vector2f> MODULE_OFST=new HashMap<>();
+    private Map<WeaponAPI, Vector2f> MODULE_POS=new WeakHashMap<>();
+    private Map<WeaponAPI, Vector2f> MODULE_OFST=new WeakHashMap<>();
     
     private boolean runOnce=false, activated=false, fullCharge=false, inbound=false, SHADER=false;
     private ShipAPI ship, moduleLeft, moduleRight;
@@ -40,36 +41,31 @@ public class SKR_balisongEffect implements EveryFrameWeaponEffectPlugin {
     private WeaponAPI weaponLeft, weaponRight, decoCharge;
     private WeaponSlotAPI slotLeft, slotRight;
     private AnimationAPI charge;
-    private float delay=0, fold=1, timer=0, systemExpertise=1;
+    private float delay=0, fold=0, timer=0, systemExpertise=1;
+
     private final IntervalUtil animation = new IntervalUtil(0.05f,0.05f);
-//    private int extraAmmo=0;
     private final String zapSprite="zap_0";
     private final int zapFrames=8;    
-//    private String personality;
     
     @Override
     public void advance(float amount, CombatEngineAPI engine, WeaponAPI weapon) {
         
-        if (engine.isPaused()) return;
+        if (engine == null || engine.isPaused()) return;
         
         //SETUP        
         if(!runOnce){
-            //delay for module detection (to remove after 0.9)
-//            if(weapon.getShip().getOriginalOwner()==1 && weapon.getShip().getFullTimeDeployed()<2.1f) return;
-            
+            if (weapon == null || weapon.getShip() == null) return;
             //distortion + light effects
             SHADER = Global.getSettings().getModManager().isModEnabled("shaderLib");
             
             runOnce=true;            
             ship=weapon.getShip();
-            //system shenanigans
-//            personality = ship.getCaptain().getPersonalityAPI().getId();
-//            if(personality==null){
-//                personality="steady";
-//            }
             system=ship.getSystem();
+            ship.getCustomData().put("SKR_balisong_systemEffect", this);
             
-            systemExpertise=ship.getMutableStats().getSystemRegenBonus().getBonusMult();
+            if (ship.getMutableStats() != null && ship.getMutableStats().getSystemRegenBonus() != null) {
+                systemExpertise=ship.getMutableStats().getSystemRegenBonus().getBonusMult();
+            }
             
             //module shenanigans
             ship.ensureClonedStationSlotSpec();
@@ -77,78 +73,107 @@ public class SKR_balisongEffect implements EveryFrameWeaponEffectPlugin {
             decoCharge=weapon;
             charge=weapon.getAnimation();
             
-            for(WeaponAPI w : ship.getAllWeapons()){
-                switch (w.getSlot().getId()){
-                    case leftSlot:
-                        weaponLeft=w;
-                        MODULE_POS.put(w,w.getLocation());
-                        MODULE_OFST.put(w,new Vector2f());
-                        break;
-                    case rightSlot:
-                        weaponRight=w;
-                        MODULE_POS.put(w,w.getLocation());
-                        MODULE_OFST.put(w,new Vector2f());
-                        break;
-                    default:
-                        break;
+            if (ship.getAllWeapons() != null) {
+                for(WeaponAPI w : ship.getAllWeapons()){
+                    if (w == null || w.getSlot() == null || w.getSlot().getId() == null) continue;
+                    switch (w.getSlot().getId()){
+                        case leftSlot:
+                            weaponLeft=w;
+                            MODULE_POS.put(w,w.getLocation());
+                            MODULE_OFST.put(w,new Vector2f());
+                            break;
+                        case rightSlot:
+                            weaponRight=w;
+                            MODULE_POS.put(w,w.getLocation());
+                            MODULE_OFST.put(w,new Vector2f());
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
-            for(ShipAPI s : ship.getChildModulesCopy()){
-                switch(s.getStationSlot().getId()){
-                    case leftModule:
-                        moduleLeft=s;
-                        slotLeft=s.getStationSlot();
-                        slotLeft.setAngle(0);
-                        break;
-                    case rightModule:
-                        moduleRight=s;
-                        slotRight=s.getStationSlot();
-                        slotRight.setAngle(0);
-                        break;
-                    default:
-                        break;
+            if (ship.getChildModulesCopy() != null) {
+                for(ShipAPI s : ship.getChildModulesCopy()){
+                    if (s == null || s.getStationSlot() == null || s.getStationSlot().getId() == null) continue;
+                    switch(s.getStationSlot().getId()){
+                        case leftModule:
+                            moduleLeft=s;
+                            slotLeft=s.getStationSlot();
+                            slotLeft.setAngle(0);
+                            break;
+                        case rightModule:
+                            moduleRight=s;
+                            slotRight=s.getStationSlot();
+                            slotRight.setAngle(0);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             
             activated=false;
             overcharge=0;
             
-//            if(ship.getVariant().getHullMods().contains(EXTRA_AMMO)){
-//                extraAmmo=weaponLeft.getMaxAmmo()/2;
-//            }
-            
-            if(moduleLeft!=null){
-                moduleAnimation(ship, moduleLeft, slotLeft, weaponLeft, -1, fold);
-            } else {
+            if(moduleLeft!=null && slotLeft!=null){
+                moduleAnimation(ship, moduleLeft, slotLeft, weaponLeft, 1, fold);
+                syncModulePosition(ship, moduleLeft, slotLeft, 1, fold);
+            } else if (weaponLeft != null) {
                 weaponLeft.disable(true);
             }
             
-            if(moduleRight!=null){
-                moduleAnimation(ship, moduleRight, slotRight, weaponRight, 1, fold);
-            } else {
+            if(moduleRight!=null && slotRight!=null){
+                moduleAnimation(ship, moduleRight, slotRight, weaponRight, -1, fold);
+                syncModulePosition(ship, moduleRight, slotRight, -1, fold);
+            } else if (weaponRight != null) {
                 weaponRight.disable(true);
             }
             
+            try {
+                engine.updateStationModuleLocations(ship);
+            } catch (Throwable ignored) {}
+            
             fold=0;
         }
-        
-        
-        ///////////////////////////////////
-        //                               //
-        //   WEAPON DESTRUCTION CHECK    //
-        //                               //
-        ///////////////////////////////////        
-        
-        if(moduleLeft!=null && !moduleLeft.isAlive()){
-            weaponLeft.setAmmo(0);
-            weaponLeft.disable(true);
-            moduleLeft=null;
+
+        if (moduleLeft != null && (moduleLeft.isHulk() || moduleLeft.getHitpoints() <= 0)) {
+            moduleLeft = null;
         }
-        
-        if(moduleRight!=null && !moduleRight.isAlive()){
-            weaponRight.setAmmo(0);
-            weaponRight.disable(true);
-            moduleRight=null;
+        if (moduleRight != null && (moduleRight.isHulk() || moduleRight.getHitpoints() <= 0)) {
+            moduleRight = null;
+        }
+
+        if (moduleLeft == null && ship.getChildModulesCopy() != null) {
+            for (ShipAPI s : ship.getChildModulesCopy()) {
+                if (s != null && s.getStationSlot() != null && leftModule.equals(s.getStationSlot().getId())) {
+                    if (!s.isHulk() && s.getHitpoints() > 0) {
+                        setModuleLeft(s);
+                        break;
+                    }
+                }
+            }
+        }
+        if (moduleLeft == null && ship.getCustomData().containsKey("SKR_balisong_moduleLeft")) {
+            ShipAPI m = (ShipAPI) ship.getCustomData().get("SKR_balisong_moduleLeft");
+            if (m != null && !m.isHulk() && m.getHitpoints() > 0) {
+                setModuleLeft(m);
+            }
+        }
+        if (moduleRight == null && ship.getChildModulesCopy() != null) {
+            for (ShipAPI s : ship.getChildModulesCopy()) {
+                if (s != null && s.getStationSlot() != null && rightModule.equals(s.getStationSlot().getId())) {
+                    if (!s.isHulk() && s.getHitpoints() > 0) {
+                        setModuleRight(s);
+                        break;
+                    }
+                }
+            }
+        }
+        if (moduleRight == null && ship.getCustomData().containsKey("SKR_balisong_moduleRight")) {
+            ShipAPI m = (ShipAPI) ship.getCustomData().get("SKR_balisong_moduleRight");
+            if (m != null && !m.isHulk() && m.getHitpoints() > 0) {
+                setModuleRight(m);
+            }
         }
         
         ///////////////////////////////////
@@ -157,20 +182,24 @@ public class SKR_balisongEffect implements EveryFrameWeaponEffectPlugin {
         //                               //
         /////////////////////////////////// 
         
-        if(ship.getTravelDrive().isActive()){
+        if(ship.getTravelDrive() != null && ship.getTravelDrive().isActive()){
             
             inbound=true;
             
-            if(moduleLeft!=null){
-                moduleAnimation(ship, moduleLeft, slotLeft, weaponLeft, -1, fold);
+            if(moduleLeft!=null && slotLeft!=null){
+                moduleAnimation(ship, moduleLeft, slotLeft, weaponLeft, 1, fold);
+                syncModulePosition(ship, moduleLeft, slotLeft, 1, fold);
             }        
-            if(moduleRight!=null){
-                moduleAnimation(ship, moduleRight, slotRight, weaponRight, 1, fold);
+            if(moduleRight!=null && slotRight!=null){
+                moduleAnimation(ship, moduleRight, slotRight, weaponRight, -1, fold);
+                syncModulePosition(ship, moduleRight, slotRight, -1, fold);
             }
             return;
         } else if(inbound){
             inbound=false;
-            Global.getSoundPlayer().playSound("SKR_balisong_close", 1, 1, ship.getLocation(), ship.getVelocity());
+            if (ship.getLocation() != null && ship.getVelocity() != null) {
+                Global.getSoundPlayer().playSound("SKR_balisong_close", 1, 1, ship.getLocation(), ship.getVelocity());
+            }
         }
                 
         ///////////////////////////////////
@@ -179,7 +208,7 @@ public class SKR_balisongEffect implements EveryFrameWeaponEffectPlugin {
         //                               //
         ///////////////////////////////////
         
-        if(system.isActive()){
+        if(system != null && system.isActive()){
             totalCharge += amount*systemExpertise;
             overcharge= Math.min(totalCharge, 10);
             
@@ -198,7 +227,9 @@ public class SKR_balisongEffect implements EveryFrameWeaponEffectPlugin {
             if(overcharge==10){
                 ui=new Color(255,0,0);
             }
-            MagicUI.drawInterfaceStatusBar(ship, overcharge/10, ui, null, 0, CHRG, (int) Math.min(weaponLeft.getMaxAmmo(),totalCharge/10 * (weaponLeft.getSpec().getMaxAmmo())));
+            int maxA = weaponLeft != null ? weaponLeft.getMaxAmmo() : 0;
+            int specMaxA = (weaponLeft != null && weaponLeft.getSpec() != null) ? weaponLeft.getSpec().getMaxAmmo() : 0;
+            MagicUI.drawInterfaceStatusBar(ship, overcharge/10, ui, null, 0, CHRG, (int) Math.min(maxA, totalCharge/10 * specMaxA));
             
             //charge visual effect            
             timer+=amount;
@@ -224,29 +255,28 @@ public class SKR_balisongEffect implements EveryFrameWeaponEffectPlugin {
                 if(overcharge==10){
                     if(Math.random()<0.75f){
                         engine.addHitParticle(
-                                MathUtils.getRandomPointInCircle(ship.getLocation(),7),
+                                MathUtils.getRandomPointInCircle(ship.getLocation(), 50),
                                 ship.getVelocity(),
-                                25+50*(float)Math.random(),
+                                10,
                                 1,
-                                0.1f+0.2f*(float)Math.random(),
-                                new Color(200,50,100,128)
-                        );      
-                    } else {
+                                0.2f,
+                                Color.PINK
+                        );
+                    }
+                    if(Math.random()<0.5f){
                         engine.addHitParticle(
-                                MathUtils.getRandomPointInCircle(ship.getLocation(),7),
+                                MathUtils.getRandomPointInCircle(ship.getLocation(), 25),
                                 ship.getVelocity(),
-                                25+50*(float)Math.random(),
+                                5,
                                 1,
-                                0.05f+0.1f*(float)Math.random(),
+                                0.1f,
                                 Color.WHITE
-                        ); 
+                        );
+                    }
+                    if(Math.random()<0.25f){
+                        zap(engine, MathUtils.getRandomPointInCircle(new Vector2f(), 50+10*overcharge), true);
                     }
                 }
-            }
-            
-            //closing sound
-            if(fold==0){
-                Global.getSoundPlayer().playSound("SKR_balisong_close", 1, 1, ship.getLocation(), ship.getVelocity());
             }
             
             //weapons forced folding
@@ -269,83 +299,93 @@ public class SKR_balisongEffect implements EveryFrameWeaponEffectPlugin {
             if(!activated){
                 activated=true;
                 
-//                if(ship.getCaptain()!=null){
-//                    ship.getCaptain().setPersonality("reckless");
-//                }
+                if(weaponLeft!=null){
+                    weaponLeft.setForceDisabled(false);
+                    weaponLeft.setRemainingCooldownTo(0);
+                    weaponLeft.setAmmo(weaponLeft.getMaxAmmo());
+                }
+                if(weaponRight!=null){
+                    weaponRight.setForceDisabled(false);
+                    weaponRight.setRemainingCooldownTo(0);
+                    weaponRight.setAmmo(weaponRight.getMaxAmmo());
+                }
             
                 //activation sound
                 Global.getSoundPlayer().playSound("SKR_balisongSystem_activation", 1, 1, ship.getLocation(), ship.getVelocity());
                 
-                //Flux dump
-                float level = 1-(float)Math.pow(ship.getFluxTracker().getFluxLevel(),2)*(overcharge/20);
-                ship.getFluxTracker().setCurrFlux(ship.getFluxTracker().getCurrFlux() * level);
-                ship.getFluxTracker().setHardFlux(ship.getFluxTracker().getHardFlux() * level);
-                //Maximum flux reduction is X-0.5*X^2, that translate in a larger dump if the flux is high
+                //burst animation
+                charge.setFrame(11);
+                
+                //warp effect
+                if(SHADER){
+                    SKR_graphicLibEffects.balisongRing(ship, overcharge);
+                }
+                
+                //burst effect
+                engine.addHitParticle(
+                        ship.getLocation(),
+                        ship.getVelocity(),
+                        500,
+                        1,
+                        0.5f,
+                        Color.PINK
+                );
+                engine.addHitParticle(
+                        ship.getLocation(),
+                        ship.getVelocity(),
+                        250,
+                        1,
+                        0.25f,
+                        Color.WHITE
+                );
+                
+                for(int i=0; i<(int)(overcharge*2); i++){
+                    zap(engine, MathUtils.getRandomPointInCircle(new Vector2f(), 50+15*overcharge), true);
+                }
+                for(int i=0; i<3; i++){
+                    engine.addSmoothParticle(
+                            ship.getLocation(),
+                            ship.getVelocity(),
+                            200+50*i,
+                            0.5f,
+                            0.1f,
+                            new Color(255,100,200)
+                    );
+                }
+                
+                for(int i=0; i<5; i++){
+                    engine.addSmoothParticle(
+                            ship.getLocation(),
+                            ship.getVelocity(),
+                            100+25*i,
+                            1f,
+                            0.05f,
+                            Color.WHITE
+                    );
+                }
                 
                 if(moduleLeft!=null){
-                    weaponLeft.setAmmo(Math.min(weaponLeft.getMaxAmmo(),weaponLeft.getAmmo()+(int)(totalCharge/10 * (weaponLeft.getMaxAmmo()))));
+                    moduleLeft.setJitter(ship, new Color(255,100,150,180), 0.5f, 3, 5f); //subtle wing surge
                 }
                 if(moduleRight!=null){
-                    weaponRight.setAmmo(Math.min(weaponRight.getMaxAmmo(),weaponRight.getAmmo()+(int)(totalCharge/10 * (weaponRight.getMaxAmmo()))));
-                }
-                
-                //flash        
-                engine.addHitParticle(
-                        ship.getLocation(),
-                        new Vector2f(),
-                        50*overcharge,
-                        1,
-                        0.1f+overcharge/15,
-                        new Color(200,50,100,128)
-                );                
-                engine.addHitParticle(
-                        ship.getLocation(),
-                        new Vector2f(),
-                        40*overcharge,
-                        1,
-                        0.05f+overcharge/30,
-                        Color.WHITE
-                );  
-                
-                //animation                
-                charge.setFrame(11);
-                   
-                if(MagicRender.screenCheck(0.25f, ship.getLocation())){
-                    for(int i=0; i<3*overcharge; i++){
-                        engine.addHitParticle(
-                                MathUtils.getRandomPointInCircle(ship.getLocation(), 30*overcharge),
-                                MathUtils.getRandomPointInCircle(new Vector2f(), 600),
-                                3+(float)Math.random()*3,
-                                1,
-                                0.5f+(float)Math.random()*0.5f,
-                                new Color(0.5f+0.25f*(float)Math.random(),0.1f+0.1f*(float)Math.random(),0.25f+0.25f*(float)Math.random())
-                        ); 
-                    } 
-                    if(SHADER){                        
-                        SKR_graphicLibEffects.balisongRing(ship,overcharge);
-                    }
+                    moduleRight.setJitter(ship, new Color(255,100,150,180), 0.5f, 3, 5f); //subtle wing surge
                 }
             }
             
-            //overcharge visual   
-            
-            decoCharge.getSprite().setColor(new Color(1,1,1,MagicAnim.smoothNormalizeRange(overcharge/10,0,0.25f)));
-            
-            
-            if(MagicRender.screenCheck(0.25f, weapon.getLocation())){
-                timer+=amount;
-                if(timer>(15-overcharge)/30){
-                    timer=0;
-                        zap(engine, MathUtils.getRandomPointInCircle(new Vector2f(), 50+8*overcharge), true); //zaps
+            //residual lighting
+            timer+=amount;
+            if(timer>(overcharge)/5){
+                timer=0;
+                if(Math.random()<0.5f){
+                    zap(engine, MathUtils.getRandomPointInCircle(new Vector2f(), 50+5*overcharge), false);
                 }
             }
             
-            ship.setJitterUnder(ship, new Color(200,50,100,128), 0.25f+overcharge/10, (int)overcharge, 10+3*overcharge); //ship jitter
             if(moduleLeft!=null){
-                moduleLeft.setJitterUnder(ship, new Color(200,50,100,128), 0.1f+overcharge/10, (int)overcharge, 5+3*overcharge); //weapon jitter
+                moduleLeft.setJitterUnder(ship, new Color(200,50,100,100), 0.1f+overcharge/20f, 2, 3f); //subtle underglow
             }
             if(moduleRight!=null){
-                moduleRight.setJitterUnder(ship, new Color(200,50,100,128), 0.1f+overcharge/10, (int)overcharge, 5+3*overcharge); //weapon jitter
+                moduleRight.setJitterUnder(ship, new Color(200,50,100,100), 0.1f+overcharge/20f, 2, 3f); //subtle underglow
             }
             
             if(fold==1){
@@ -368,14 +408,12 @@ public class SKR_balisongEffect implements EveryFrameWeaponEffectPlugin {
                 unapplyCharge(ship,ID);
                 system.setAmmo(1);
                 charge.setFrame(0);
-                
-//                if(ship.getCaptain()!=null){
-//                    ship.getCaptain().setPersonality(personality);
-//                }
             }
             
             //weapons folding if empty
-            if(weaponLeft.getAmmo()==0 && weaponRight.getAmmo()==0){
+            int ammoL = weaponLeft != null ? weaponLeft.getAmmo() : 0;
+            int ammoR = weaponRight != null ? weaponRight.getAmmo() : 0;
+            if(ammoL==0 && ammoR==0){
                 delay+=amount;
                 if(delay>1){
                     if(fold==0){
@@ -397,19 +435,26 @@ public class SKR_balisongEffect implements EveryFrameWeaponEffectPlugin {
         //                               //
         ///////////////////////////////////
         
-        if(moduleLeft!=null){
+        if(moduleLeft!=null && slotLeft!=null){
             moduleAnimation(ship, moduleLeft, slotLeft, weaponLeft, 1, fold);
-            //lock module weapon
-            if(fold>0){
+            syncModulePosition(ship, moduleLeft, slotLeft, 1, fold);
+            if(fold>0 && weaponLeft!=null){
                 weaponLeft.setRemainingCooldownTo(1f);
             }
-        }        
-        if(moduleRight!=null){
+        }
+        
+        if(moduleRight!=null && slotRight!=null){
             moduleAnimation(ship, moduleRight, slotRight, weaponRight, -1, fold);
-            //lock module weapon
-            if(fold>0){
+            syncModulePosition(ship, moduleRight, slotRight, -1, fold);
+            if(fold>0 && weaponRight!=null){
                 weaponRight.setRemainingCooldownTo(1f);
             }
+        }
+
+        if (moduleLeft != null || moduleRight != null) {
+            try {
+                engine.updateStationModuleLocations(ship);
+            } catch (Throwable ignored) {}
         }
     }
     
@@ -420,123 +465,214 @@ public class SKR_balisongEffect implements EveryFrameWeaponEffectPlugin {
     ///////////////////////////////////
     
     private void moduleAnimation(ShipAPI ship, ShipAPI module, WeaponSlotAPI slot, WeaponAPI weapon, Integer side, float folding){
-        
-        slot.setAngle(side*FOLDED_ANGLE+(1-MagicAnim.smoothNormalizeRange(folding,0,1))*(MathUtils.getShortestRotation(ship.getFacing(), weapon.getCurrAngle()) - side*FOLDED_ANGLE));
+        if (ship == null || module == null || slot == null) return;
+        float wAngle = weapon != null ? weapon.getCurrAngle() : ship.getFacing();
+        slot.setAngle(side*FOLDED_ANGLE+(1-MagicAnim.smoothNormalizeRange(folding,0,1))*(MathUtils.getShortestRotation(ship.getFacing(), wAngle) - side*FOLDED_ANGLE));
 
-        module.getModuleOffset().set(
-                new Vector2f(
-                        FOLDED_POS.x*MagicAnim.smoothNormalizeRange(folding,0,0.75f),
-                        FOLDED_POS.y*(side*MagicAnim.smoothNormalizeRange(folding,0.25f,1))
-                )
+        if (module.getModuleOffset() != null) {
+            module.getModuleOffset().set(
+                    new Vector2f(
+                            FOLDED_POS.x*MagicAnim.smoothNormalizeRange(folding,0,0.75f),
+                            FOLDED_POS.y*(side*MagicAnim.smoothNormalizeRange(folding,0.25f,1))
+                    )
+            );
+        }
+    }
+    
+    ///////////////////////////////////
+    //                               //
+    //             ZAPS              //
+    //                               //
+    ///////////////////////////////////
+    
+    private void zap (CombatEngineAPI engine, Vector2f offset, boolean violent){
+        if (ship == null || ship.getLocation() == null) return;
+        int chooser = new Random().nextInt(zapFrames);
+        float rand = 0.5f * (float) Math.random() + 0.5f;
+        Vector2f vel = new Vector2f(offset);
+        float boost = 0;
+        if (violent) {
+            vel.scale(0.66f);
+            boost += 5 + (float) Math.random() * 5;
+        } else {
+            vel.scale(0.25f);
+        }
+
+        MagicRender.objectspace(
+                Global.getSettings().getSprite("fx", zapSprite + chooser),
+                ship,
+                offset,
+                new Vector2f(vel),
+                new Vector2f(48 * rand + boost, 48 * rand + boost),
+                new Vector2f((float) Math.random() * 20, (float) Math.random() * 20),
+                (float) Math.random() * 360,
+                (float) (Math.random() - 0.5f) * 50,
+                false,
+                new Color(255, 100, 155),
+                true,
+                0,
+                0.25f + (float) Math.random() * 0.1f,
+                0.25f,
+                true
+        );
+
+        Vector2f loc = new Vector2f(offset);
+        VectorUtils.rotate(loc, ship.getFacing(), loc);
+        Vector2f.add(loc, ship.getLocation(), loc);
+        Vector2f velWorld = (ship.getVelocity() != null) ? new Vector2f(ship.getVelocity()) : new Vector2f();
+        Vector2f.add(vel, velWorld, velWorld);
+
+        engine.addHitParticle(
+                loc,
+                velWorld,
+                50 * rand + boost * 2,
+                1,
+                (float) Math.random() * 0.1f,
+                new Color(255, 100, 155)
         );
     }
     
     ///////////////////////////////////
     //                               //
-    //      OVERCHARGE SPARKLES      //
+    //             BUFFS             //
     //                               //
     ///////////////////////////////////
     
-    private void zap(CombatEngineAPI engine, Vector2f offset, boolean active){     
-            
-            int chooser = new Random().nextInt(zapFrames - 1) + 1;
-            float rand = 0.5f*(float)Math.random()+0.5f;
-            Vector2f vel = new Vector2f(offset);
-            float boost = 0;
-            if(active){
-                vel.scale(0.66f);
-                boost+=5+(float)Math.random()*5;
-            } else {
-                vel.scale(0.25f);
-            }
-            
-            MagicRender.objectspace(
-                    Global.getSettings().getSprite("fx",zapSprite+chooser),
-                    ship,
-                    offset,
-                    new Vector2f(vel),
-                    new Vector2f(48*rand+boost,48*rand+boost),
-                    new Vector2f((float)Math.random()*20,(float)Math.random()*20),
-                    (float)Math.random()*360,
-                    (float)(Math.random()-0.5f)*50,
-                    false,
-                    new Color(255,100,155),
-                    true,
-                    0,
-                    0.25f+(float)Math.random()*0.1f,
-                    0.25f,
-                    false
-            );
-            
-            Vector2f loc=new Vector2f(offset);
-            Vector2f.add(loc, ship.getLocation(), loc);
-            Vector2f.add(vel, ship.getVelocity(), vel);
-            
-            engine.addHitParticle(
-                    loc,
-                    vel,
-                    50*rand+boost*2,
-                    1,                    
-                    (float)Math.random()*0.1f,               
-                    new Color(255,100,155)
-            );        
+    private void applyCharge (ShipAPI ship, float intensity, String id){
+        if (ship == null || ship.getMutableStats() == null) return;
+        ship.getMutableStats().getTimeMult().modifyPercent(id, 20f * intensity);
+        ship.getMutableStats().getDeceleration().modifyPercent(id, 20f * intensity);
+        ship.getMutableStats().getAcceleration().modifyPercent(id, 20f * intensity);
+        ship.getMutableStats().getMaxTurnRate().modifyPercent(id, 20f * intensity);
+        ship.getMutableStats().getTurnAcceleration().modifyPercent(id, 20f * intensity);        
+        ship.getMutableStats().getMaxSpeed().modifyFlat(id, 20f * intensity);
     }
     
-    ///////////////////////////////////
-    //                               //
-    //         CHARGE STATS          //
-    //                               //
-    ///////////////////////////////////
-    
-    private void applyCharge(ShipAPI ship, float charge, String ID){
-        ship.getMutableStats().getEnergyRoFMult().modifyMult(ID, 0.5f+(0.5f*charge));        
-        ship.getMutableStats().getBallisticRoFMult().modifyMult(ID, 0.5f+(0.5f*charge));   
-        ship.getMutableStats().getBeamWeaponDamageMult().modifyMult(ID, 0.5f+(0.5f*charge));
+    private void applyOvercharge (ShipAPI ship, float intensity, String id){
+        if (ship == null || ship.getMutableStats() == null) return;
+        ship.getMutableStats().getTimeMult().modifyPercent(id, 20f * intensity);
+        ship.getMutableStats().getDeceleration().modifyPercent(id, 20f * intensity);
+        ship.getMutableStats().getAcceleration().modifyPercent(id, 20f * intensity);
+        ship.getMutableStats().getMaxTurnRate().modifyPercent(id, 20f * intensity);
+        ship.getMutableStats().getTurnAcceleration().modifyPercent(id, 20f * intensity);        
+        ship.getMutableStats().getMaxSpeed().modifyFlat(id, 20f * intensity);
         
-//        ship.getMutableStats().getAcceleration().modifyMult(ID, 0.5f+(0.5f*charge));
-//        ship.getMutableStats().getDeceleration().modifyMult(ID, 0.5f+(0.5f*charge));
-//        ship.getMutableStats().getTurnAcceleration().modifyMult(ID, 0.5f+(0.5f*charge));    
+        ship.getMutableStats().getEnergyRoFMult().modifyPercent(id, 10f * intensity);
+        ship.getMutableStats().getBallisticRoFMult().modifyPercent(id, 10f * intensity);
+        ship.getMutableStats().getMissileRoFMult().modifyPercent(id, 10f * intensity);
+        
+        ship.getMutableStats().getEnergyWeaponFluxCostMod().modifyPercent(id, -5f * intensity);
+        ship.getMutableStats().getBallisticWeaponFluxCostMod().modifyPercent(id, -5f * intensity);
+        ship.getMutableStats().getMissileWeaponFluxCostMod().modifyPercent(id, -5f * intensity);
     }
     
-    private void applyOvercharge(ShipAPI ship, float charge, String ID){ 
+    private void unapplyCharge (ShipAPI ship, String id){
+        if (ship == null || ship.getMutableStats() == null) return;
+        ship.getMutableStats().getTimeMult().unmodify(id);
+        ship.getMutableStats().getDeceleration().unmodify(id);
+        ship.getMutableStats().getAcceleration().unmodify(id);
+        ship.getMutableStats().getMaxTurnRate().unmodify(id);
+        ship.getMutableStats().getTurnAcceleration().unmodify(id);        
+        ship.getMutableStats().getMaxSpeed().unmodify(id);
+        
+        ship.getMutableStats().getEnergyRoFMult().unmodify(id);
+        ship.getMutableStats().getBallisticRoFMult().unmodify(id);
+        ship.getMutableStats().getMissileRoFMult().unmodify(id);
+        
+        ship.getMutableStats().getEnergyWeaponFluxCostMod().unmodify(id);
+        ship.getMutableStats().getBallisticWeaponFluxCostMod().unmodify(id);
+        ship.getMutableStats().getMissileWeaponFluxCostMod().unmodify(id);
+    }
+    
+    public static void syncModulePosition(ShipAPI ship, ShipAPI module, WeaponSlotAPI slot, int side, float fold) {
+        if (ship == null || module == null || ship.getLocation() == null) return;
+        try {
+            float slotAngle = (slot != null) ? slot.getAngle() : side * -15f * fold;
 
-        //using percentage modifier for proper additive boost
-        ship.getMutableStats().getEnergyRoFMult().modifyPercent(ID, 100*charge);
-        ship.getMutableStats().getBallisticRoFMult().modifyPercent(ID, 100*charge);
-        ship.getMutableStats().getBeamWeaponDamageMult().modifyPercent(ID, 100*charge);
-        
-        ship.getMutableStats().getFluxDissipation().modifyPercent(ID, 100*charge);
-        
-        ship.getMutableStats().getAcceleration().modifyPercent(ID, 300f);
-        ship.getMutableStats().getDeceleration().modifyPercent(ID, 300f);
-        ship.getMutableStats().getTurnAcceleration().modifyPercent(ID, 300f);
-        
-        ship.getMutableStats().getMaxSpeed().modifyPercent(ID, 100*charge);  
-        ship.getMutableStats().getMaxTurnRate().modifyPercent(ID, 100*charge);   
+            Vector2f offset = module.getModuleOffset();
+            if (offset == null) {
+                offset = new Vector2f(
+                        25f * MagicAnim.smoothNormalizeRange(fold, 0, 0.75f),
+                        16f * (side * MagicAnim.smoothNormalizeRange(fold, 0.25f, 1))
+                );
+            }
+
+            Vector2f slotLoc = (slot != null && slot.getLocation() != null)
+                    ? slot.getLocation()
+                    : new Vector2f(0f, 60f * side);
+
+            // Compute local transform matching Starsector's internal negate math:
+            // worldPos = ship.location + rotate(slotLocation - rotate(offset, slotAngle), ship.facing)
+            Vector2f offRot = new Vector2f(offset);
+            VectorUtils.rotate(offRot, slotAngle, offRot);
+            Vector2f localPos = new Vector2f(slotLoc.x - offRot.x, slotLoc.y - offRot.y);
+
+            VectorUtils.rotate(localPos, ship.getFacing(), localPos);
+            Vector2f worldPos = Vector2f.add(ship.getLocation(), localPos, null);
+
+            if (module.getLocation() != null) {
+                module.getLocation().set(worldPos);
+            }
+            module.setFacing(ship.getFacing() + slotAngle);
+
+            if (module.getVelocity() != null && ship.getVelocity() != null) {
+                float angVelRad = (float) Math.toRadians(ship.getAngularVelocity());
+                Vector2f r = Vector2f.sub(worldPos, ship.getLocation(), null);
+                module.getVelocity().set(
+                        ship.getVelocity().x - angVelRad * r.y,
+                        ship.getVelocity().y + angVelRad * r.x
+                );
+            }
+            module.setAngularVelocity(ship.getAngularVelocity());
+        } catch (Throwable ignored) {}
     }
-    
-    private void unapplyCharge(ShipAPI ship, String ID){
-        ship.getMutableStats().getEnergyRoFMult().unmodify(ID);
-        ship.getMutableStats().getBallisticRoFMult().unmodify(ID);
-        ship.getMutableStats().getBeamWeaponDamageMult().unmodify(ID);
-        
-        ship.getMutableStats().getFluxDissipation().unmodify(ID);
-        
-        ship.getMutableStats().getAcceleration().unmodify(ID);
-        ship.getMutableStats().getDeceleration().unmodify(ID);
-        ship.getMutableStats().getTurnAcceleration().unmodify(ID);
-        
-        ship.getMutableStats().getMaxSpeed().unmodify(ID);
-        ship.getMutableStats().getMaxTurnRate().unmodify(ID);
-    }
-    
-    ///////////////////////////////////
-    //                               //
-    //          AUTOPILOT            //
-    //                               //
-    ///////////////////////////////////  
-    
-    public float getOvercharge(){
+    public float getOvercharge() {
         return overcharge;
+    }
+
+    public float getTotalCharge() {
+        return totalCharge;
+    }
+
+    public ShipAPI getModuleLeft() {
+        return moduleLeft;
+    }
+
+    public void setModuleLeft(ShipAPI moduleLeft) {
+        this.moduleLeft = moduleLeft;
+        if (moduleLeft != null) {
+            if (moduleLeft.getStationSlot() != null) {
+                this.slotLeft = moduleLeft.getStationSlot();
+            } else if (ship != null && ship.getHullSpec() != null) {
+                this.slotLeft = ship.getHullSpec().getWeaponSlotAPI(leftModule);
+            }
+        }
+    }
+
+    public WeaponSlotAPI getSlotLeft() {
+        return slotLeft;
+    }
+
+    public ShipAPI getModuleRight() {
+        return moduleRight;
+    }
+
+    public void setModuleRight(ShipAPI moduleRight) {
+        this.moduleRight = moduleRight;
+        if (moduleRight != null) {
+            if (moduleRight.getStationSlot() != null) {
+                this.slotRight = moduleRight.getStationSlot();
+            } else if (ship != null && ship.getHullSpec() != null) {
+                this.slotRight = ship.getHullSpec().getWeaponSlotAPI(rightModule);
+            }
+        }
+    }
+
+    public WeaponSlotAPI getSlotRight() {
+        return slotRight;
+    }
+
+    public float getFold() {
+        return fold;
     }
 }

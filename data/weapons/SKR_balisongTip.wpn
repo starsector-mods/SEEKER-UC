@@ -3,6 +3,7 @@
 	"specClass":"beam",
 	"type":"DECORATIVE",
 	"size":"MEDIUM",
+	"everyFrameEffect":"data.scripts.weapons.SKR_balisongRespawnEffect",
 	"turretSprite":"graphics/SEEKER/ships/hidden/SKR_balisongTIP.png",
 	"hardpointSprite":"graphics/SEEKER/ships/hidden/SKR_balisongTIP.png",
 	"turretOffsets":[0, 0],
@@ -16,5 +17,5 @@
 	"textureType":ROUGH,
 	"textureScrollSpeed":1.0,
 	"pixelsPerTexel":5.0,	
-	"showDamageWhenDecorative":true,	
+	"showDamageWhenDecorative":true	
 }

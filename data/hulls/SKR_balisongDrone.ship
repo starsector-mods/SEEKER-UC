@@ -9,12 +9,13 @@
   "center": [9.5, 9.5],
   "collisionRadius": 12.5,
   "shieldCenter": [0, 0],
-  "shieldRadius": 12.5,
+  "shieldRadius": 14,
   "viewOffset": 0,
   "builtInMods": [
     "advancedoptics",
     "turretgyros",
-    "magazines"
+    "magazines",
+    "pointdefenseai"
   ],
   "builtInWeapons": {
     "WS0001": "pdburst"

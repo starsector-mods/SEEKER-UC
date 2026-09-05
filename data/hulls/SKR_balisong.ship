@@ -51,7 +51,9 @@
     "SYSTEM": "SKR_balisongCharge",
     "WS0003": "SKR_balisongTip"
   },
-  "builtInWings": [],
+  "builtInWings": [
+    "SKR_balisongDrone_wing"
+  ],
   "center": [
     74,
     98
@@ -246,7 +248,7 @@
       "mount": "TURRET",
       "size": "MEDIUM",
       "type": "DECORATIVE",
-      "renderOrderMod":-9,
+      "renderOrderMod": -9
     },
     {
       "angle": 0,
@@ -259,8 +261,8 @@
       "mount": "TURRET",
       "size": "MEDIUM",
       "type": "DECORATIVE",
-      "renderOrderMod":-10,
-    },
+      "renderOrderMod": -10
+    }
   ],
   "width": 148
 }

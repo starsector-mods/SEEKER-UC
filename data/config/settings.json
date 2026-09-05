@@ -8,19 +8,19 @@
 	
     "designTypeColors":{
         "Exotic Tech":[0,255,150,255],
-        "Plague-bearer Tech":[150,100,100,255],
+        "Plague-bearer Tech":[150,100,100,255]
     },
 	
     "graphics":{	
         "ui":{
             "SKR_interference":"graphics/SEEKER/icons/hullsys/SKR_interference.png",
             "SKR_panik":"graphics/SEEKER/icons/hullsys/SKR_cataDebuff.png",
-            "SKR_shield":"graphics/SEEKER/icons/hullsys/SKR_twinShield.png",
+            "SKR_shield":"graphics/SEEKER/icons/hullsys/SKR_twinShield.png"
         },
         "shields":{
         },
 		"abilities":{
-			"skr_neutrinoA" : "graphics/SEEKER/fx/SKR_neutrino_detector_d.png",
+			"skr_neutrinoA" : "graphics/SEEKER/fx/SKR_neutrino_detector_d.png"
 		},
         "fx":{   
 			
@@ -85,7 +85,7 @@
             "SKR_shieldIN":"graphics/SEEKER/fx/SKR_derelictShield_in.png", 			
             "SKR_shieldOUT":"graphics/SEEKER/fx/SKR_derelictShield_ring.png",  
  
-            "SKR_shockwave":"graphics/SEEKER/fx/SKR_shockwave.png", 
+            "SKR_shockwave":"graphics/SEEKER/fx/SKR_shockwave.png"
         },
 		"characters":{
 			"SKR_plagueA":"graphics/SEEKER/portraits/SKR_plagueA.png",
@@ -97,7 +97,7 @@
 			
 			"SKR_retiarius":"graphics/portraits/portrait16.png",
 			"SKR_siegfried":"graphics/portraits/portrait_mercenary07.png",
-			"SKR_demeter":"graphics/portraits/portrait_corporate10.png",
-		},
+			"SKR_demeter":"graphics/portraits/portrait_corporate10.png"
+		}
 	}
 }

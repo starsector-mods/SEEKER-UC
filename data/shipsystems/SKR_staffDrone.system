@@ -5,7 +5,7 @@
 	
 	"droneVariant":"SKR_balisongPD_standard",
 	
-	"allowFreeRoam":true,
+	"allowFreeRoam":false,
 	
 	"launchSpeed":0,
 	"launchDelay":0.1,

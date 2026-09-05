@@ -55,7 +55,7 @@ public class SKR_plagueC {
         system.getTags().add(Tags.THEME_UNSAFE);
         system.getTags().add("theme_plaguebearer");
         
-        system.setBackgroundTextureFilename("graphics/SEEKER/backgrounds/SKR_plagueC.png");
+        system.setBackgroundTextureFilename("graphics/SEEKER/backgrounds/SKR_plagueC.jpg");
                 
         // create the star and generate the hyperspace anchor for this system
         PlanetAPI star = system.initStar("plague_"+systemName, // unique id for this star

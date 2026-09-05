@@ -3,7 +3,6 @@
 	"id":"SKR_balisongBushwhacker",
 	"type":"ENERGY",
 	"size":"LARGE",
-	"everyFrameEffect":"data.scripts.weapons.SKR_balisongEffect",
 	"turretSprite":"graphics/SEEKER/weapons/SKR_balisongBushwhacker.png",
 	"turretGlowSprite":"",
 	"hardpointSprite":"",

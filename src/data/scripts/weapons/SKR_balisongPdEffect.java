@@ -26,9 +26,11 @@ public class SKR_balisongPdEffect implements EveryFrameWeaponEffectPlugin {
             sprite=weapon.getSprite();
             X=sprite.getCenterX();
             Y=sprite.getCenterY();
-            size=sprite.getWidth();
-            ai=weapon.getShip().getWeaponGroupFor(weapon).getAutofirePlugin(weapon);
-            time+=(float)Math.random()*5;
+            if (weapon.getShip() != null && weapon.getShip().getWeaponGroupFor(weapon) != null) {
+                ai = weapon.getShip().getWeaponGroupFor(weapon).getAutofirePlugin(weapon);
+            }
+            weapon.ensureClonedSpec();
+            time += (float) Math.random() * 5;
         }
         
         if (engine.isPaused() || !weapon.getShip().isAlive()) {
@@ -59,7 +61,6 @@ public class SKR_balisongPdEffect implements EveryFrameWeaponEffectPlugin {
         sprite.setCenter(X+x, Y+y);
         
         if(weapon.isFiring()){
-            weapon.ensureClonedSpec();
             for(int i=0; i<weapon.getSpec().getHardpointFireOffsets().size(); i++){
                 weapon.getSpec().getHardpointFireOffsets().set(i, new Vector2f(-y,x));
                 weapon.getSpec().getTurretFireOffsets().set(i, new Vector2f(-y,x));
@@ -67,7 +68,7 @@ public class SKR_balisongPdEffect implements EveryFrameWeaponEffectPlugin {
                 float angle;
                 Vector2f aim;
                 
-                if(ai.getTarget()!=null){
+                if(ai != null && ai.getTarget() != null){
                     aim=ai.getTarget();
                 } else {
                     aim=MathUtils.getPoint(weapon.getLocation(), weapon.getRange(), weapon.getCurrAngle());
