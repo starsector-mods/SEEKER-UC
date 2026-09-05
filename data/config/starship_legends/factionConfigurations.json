@@ -101,8 +101,8 @@
 			"shield_strength":1,
 			"phase_cost":0,
 			"phase_cooldown":0,
-			"cursed":1, // Low chance to cause spontaneous weapon/engine malfunctions, even at peak PPT
-			"phase_mad":0, // Chance to cause weapon/engine malfunctions while phased
+			"cursed":1,
+			"phase_mad":0,
 		},
 		
 		// This section allows you to define forced presets as above, but only for
