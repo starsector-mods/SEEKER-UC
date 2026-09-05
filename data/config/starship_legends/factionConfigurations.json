@@ -1,43 +1,43 @@
 {
 	"plague":{
-		// Prevents references to crew in the faction's fleets, sometimes substituting
-		//	"crew" with "AI persona"
+		
+		
 		"useCrewlessTraitNames":true,
 		
-		// Changes the short description prior to listing traits. Enter %s where the
-		//	commander's name should be, if you want it to apear at all
+		
+		
 		"descriptionOverride":"The ships in %s's fleet are known for having the following traits:",
 		
-		// Allows the fleets of this faction to have famous flagships, which the
-		// 	player may find out about from a bar event
+		
+		
 		"allowFamousFlagshipsInFleets":false,
 		
-		// If true, the bars at markets owned by your faction will sometimes have
-		//	patrons that offer information about the whereabouts of famous
-		//	flagships or derelicts
+		
+		
+		
 		"allowFamousFlagshipBarEvent":false,
 		"allowFamousDerelictBarEvent":true,
 		
-		// Ships in this list may be chosen as a derelict for the derelict bar event
-		// Generally, only ships defined by your faction mod should be listed here
-		// Frequency should be based on balance issues and how plausible it is for
-		//	that ship to be a derelict. The power (FP) of the ship should not come in to
-		//	consideration, as that is adjustable by users in the options file
+		
+		
+		
+		
+		
 		"derelictFrequency":{
                     "SKR_zealot":0.1,
                     "SKR_cultist":0.1,
 		},
 		
-		// Ships in this list may be chosen as a derelict for the derelict bar event,
-		//	but only at markets owned by your faction
+		
+		
 		"exclusiveDerelictFrequency":{
-			// This ship will only be available at your faction's markets
+			
 		},
 		
-		// Edit the values in the lists below to change the probability of fleets from
-		//	this faction getting traits. Higher numbers make traits more likely.
-		//	To disable a trait, set its value to 0. Removing a trait from the list will
-		//	only revert it to the default value.
+		
+		
+		
+		
 		"goodTraitFrequency":{
 			"peak_cr_time":1,
 			"repair":1,
@@ -105,23 +105,23 @@
 			"phase_mad":0,
 		},
 		
-		// This section allows you to define forced presets as above, but only for
-		//	commanders with specific names (like IBB commanders, for example)
-		// "forcedCommanderPresets":{
 		
-			// By defining "Commander Name" below, all fleets with commanders named 
-			//	"Commander Name" will have the specified traits
-		//	"Commander Name":{
+		
+		
+		
 			
-				// Everything in this section may be defined in the same way as the
-				//	contents of the "forcedPreset" section. 
-		//		"defaultNumberOfTraits":6,
-		//		"goodTraits":[
-		//		],
-		//		"badTraits":[
-		//		],
-		//	},
-		// },
+			
+		
+			
+				
+				
+		
+		
+		
+		
+		
+		
+		
 	},
     "neutral":{
         "derelictFrequency":{

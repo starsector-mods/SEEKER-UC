@@ -1,6 +1,6 @@
 {
-	// The following hull style ids are reserved and can not be used:
-	// "sounds", "DEFAULT", "FIGHTER", "FRIGATE", "DESTROYER", "CRUISER", "CAPITAL_SHIP"
+	
+	
         "ANTIC_TECH":{
 		"hyperspaceJitterColor":[255,150,100,200],
 		"baseCampaignExplosionColor":[255,100,25,255],

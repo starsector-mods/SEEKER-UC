@@ -1,15 +1,15 @@
 {
 
-                // PLAGUE WEAPONS
+                
               
         "SKR_flak_fire":
 	[
 		{"file":"sounds/SEEKER/SKR_flak_fire1.ogg","pitch":0.95,"volume":0.5},
 		{"file":"sounds/SEEKER/SKR_flak_fire1.ogg","pitch":1.00,"volume":0.5},
 		{"file":"sounds/SEEKER/SKR_flak_fire1.ogg","pitch":1.05,"volume":0.5},
-		// {"file":"sounds/SEEKER/SKR_flak_fire2.ogg","pitch":0.95,"volume":0.6},
-		// {"file":"sounds/SEEKER/SKR_flak_fire2.ogg","pitch":1.00,"volume":0.6},
-		// {"file":"sounds/SEEKER/SKR_flak_fire2.ogg","pitch":1.05,"volume":0.6},
+		
+		
+		
 		{"file":"sounds/SEEKER/SKR_flak_fire3.ogg","pitch":0.95,"volume":0.5},
 		{"file":"sounds/SEEKER/SKR_flak_fire3.ogg","pitch":1.00,"volume":0.5},
 		{"file":"sounds/SEEKER/SKR_flak_fire3.ogg","pitch":1.05,"volume":0.5},
@@ -40,9 +40,9 @@
 
         "SKR_hvblaster_charge":
 	[
-		// {"file":"sounds/SEEKER/SKR_hvblaster_chargeup1.ogg","pitch":0.95,"volume":0.4},
+		
 		{"file":"sounds/SEEKER/SKR_hvblaster_chargeup1.ogg","pitch":1.00,"volume":0.3},
-		// {"file":"sounds/SEEKER/SKR_hvblaster_chargeup1.ogg","pitch":1.05,"volume":0.4},
+		
         ],
         "SKR_hvblaster_fire":
 	[
@@ -104,7 +104,7 @@
 		{"file":"sounds/SEEKER/SKR_ripple3.ogg","pitch":1.1,"volume":1},
 	], 
 
-                // CATACLYSM
+                
         "SKR_cataclysm_arrival":
 	[
 		{"file":"sounds/SEEKER/SKR_cataclysm_arrival.ogg","pitch":0.9,"volume":1},
@@ -133,7 +133,7 @@
 		{"file":"sounds/SEEKER/SKR_pull_fire4.ogg","pitch":1.1,"volume":0.7},
 	],
 
-		// WHITE DWARF
+		
         "SKR_whiteDwarf_arrival":
 	[
 		{"file":"sounds/SEEKER/SKR_whiteDwarf_arrival.ogg","pitch":0.9,"volume":1},
@@ -200,7 +200,7 @@
 		{"file":"sounds/SEEKER/SKR_chain_hit5.ogg","pitch":1.1,"volume":1},
 	], 
 	
-        // RAMPAGE
+        
         "SKR_rampage_arrival":
 	[
 		{"file":"sounds/SEEKER/SKR_rampage_arrival.ogg","pitch":0.9,"volume":1},
@@ -250,7 +250,7 @@
 		{"file":"sounds/SEEKER/SKR_rampage_boost_loop.ogg","pitch":1.1,"volume":1},
 	], 
 
-        // KEEP
+        
         "SKR_keep_arrival":
 	[
 		{"file":"sounds/SEEKER/SKR_keep_arrival.ogg","pitch":0.9,"volume":1},
@@ -328,7 +328,7 @@
 		{"file":"sounds/SEEKER/SKR_harpoon_mirv.ogg","pitch":1.1,"volume":0.75},
 	], 
         
-		// 557
+		
 		
         "SKR_557_fire":
 	[
@@ -373,7 +373,7 @@
 		
 		
 		
-        // Bullhorn
+        
         "SKR_boost_start":
 	[
 		{"file":"sounds/SEEKER/SKR_boost_start.ogg","pitch":0.95,"volume":0.5},
@@ -398,7 +398,7 @@
 		{"file":"sounds/SEEKER/SKR_boost_discard.ogg","pitch":1,"volume":0.5},
 		{"file":"sounds/SEEKER/SKR_boost_discard.ogg","pitch":1.05,"volume":0.5},
 	], 
-        // Marksman
+        
         "SKR_executioner_super":
 	[
 		{"file":"sounds/SEEKER/SKR_marksmanGun_super.ogg","pitch":0.95,"volume":1},
@@ -441,7 +441,7 @@
 		{"file":"sounds/SEEKER/SKR_marksmanReload_failed.ogg","pitch":1,"volume":0.75},
 		{"file":"sounds/SEEKER/SKR_marksmanReload_failed.ogg","pitch":1.05,"volume":0.75},
 	], 
-        // Gawon
+        
         "SKR_gawk_fire":
 	[
 		{"file":"sounds/SEEKER/SKR_gawk_fire.ogg","pitch":0.95,"volume":0.75},
@@ -460,7 +460,7 @@
 		{"file":"sounds/SEEKER/SKR_alcubiere.ogg","pitch":1,"volume":1},
 		{"file":"sounds/SEEKER/SKR_alcubiere.ogg","pitch":1.05,"volume":1},
 	], 
-        // Dawn
+        
         "SKR_glare_fire":
 	[
 		{"file":"sounds/SEEKER/SKR_glare_fire01.ogg","pitch":1,"volume":1},
@@ -474,7 +474,7 @@
 		{"file":"sounds/SEEKER/SKR_glare_fire03.ogg","pitch":0.95,"volume":1},
 	], 
 
-        // Onyx
+        
         "SKR_blackout_fire":
 	[
 		{"file":"sounds/SEEKER/SKR_blackout_fire.ogg","pitch":1,"volume":1},
@@ -488,7 +488,7 @@
 		{"file":"sounds/SEEKER/SKR_sunburst_fire.ogg","pitch":1.5,"volume":0.4},
 	],  
 
-        // Fuscina
+        
         "SKR_fuscina_fire":
 	[
 		{"file":"sounds/SEEKER/SKR_fuscina_fire.ogg","pitch":1,"volume":0.8},
@@ -496,7 +496,7 @@
 		{"file":"sounds/SEEKER/SKR_fuscina_fire.ogg","pitch":0.95,"volume":0.8},
 	], 
 
-        // Dawn
+        
         "SKR_sunburst_fire":
 	[
 		{"file":"sounds/SEEKER/SKR_sunburst_fire.ogg","pitch":1,"volume":1},
@@ -540,7 +540,7 @@
 		{"file":"sounds/SEEKER/SKR_blitzSkimmer_05.ogg","pitch":0.95,"volume":1},
 	],   
 	
-        // Gatling Lance
+        
         "SKR_gatling_fire":
 	[
 		{"file":"sounds/SEEKER/SKR_gatling_fire1.ogg","pitch":1,"volume":0.5},
@@ -559,7 +559,7 @@
 	], 
 	
 	
-        // Inertia-less missiles
+        
         "SKR_inertialess_fire":
 	[
 		{"file":"sounds/SEEKER/SKR_inertiaLessMissile_fire01.ogg","pitch":1,"volume":0.5},
@@ -573,7 +573,7 @@
 		{"file":"sounds/SEEKER/SKR_targetPainterSmall_loop.ogg","pitch":1,"volume":0.3},
 	], 
         
-        // Firecane
+        
         
         "SKR_firecane":
 	[
@@ -594,7 +594,7 @@
 		{"file":"sounds/SEEKER/SKR_firecane_fire04.ogg","pitch":0.9,"volume":1},
 	],  
  
-        // Graviton Bolter
+        
 
         "SKR_gravBolter":
 	[
@@ -609,7 +609,7 @@
 		{"file":"sounds/SEEKER/SKR_gravBolter_fire03.ogg","pitch":1.1,"volume":0.3},
 	], 
 
-        // Revolver
+        
         "SKR_revolver_fire":
 	[
 		{"file":"sounds/SEEKER/SKR_megapulse01.ogg","pitch":1,"volume":1},
@@ -644,7 +644,7 @@
 		{"file":"sounds/SEEKER/SKR_revolverLance_04.ogg","pitch":1.1,"volume":0.5},
 	],
 
-        // Ravager
+        
         "SKR_ravager_fire":
 	[
 		{"file":"sounds/SEEKER/SKR_ravager_fire1.ogg","pitch":1,"volume":0.6},
@@ -667,7 +667,7 @@
 		{"file":"sounds/SEEKER/SKR_ravager_cooldown2.ogg","pitch":1.1,"volume":0.7},
 	],
 
-        // Guardian venting system
+        
         "SKR_fluxTorp":
 	[
 		{"file":"sounds/SEEKER/SKR_fluxTorp_launch01.ogg","pitch":1,"volume":0.75},
@@ -681,7 +681,7 @@
 		{"file":"sounds/SEEKER/SKR_fluxTorp_launch03.ogg","pitch":1,"volume":0.75},
         ],	
         
-        // Balisong
+        
         "SKR_balisongPulse_fire":
 	[
 		{"file":"sounds/SEEKER/SKR_balisongPulse_fire.ogg","pitch":1,"volume":1},
@@ -765,7 +765,7 @@
 		{"file":"sounds/sfx_wpn_energy/phase_beam_loop.ogg","pitch":1.1,"volume":0.5},
 	],	
 
-        // Clipper system
+        
 
         "SKR_missileFab_start":
 	[
@@ -782,7 +782,7 @@
 		{"file":"sounds/SEEKER/SKR_clipper_systemLoop.ogg","pitch":1,"volume":0.75},
 	],
         
-        // Quicksilver pulse
+        
         "SKR_pulse_in":
 	[
 		{"file":"sounds/SEEKER/SKR_pulseIN2.ogg","pitch":1,"volume":1},
@@ -793,7 +793,7 @@
 		{"file":"sounds/SEEKER/SKR_pulseOUT.ogg","pitch":1,"volume":1},
 	],
 		
-	// Reality Drill
+	
 	"SKR_drill_charge":
 	[
 		{"file":"sounds/SEEKER/SKR_drill_charge.ogg","pitch":1,"volume":0.5},
@@ -848,7 +848,7 @@
 		{"file":"sounds/SEEKER/CIV_shieldUnfold.ogg","pitch":0.9,"volume":1},
 	],
 
-        // BURST JET
+        
         "SKR_burstJet_start":
         [
 		{"file":"sounds/SEEKER/SKR_burstJet_start.ogg","pitch":1.00,"volume":0.5},
@@ -868,21 +868,21 @@
 		{"file":"sounds/SEEKER/SKR_burstJet_out.ogg","pitch":0.95,"volume":0.5},
         ],
 
-        // MINIGUN
+        
         "SKR_minigun_fire":
         [
-		// {"file":"sounds/SEEKER/SKR_minigun_fire1.ogg","pitch":1.00,"volume":0.4},
-		// {"file":"sounds/SEEKER/SKR_minigun_fire1.ogg","pitch":0.95,"volume":0.4},
-		// {"file":"sounds/SEEKER/SKR_minigun_fire1.ogg","pitch":1.05,"volume":0.4},
-		// {"file":"sounds/SEEKER/SKR_minigun_fire2.ogg","pitch":1.00,"volume":0.4},
-		// {"file":"sounds/SEEKER/SKR_minigun_fire2.ogg","pitch":0.95,"volume":0.4},
-		// {"file":"sounds/SEEKER/SKR_minigun_fire2.ogg","pitch":1.05,"volume":0.4},
-		// {"file":"sounds/SEEKER/SKR_minigun_fire3.ogg","pitch":1.00,"volume":0.4},
-		// {"file":"sounds/SEEKER/SKR_minigun_fire3.ogg","pitch":0.95,"volume":0.4},
-		// {"file":"sounds/SEEKER/SKR_minigun_fire3.ogg","pitch":1.05,"volume":0.4},
-		// {"file":"sounds/SEEKER/SKR_minigun_fire4.ogg","pitch":1.00,"volume":0.4},
-		// {"file":"sounds/SEEKER/SKR_minigun_fire4.ogg","pitch":0.95,"volume":0.4},
-		// {"file":"sounds/SEEKER/SKR_minigun_fire4.ogg","pitch":1.05,"volume":0.4},
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		{"file":"sounds/SEEKER/SKR_minigun_fireB1.ogg","pitch":1.00,"volume":0.4},
 		{"file":"sounds/SEEKER/SKR_minigun_fireB1.ogg","pitch":1.05,"volume":0.4},
 		{"file":"sounds/SEEKER/SKR_minigun_fireB1.ogg","pitch":0.95,"volume":0.4},
@@ -901,9 +901,9 @@
         ],
         "SKR_minigun_trail":
         [
-		// {"file":"sounds/SEEKER/SKR_minigun_trail.ogg","pitch":1.00,"volume":0.4},
-		// {"file":"sounds/SEEKER/SKR_minigun_trail.ogg","pitch":0.95,"volume":0.4},
-		// {"file":"sounds/SEEKER/SKR_minigun_trail.ogg","pitch":1.05,"volume":0.4},
+		
+		
+		
 		{"file":"sounds/SEEKER/SKR_minigun_trailB1.ogg","pitch":1.00,"volume":0.4},
 		{"file":"sounds/SEEKER/SKR_minigun_trailB1.ogg","pitch":1.05,"volume":0.4},
 		{"file":"sounds/SEEKER/SKR_minigun_trailB1.ogg","pitch":0.95,"volume":0.4},
@@ -918,7 +918,7 @@
 		{"file":"sounds/SEEKER/SKR_minigun_trailB4.ogg","pitch":0.95,"volume":0.4},
         ],
 
-// HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_HULL_
+
 
         "SKR_layer_start":
 	[
@@ -944,7 +944,6 @@
 		],
 	},
 }
-
 
 
 
