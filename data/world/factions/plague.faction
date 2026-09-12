@@ -161,9 +161,9 @@
 		"carriers":3,
 		"phaseShips":1,
 		
-		"officerQuality":3,
+		"officerQuality":5,
 		"shipQuality":5,
-		"numShips":2,
+		"numShips":3,
 		
 		"shipSize":4,
 		
@@ -178,7 +178,11 @@
 		"commanderSkills":[
 			"crew_training",
 			"officer_training",
-			"coordinated_maneuvers",
+			"damage_control",
+			"impact_mitigation",
+			"field_modulation",
+			"target_analysis",
+			"systems_expertise",
 			"electronic_warfare",
 			"fighter_uplink",
 			"carrier_group",

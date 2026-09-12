@@ -38,6 +38,23 @@ public class SKR_plagueBearer extends BaseHullMod {
         stats.getDynamic().getMod(Stats.FIGHTER_COST_MOD).modifyFlat(id, -LCP_REAL_COST);
         stats.getDynamic().getMod(Stats.INTERCEPTOR_COST_MOD).modifyFlat(id, -LCP_REAL_COST);
         stats.getDynamic().getMod(Stats.SUPPORT_COST_MOD).modifyFlat(id, -LCP_REAL_COST);
+
+        // Durability & Hull/Armor enhancements for ancient corrupted titans
+        stats.getHullBonus().modifyPercent(id, 35f);
+        stats.getArmorBonus().modifyPercent(id, 35f);
+        stats.getEffectiveArmorBonus().modifyPercent(id, 30f);
+        stats.getArmorDamageTakenMult().modifyMult(id, 0.80f);
+        stats.getHullDamageTakenMult().modifyMult(id, 0.80f);
+
+        // Flux dissipation & Shield mitigation
+        stats.getFluxDissipation().modifyPercent(id, 30f);
+        stats.getFluxCapacity().modifyPercent(id, 25f);
+        stats.getShieldDamageTakenMult().modifyMult(id, 0.80f);
+        stats.getEmpDamageTakenMult().modifyMult(id, 0.50f);
+
+        // Combat repair speed for weapons and engines
+        stats.getCombatWeaponRepairTimeMult().modifyMult(id, 0.5f);
+        stats.getCombatEngineRepairTimeMult().modifyMult(id, 0.5f);
         
         //experimental slow repairs so that players can try multiple times to beat that thing
         stats.getRepairRatePercentPerDay().modifyMult(id, .01f);

@@ -38,6 +38,16 @@ public class SKR_plagueCultist extends BaseHullMod {
         stats.getDynamic().getMod(Stats.FIGHTER_COST_MOD).modifyFlat(id, -LCP_REAL_COST);
         stats.getDynamic().getMod(Stats.INTERCEPTOR_COST_MOD).modifyFlat(id, -LCP_REAL_COST);
         stats.getDynamic().getMod(Stats.SUPPORT_COST_MOD).modifyFlat(id, -LCP_REAL_COST);
+
+        // Durability & Shield enhancements for plague cultist escort ships
+        stats.getHullBonus().modifyPercent(id, 25f);
+        stats.getArmorBonus().modifyPercent(id, 25f);
+        stats.getEffectiveArmorBonus().modifyPercent(id, 20f);
+        stats.getShieldDamageTakenMult().modifyMult(id, 0.85f);
+        stats.getFluxDissipation().modifyPercent(id, 20f);
+        stats.getFluxCapacity().modifyPercent(id, 15f);
+        stats.getEmpDamageTakenMult().modifyMult(id, 0.70f);
+        stats.getCombatWeaponRepairTimeMult().modifyMult(id, 0.7f);
     }
     
     @Override
