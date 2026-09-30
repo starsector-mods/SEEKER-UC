@@ -33,6 +33,7 @@ import data.scripts.world.systems.SKR_plagueA;
 import data.scripts.world.systems.SKR_plagueB;
 import data.scripts.world.systems.SKR_plagueC;
 import data.scripts.world.systems.SKR_plagueD;
+import data.scripts.world.systems.Tomorrow;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -58,6 +59,7 @@ public class SKR_seekerGen implements SectorGeneratorPlugin {
         new SKR_plagueB().generate(sector,directions.get(1));    
         new SKR_plagueC().generate(sector,directions.get(2));   
         new SKR_plagueD().generate(sector,directions.get(3));    
+        new Tomorrow().generate(sector);
         
         initFactionRelationships(sector);
     }

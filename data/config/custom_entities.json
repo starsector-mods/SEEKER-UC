@@ -1,4 +1,27 @@
 {
+	"skr_tomorrow_hypercube":{
+		"defaultName":"Hypercube", 
+		"defaultRadius":80, 
+		"customDescriptionId":"skr_tomorrow_hypercube",
+		"interactionImage":"graphics/illustrations/dead_gate.jpg",
+		"icon":"graphics/icons/station0.png",
+		"iconWidth":20,
+		"iconHeight":20,
+		"sprite":"graphics/stations/skr_tomorrow_hypercube.png",
+		"spriteWidth":150,
+		"spriteHeight":159,
+		"renderShadow":true,
+		"useLightColor":true,
+		"showInCampaign":true,
+		"showIconOnMap":true,
+		"showNameOnMap":false,
+		"scaleNameWithZoom":false,
+		"scaleIconWithZoom":true,
+		"tags":["station", "neutrino", "has_interaction_dialog", "non_expiring"],
+		"layers":["STATIONS"], 
+		"renderCircleIndicator":true,
+		"renderCircleIndicatorSelectionFlash":true
+	},
     "SKR_safeguardWreckage": {
         "defaultName": "Safeguard's wreckage",
         "defaultRadius": 40,
